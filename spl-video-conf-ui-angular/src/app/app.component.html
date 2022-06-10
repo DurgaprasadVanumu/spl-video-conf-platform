@@ -1,0 +1,79 @@
+<div class="container">
+  <h1 style="text-align: center;">Hire++</h1>
+</div>
+<div class="container" *ngIf="!hasLoggedIn">
+  <div class="row">
+    <form [formGroup]="tokenForm" (submit)="submitToken()">
+      <div class="col-md-4">
+          <input type="text" placeholder="Enter token" formControlName="token" />
+      </div>
+      <div class="col-md-4">
+        <input type="text" placeholder="Enter Your Name" formControlName="name" />
+      </div>
+      <div class="col-md-4">
+        <button type="submit">Login</button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="container" *ngIf="hasLoggedIn">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="row">
+        <div *ngFor="let video of videos" class="col-md-6">
+          <video
+            [srcObject]="video.srcObject"
+            (loadedmetadata)="onLoadedMetadata($event)"
+            [muted]="video.muted">
+          </video>
+          <span>{{video.userName}}</span>
+        </div>
+        <div *ngIf="videos.length==0">
+          Your video will be shown here, when connected!
+        </div>
+      </div>
+      <div class="row" *ngIf="videos.length!=0">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+          <button class="end-button" (click)="endCall()">END</button>
+        </div>
+        <div class="col-md-4"></div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="row">
+        <div class="col-md-6 div-border" (click)="toggleTab('chat')"><span>Chat</span></div>
+        <div class="col-md-6 div-border" (click)="toggleTab('code')"><span>Code</span></div>
+      </div>
+      <div class="row" *ngIf="showChat">
+        <form [formGroup]="messageForm" (submit)="submitMessage()">
+          <input type="text" placeholder="Type in text" formControlName="message" />
+          <button type="submit">Send</button>
+        </form>
+        <div class="messages">
+          <div *ngFor="let user of messages">
+            {{user.name}}: {{user.message}}
+          </div>
+        </div>
+      </div>
+      <div class="row" *ngIf="showCode">
+        <form [formGroup]="codeForm">
+          <textarea rows="10" type="text" placeholder="Enter your code" formControlName="code" (change)="codeUpdated()"></textarea>
+        </form>
+      </div>
+      <div class="row" *ngIf="showCode">
+        <div class="row">
+          <div class="col-md-4">
+            <button (click)="compileCode()">Compile</button>
+          </div>
+          <div class="col-md-4">
+            <button >Run</button>
+          </div>
+          <div class="col-md-4">
+            <button (click)="resetCode()" >Reset</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
