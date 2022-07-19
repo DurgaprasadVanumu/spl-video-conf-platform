@@ -4,7 +4,14 @@
 
 export const environment = {
   production: false,
-  SOCKET_ENDPOINT: 'http://localhost:3000'
+  SOCKET_ENDPOINT: 'https://hireplusplus-socketio-vljhcfbbca-uc.a.run.app',
+  PEERJS_HOST: 'hireplusplus-peerjs-vljhcfbbca-uc.a.run.app',
+  PEERJS_PORT: 443,
+  PEERJS_PATH: '/peerjs/myapp',
+  // SOCKET_ENDPOINT: 'http://localhost:3000',
+  // PEERJS_HOST: '/',
+  // PEERJS_PORT: 3001,
+  // PEERJS_PATH: '/peerjs/myapp',
 };
 
 /*

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "socketio-angular": {
+    "hireplusplus-interview-ui": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,19 +17,27 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/socketio-angular",
+            "outputPath": "dist/hireplusplus-interview-ui",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "node_modules/ngx-extended-pdf-viewer/assets/",
+                "output": "/assets/"
+              }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/bootstrap-slider/dist/css/bootstrap-slider.min.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "node_modules/bootstrap-slider/dist/bootstrap-slider.min.js"
+            ],
             "vendorChunk": true,
             "extractLicenses": false,
             "buildOptimizer": false,
@@ -71,18 +79,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "socketio-angular:build"
+            "browserTarget": "hireplusplus-interview-ui:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "socketio-angular:build:production"
+              "browserTarget": "hireplusplus-interview-ui:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "socketio-angular:build"
+            "browserTarget": "hireplusplus-interview-ui:build"
           }
         },
         "test": {
@@ -119,15 +127,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "socketio-angular:serve"
+            "devServerTarget": "hireplusplus-interview-ui:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "socketio-angular:serve:production"
+              "devServerTarget": "hireplusplus-interview-ui:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "socketio-angular"
+  "defaultProject": "hireplusplus-interview-ui"
 }

@@ -1,0 +1,29 @@
+node_modules
+
+########## Angular #############
+hireplusplus-interview-ui-angular/node_modules
+
+########## ReactJS #############
+hireplusplus-interview-ui-reactjs/node_modules
+hireplusplus-interview-ui-angular/dist
+hireplusplus-interview-ui-reactjs/.pnp
+hireplusplus-interview-ui-reactjs/.pnp.js
+# testing
+hireplusplus-interview-ui-reactjs/coverage
+# production
+hireplusplus-interview-ui-reactjs/build
+# misc
+hireplusplus-interview-ui-reactjs/.DS_Store
+hireplusplus-interview-ui-reactjs/.env.local
+hireplusplus-interview-ui-reactjs/.env.development.local
+hireplusplus-interview-ui-reactjs/.env.test.local
+hireplusplus-interview-ui-reactjs/.env.production.local
+hireplusplus-interview-ui-reactjs/npm-debug.log*
+hireplusplus-interview-ui-reactjs/yarn-debug.log*
+hireplusplus-interview-ui-reactjs/yarn-error.log*
+
+########## PEERJS #############
+hireplusplus-peerjs/node_modules
+
+########## SOCKETIO #############
+hireplusplus-socketio/node_modules

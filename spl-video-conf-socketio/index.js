@@ -24,10 +24,10 @@ socketIo.use(async (socket, next) => {
   const token = socket.handshake.auth.token;
   try {
     // verify jwt token and get user data
-    const user = await jwt.verify(token, JWT_SECRET);
-    console.log('user', user);
+    // const user = await jwt.verify(token, JWT_SECRET);
+    // console.log('user', user);
     // save the user data into socket object, to be used further
-    socket.user = user;
+    socket.user = 'HireplusplusUser';
     next();
   } catch (e) {
     // if token is invalid, close connection
@@ -55,7 +55,7 @@ socketIo.on('connection', (socket) => {
     }
     socket.to(roomId).emit('user-connected', userConnectionDetails)
 
-    socket.on('disconnect', ()=>{
+    socket.on('user-disconnect', ({_roomId})=>{
       console.log("User "+userId+ " disconnected from the room "+roomId)
       socket.to(roomId).emit('user-disconnected', userId)
     })
@@ -124,5 +124,5 @@ socketIo.on('connection', (socket) => {
 });
 
 httpServer.listen(3000, () => {
-  console.log('Socket server started listening on *:3000');
+  console.log('Socket server started listening on *:8080');
 });
