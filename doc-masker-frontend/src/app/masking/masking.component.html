@@ -1,0 +1,49 @@
+<router-outlet></router-outlet>
+<div class="row headerBar">
+  <div class="logo col-sm-1">
+      <a href="https://masking.dev.hireplusplus.com" target="_blank">
+          <img src="../../assets/logo.svg" width="84px" height="40px" alt="HirePlusPlus">
+      </a>
+  </div>
+  <div class="title col-sm-11">
+      Document Masking Tool
+  </div>
+</div>
+<div class="mainBody">
+  <div class="paginator">
+    <ul id = "pagination"class="pagination">  
+    </ul>
+  </div>
+  <button class="btn maskfloat" (click)="performMasking()" [disabled]="disableButton"> performmasking</button>
+  <button class="btn downloadfloat" (click)="download()" [disabled]="false"> download</button>
+  <div class="pdf-outline" style="padding: 20px ;">
+  <div class="pdfImage">
+    <!-- <div class="pdf-container"> -->
+    <!-- <pdf-viewer>
+        [src]="pdfSource",
+        [render-text]="true",
+        style="display:block;"
+      </pdf-viewer> -->
+    <!-- <ngx-extended-pdf-viewer  [src]="pdfSource" useBrowserLocale="true" [textLayer]="true"></ngx-extended-pdf-viewer> -->
+    <canvas #canvas [ngStyle]="{'background-image': 'url(' + pdfImageSrc + ')'}" style=" 
+      background-size:cover;
+      background-repeat:no-repeat;
+      /* width: 800px;
+      height: 1000px; */
+      cursor: crosshair;
+     
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  
+  
+  " (click)="onClick($event)" (mousedown)="onMouseDown($event)" (mousemove)="onMouseMove($event)" (mouseup)="onMouseUp($event)">
+  </canvas>
+  
+  </div>
+</div>
+
+</div>
+
+
+<!-- <div class="">
+<ngx-extended-pdf-viewer [src]="pdfSource" useBrowserLocale="true" [textLayer]="true"></ngx-extended-pdf-viewer>
+</div> -->

@@ -1,0 +1,166 @@
+
+
+.headerBar {
+    /* background: #363F72; */
+    height: fit-content;
+    min-height: 60px;
+    margin: auto;
+    padding: 10px;
+    box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 6px rgba(16, 24, 40, 0.06);
+}
+
+
+.title {
+    margin: auto;
+    padding-left: 55px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 32px;
+
+    color: #101828;
+}
+
+.mainBody {
+    height: fit-content;
+    width: 100%;
+    margin: auto;
+    background: #2888F6!important;
+}
+
+.logoAndWatermark {
+    margin: auto;
+    margin-top:30px;
+    margin-bottom: 30px;
+    background: #53A0F8;
+    border-radius: 8px;
+}
+
+.logo-section {
+    margin-right: 30px;
+    padding: 20px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 3px rgba(16, 24, 40, 0.1), 0px 0px 6px rgba(16, 24, 40, 0.06);
+    border-radius: 4px;
+}
+
+.watermark-section {
+    padding: 20px;
+
+    background: #FFFFFF;
+    box-shadow: 0px 0px 3px rgba(16, 24, 40, 0.1), 0px 0px 6px rgba(16, 24, 40, 0.06);
+    border-radius: 4px;
+}
+.dropDown{
+    border-radius: 6px;
+    font-family: 'Inter';
+    font-size: 15px;
+    padding: 8px;
+    background: #2888F6;
+    color: #fff;
+    cursor: pointer;
+
+}
+.dropdown-option{
+    border-radius: 6px;
+    font-family: 'Inter';
+    font-size: 15px;
+    padding: 8px;
+    background: #FFFFFF;
+    color: #101828;
+    cursor: pointer;
+}
+
+.btn-primary{
+    border-radius: 6px;
+    font-family: 'Inter';
+    font-size: 15px;
+    padding: 6px;
+    background: #2888F6;
+    color: #fff;
+    cursor: pointer;
+
+
+}
+
+.boldText {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 28px;
+    color: #101828;
+}
+
+.greySmallText {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #667085;
+}
+
+.illustrationAndUpload {
+    margin: auto;
+    padding: 50px;
+    background: #206DC5;
+    border-radius: 8px;
+    margin-bottom: 40px;
+}
+
+.uploadResumeSection {
+    padding:30px;
+    background: #101828;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.boldWhiteText {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 38px;
+    color: #FFFFFF;
+}
+
+.whiteText {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #FFFFFF;
+
+}
+
+
+.fileUploadSection{
+    background: #FFFFFF;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 12px;
+    padding: 20px;
+    /* position: fixed;
+    top: 40%;
+    left: 40%; */
+    text-align: center;
+    margin: auto;
+}
+
+
+
+
+
+
+
+@media (max-width:576px) {
+    .logo-section {
+        margin-right: 0px;
+        padding: 20px;
+        background: #FFFFFF;
+        box-shadow: 0px 0px 3px rgba(16, 24, 40, 0.1), 0px 0px 6px rgba(16, 24, 40, 0.06);
+        border-radius: 4px;
+    }
+}

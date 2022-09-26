@@ -1,0 +1,86 @@
+::-webkit-scrollbar {
+    width: 2px;
+  }
+.headerBar {
+    /* background: #363F72; */
+    margin: auto;
+    padding: 10px;
+    box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 6px rgba(16, 24, 40, 0.06);
+}
+
+
+.title {
+    margin: auto;
+    padding-left: 55px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 32px;
+
+    color: #101828;
+}
+
+.mainBody {
+    width: 100%;
+    background: #2888F6;
+}
+.pdfImage {
+    text-align: center;
+}
+
+.pdf-container {
+    background-color: #2888F6;
+    /* width: 802px;
+    height: 1002px; */
+    margin: 0 auto;
+    cursor: crosshair;
+}
+.maskfloat{
+	position:fixed;
+	width:180px;
+	height:45px;
+	bottom:80px;
+	right:70px;
+    background: #206DC5;
+	color:#FFF;
+	border-radius:5px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #FFFFFF;
+}
+.downloadfloat{
+    position:fixed;
+	width:180px;
+	height:45px;
+	bottom:20px;
+	right:70px;
+	background-color:#206DC5;
+	color:#FFF;
+	border-radius:5px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #FFFFFF;
+}
+.paginator{
+	cursor: pointer;
+	position: fixed;
+    width: auto;
+    height: 0px;
+    bottom: 200px;
+    right: 70px;
+    background-color: #206DC5;
+    color: #FFF;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 2px 2px 3px #999;
+}
+
+.page-link{
+	border-radius: 10px;
+}
+
+
+/* canvas{
+    width: 800px;
+    height: 1000px;
+    cursor: crosshair;
+} */

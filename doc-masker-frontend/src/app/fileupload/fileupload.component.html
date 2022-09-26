@@ -1,0 +1,77 @@
+<div class="fullPage">
+
+
+    <div class="row headerBar">
+        <div class="logo col-sm-1">
+            <a href="https://masking.dev.hireplusplus.com" target="_blank">
+                <img src="../../assets/logo.svg" width="84px" height="40px" alt="HirePlusPlus">
+            </a>
+        </div>
+        <div class="title col-sm-11">
+            Document Masking Tool
+        </div>
+    </div>
+    <div class="row mainBody">
+        <div class="col-md-10 logoAndWatermark">
+            <div class="row" style="padding-top:50px;padding-bottom:45px;justify-content: center;">
+                <div class="col-sm-5 logo-section">
+                    <div class="boldText">Change Logo</div>
+                    <div class="greySmallText mt-3">We will create a watermark with help of the Logo you upload.</div>
+                    <div>
+                        <input class=" my-3" type="file" style="font-family:Inter;width: 60%;">
+                        <button (click)="logoUpload()" class="btn btn-primary">
+                            Upload Logo
+                        </button>
+                    </div>
+                </div>
+                <div class="col-sm-5 watermark-section">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="boldText">Available Watermark</div>
+                            <div class="greySmallText my-3">use for masking</div>
+                            <div>
+                                <select class="dropDown" (change)="onWatermarkSelect()">
+                                    <option class="dropdown-option" value="HirePlusPlus">HirePlusPlus</option>
+                                    <option class="dropdown-option" value="Bridentech">Bridentech</option>
+                                    <option class="dropdown-option"value="userLogo">userLogo</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6" style="text-align:right;">
+                            <img src={{watermarkPath}} style="width: 100%;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-10 illustrationAndUpload">
+            <div style="text-align:center;">
+                <img src="../../assets/illustration.svg" style="width:fit-content;display: none;">
+            </div>
+
+            <div class=" row uploadResumeSection">
+                <div class="col-md-6">
+                    <div class="boldWhiteText">
+                        Upload Resume
+                    </div>
+                    <div class="whiteText my-1">
+                        Upload the resume that you want to partially mask
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="fileUploadSection">
+                        <input class="form-control my-2"style="font-family:Inter;border-radius:5px" type="file" (change)="onChange($event)">
+
+                        <button (click)="onUpload()" class="btn btn-primary">
+                            Upload
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
