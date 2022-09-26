@@ -1,0 +1,485 @@
+<div id="pageAll">
+    <div class="col-xl-9" id="page1"
+        style="margin:auto ;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 0 10px 0 rgba(0, 0, 0, 0.2);">
+        <div class="row" style="margin:auto">
+
+            <div class="row headerBar">
+                <div class="logo col-sm-1">
+                    <a href="https://interview.dev.hireplusplus.com" target="_blank">
+                        <img src="https://interview.dev.hireplusplus.com/interview/api/v1/Logo.svg" width="84px" height="38px"
+                            alt="HirePlusPlus">
+                    </a>
+                </div>
+                <div class="title col-sm-11">
+                    Skill Assessment Report
+                </div>
+            </div>
+            <div class="pdfBody">
+                <div class="candidateDetails row">
+                    <div class="candidateLeft col-sm-6">
+                        <div class="row my-4" style="margin: auto;">
+                            <div class="col-sm-8 CandidateDetailsText">Candidate's Details</div>
+                            <div class="col-sm-4 CandidateScore">{{finalScore.toFixed(1)}}/5.0</div>
+                        </div>
+                        <div class="row" style="margin: auto;">
+                            <div class="col-sm-4 " style="margin: auto;">
+                                <img class="candidateImage"
+                                    src="https://interview.dev.hireplusplus.com/interview/api/v1/candidateAvatar.png">
+                            </div>
+                            <div class="col-sm-8" style="overflow-wrap:anywhere;">
+                                <table class="table table-borderless candidateDetailsTableleft">
+                                    <tbody>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>{{reportData.candidateInfo.firstName}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>ID</td>
+                                            <td>{{reportData.candidateInfo.userIdentifier}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="display:flex ;">
+                                                <span class="material-symbols-outlined">my_location</span>
+                                                <span style="padding-left: 3px;">Location</span>
+                                            </td>
+                                            <td>INDIA</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="candidateRight col-sm-6">
+                        <div class="row my-3" style="justify-content: right;margin: auto;">
+                            <div class="col-sm-4 downloadcv" style="display:flex;padding: 8px;">
+                                <span class="material-symbols-outlined">
+                                    file_download
+                                </span>
+                                <a href="https://interview.dev.hireplusplus.com/aimatcher/api/v1/resume/download?jdId={{jdId}}&resumeId={{resumeId}}" target="_blank" style="color: #FFFFFF;"><span style="text-decoration:underline;">Download CV</span></a>
+                            </div>
+                            <div class="col-sm-4">
+                                <button class="shortlist" onclick="blast()">shortlist</button>
+                            </div>
+                        </div>
+                        <div class="candidateDetailsTableRight">
+                            <table class="table table-borderless candidateDetailsTableRight">
+                                <tbody>
+                                    <tr>
+                                        <td>Experience</td>
+                                        <td>{{reportData.candidateInfo.experience}} years</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Skills Assessd</td>
+                                        <td>{{skillsAssessedString}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Role</td>
+                                        <td>{{reportData.jdTitle}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="overallAssessment">
+                    <div class="row align-items-end" style="margin: auto;">
+                        <div class="col-sm-6 chart-gauge-container">
+                            <div class="row">
+                                <div class="overallAssessmentHeader col-sm-6">Overall Assessment</div>
+                                <div class="col-sm-6" style="margin: auto;font-family: 'Inter';
+                            font-style: normal;
+                            font-weight: 700;
+                            font-size: 20px;
+                            line-height: 15px;
+                            color: #333333;">{{finalScore.toFixed(1)}}/5.0</div>
+                            </div>
+                            <div class="chart-gauge" style="text-align: center;position: relative;">
+                                <img src="https://interview.dev.hireplusplus.com/interview/api/v1/gauge.svg"
+                                    style="width: 70%;">
+                                <img src="https://interview.dev.hireplusplus.com/interview/api/v1/hneedle.svg" id="needle">
+                                <!-- <div style="background-color:#206DC5;
+                                border-radius: 50%;
+                                /* position: fixed; */
+                                position: absolute;
+                                bottom: -4.5%;
+                                left: 48%;
+                                width: 20px;
+                                height: 20px;"></div> -->
+                            </div>
+                        </div>
+                        <div class="col-sm-6 allSkillRatings">
+                            <div class="row" style="padding-top:25px">
+                                <div class="col-sm-12" id="allSkillRatingsList"
+                                    style="background: #EEECF5;border-left: 30px solid #51449F;padding:10px">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row overallRemarks">
+                    <div class="col-sm-6">
+                        <div class="remarksHeader">
+                            Remarks
+                        </div>
+                        <div class="remarks">{{reportData.overallRemarksInfo.overallRemarks}}</div>
+                    </div>
+                    <div class="col-sm-4 radarChartContainer" style="margin: auto;">
+                        <canvas id="radarChart"></canvas>
+                    </div>
+                    <!-- <div class="col-sm-3 radarChartContainer">
+                    <canvas id="radarChartCanvas"></canvas>
+                </div> -->
+                </div>
+                <div class="row interview">
+                    <div class="interviewSnapshots col-sm-6">
+                        <div class="row snapHeader">
+                            Interview Snapshots
+                        </div>
+                        <div class="row snapshots">
+                            <div class="col-sm-4">
+                                <img class="candidateSnapshot" (click)="maximizeImage(0)" src={{candidateSnapshot0}}>
+                            </div>
+                            <div class="col-sm-4">
+                                <img class="candidateSnapshot" (click)="maximizeImage(1)"src="{{candidateSnapshot1}}">
+                            </div>
+                            <div class="col-sm-4">
+                                <img class="candidateSnapshot" (click)="maximizeImage(2)" src={{candidateSnapshot2}}>
+                            </div>
+                            <div id="snapEnlargeDiv">
+                                <span class="closeImage" (click)="closeImage()">&times;</span>
+                                <img id="snapEnlargeImage">
+                            </div>
+                        </div>
+                        <div class="row my-2" style="margin: auto;">
+                            <a class="watchRecording" target="_blank"
+                            href={{reportData.recordedVideoUrl}}
+                                style="display: flex;align-items:center;padding:3px;justify-content: center;text-decoration: none;">
+                                <span class="material-symbols-outlined" style="margin-right: 2px;">play_circle</span>
+                                <span>Watch Interview Recording</span>
+                        </a>
+                        
+                        </div>
+                    </div>
+                    <div class="interviewDetails col-sm-6">
+
+                        <div class="row interviewDetailsHeader">Interview Details</div>
+                        <div class="row">
+                            <div class="panelistDetails col-sm-3">
+                                <div>
+                                    <img class="candidateSnapshot"
+                                        src="https://interview.dev.hireplusplus.com/interview/api/v1/candidateAvatar.png"
+                                        style="border-radius: 50%;width: 70%;">
+                                </div>
+                                <div>
+                                    <div class="panelistValueText">{{reportData.panelistInfo.firstName}}</div>
+                                    <div>
+                                        <span class="panelistKeyText"> ID : </span>
+                                        <span class="panelistValueText">{{reportData.panelistInfo.userIdentifier}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="interviewStamp col-sm-9 row" style="margin: auto;">
+                                <div class="row my-2">
+                                    <div class="col-sm-6">
+                                        <div class="panelistKeyText">Date({{reportData.interviewInfo.timeZone}})</div>
+                                        <div class="panelistValueText">{{reportData.interviewInfo.interviewDate}}</div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="panelistKeyText">Time({{reportData.interviewInfo.timeZone}})</div>
+                                        <div class="panelistValueText">{{reportData.interviewInfo.interviewStartTime}}-{{reportData.interviewInfo.interviewEndTime}}</div>
+                                    </div>
+                                </div>
+                                <div class="row my-2">
+                                    <div class="col-sm-6">
+                                        <div class="panelistKeyText">Panelist's Experience</div>
+                                        <div class="panelistValueText">{{reportData.panelistInfo.experience}}+ years</div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="panelistKeyText">Location</div>
+                                        <div class="panelistValueText"> India</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="interviewCoverage row my-5">
+                    <div class="col-sm-8">
+                        <div class="row coverageHeader">Interview Coverage</div>
+                        <div class="row" style="margin:auto;padding: 0px 0 0 30px;">
+                            <div class="col-sm-7" style="padding-right:100px;">
+                                <div class="row interviewCoverageKeyText my-3">Domain
+                                    Experience</div>
+                                <div class="row domainList">
+                                    <div class="col-sm-5 domainValue "*ngFor="let domain of reportData.candidateExperience.domainExperience">{{domain}}</div>
+                                    <!-- <div class="col-sm-4 domainValue">Retail</div> -->
+                                </div>
+                                <div class="row">
+                                    <div class="row interviewCoverageKeyText my-3">Past Employers</div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <input class="form-check-input" type="checkbox" onclick="return false"
+                                            [checked]="reportData.candidateExperience.pastEmployers.mnc">
+                                            <label class="form-check-label pastEmployersLabel">MNC</label>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input class="form-check-input" type="checkbox" onclick="return false"
+                                            [checked]="reportData.candidateExperience.pastEmployers.largeFirms">
+                                            <label class="form-check-label pastEmployersLabel">Large firms</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <input class="form-check-input" type="checkbox" onclick="return false"
+                                            [checked]="reportData.candidateExperience.pastEmployers.sme">
+                                            <label class="form-check-label pastEmployersLabel">SME</label>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input class="form-check-input" type="checkbox" onclick="return false"
+                                            [checked]="reportData.candidateExperience.pastEmployers.startUps">
+                                            <label class="form-check-label pastEmployersLabel">Startups</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-5" style="margin:auto;">
+                                <div class="row interviewCoverageKeyText mt-3">Total Experience</div>
+                                <div class="mb-3">
+                                    <span class="interviewCoverageYearNum">{{reportData.candidateExperience.totalExperience}} </span>
+                                    <span
+                                        style="font-family: 'Inter';font-style: normal;font-weight: 400;font-size: 18px;line-height: 12px;color: #51449F;">years</span>
+                                </div>
+                                <div class="row interviewCoverageKeyText">Relevant Experience</div>
+                                <div class="mb-3">
+                                    <span class="interviewCoverageYearNum">{{reportData.candidateExperience.relevantExperience}} </span>
+                                    <span
+                                        style="font-family: 'Inter';font-style: normal;font-weight: 400;font-size: 18px;line-height: 12px;color: #51449F;">years</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4" style="margin: auto;">
+                        <canvas id="pieChartContainer"></canvas>
+                    </div>
+                </div>
+                <div class="footer">Assessment Report by Hire++. All Rights Reserved. ©Bridgentech Inc, Texas.</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-9" id="page2"
+        style="margin:auto ;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 0 10px 0 rgba(0, 0, 0, 0.2);">
+        <div class="pdfBody">
+            <div class="subSkillDetails">
+                <div class="subSkillHeader">
+                    SubSkill Assessment
+                </div>
+                <div id="subSkillList">
+                </div>
+                <div class="footer">Assessment Report by Hire++. All Rights Reserved. ©Bridgentech Inc, Texas.</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-9" id="page3"
+        style="margin:auto ;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 0 10px 0 rgba(0, 0, 0, 0.2);">
+        <div class="pdfBody">
+            <div class="row softSkillAndPrefernce">
+                <div class="col-sm-6 softSkills">
+                    <div class="row interviewDetailsHeader">Soft Skills</div>
+                    <div class="row" style="margin: auto;">
+                        <div class="col-sm-12" id="softSkillRatingList"
+                            style="background: #EEECF5;border-left: 30px solid #246EC1;padding:10px">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 preference">
+                    <div class="row interviewDetailsHeader">Preference</div>
+                    <div class="row" style="margin: auto;padding-left:20px">
+                        <div class="row" style="margin: auto;">
+                            <div class="row preferenceKey my-2"
+                                style="border-left: 8px solid;border-image: linear-gradient(to bottom, #FFFFFF 34%, #344054 34%, #344054 66%, #FFFFFF 66%) 1;">
+                                Onsite Experience
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                                                       
+                                    <input class="form-check-input" [checked]="reportData.candidatePreferences.onSiteExperience" type="checkbox" onclick="return false">
+                                    <label class="form-check-label pastEmployersLabel">Yes</label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <input class="form-check-input" [checked]="!reportData.candidatePreferences.onSiteExperience" type="checkbox" onclick="return false">
+                                    <label class="form-check-label pastEmployersLabel">No</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin: auto;">
+                            <div class="row preferenceKey my-2"
+                                style="border-left: 8px solid;border-image: linear-gradient(to bottom, #FFFFFF 34%, #344054 34%, #344054 66%, #FFFFFF 66%) 1;">
+                                Openness for onsite deployment </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <input class="form-check-input" type="checkbox" onclick="return false" [checked]="reportData.candidatePreferences.openessForOnsite">
+                                    <label class="form-check-label pastEmployersLabel">Yes</label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <input class="form-check-input" type="checkbox" onclick="return false" [checked]="!reportData.candidatePreferences.openessForOnsite">
+                                    <label class="form-check-label pastEmployersLabel">No</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin: auto;">
+                            <div class="row preferenceKey my-2"
+                                style="border-left: 8px solid;border-image: linear-gradient(to bottom, #FFFFFF 34%, #344054 34%, #344054 66%, #FFFFFF 66%) 1;">
+                                Working from office Preference </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <input class="form-check-input" type="checkbox" onclick="return false" [checked]="reportData.candidatePreferences.workingModel==0?true:false">
+                                    <label class="form-check-label pastEmployersLabel">Hybrid</label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <input class="form-check-input" type="checkbox" onclick="return false" [checked]="reportData.candidatePreferences.workingModel==1?true:false">
+                                    <label class="form-check-label pastEmployersLabel">WFH Only</label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <input class="form-check-input" type="checkbox" onclick="return false" [checked]="reportData.candidatePreferences.workingModel==2?true:false">
+                                    <label class="form-check-label pastEmployersLabel">WFO Only</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row communication">
+
+                <div class="col-sm-6">
+                    <div class="communicationHeader row">
+                        Communication
+                    </div>
+                    <div class="communcationGraph row" style="margin:auto;position: relative;">
+                        <img src="https://interview.dev.hireplusplus.com/interview/api/v1/behaviour.png"
+                            alt="communication graph">
+                        <img src="https://interview.dev.hireplusplus.com/interview/api/v1/candidateAvatar.png"
+                            id="candidateImageBehaviour">
+                    </div>
+                </div>
+                <div class="col-sm-6" style="margin-top: 25px;">
+                    <div id="assertive" style="opacity:0.2;">
+                        <div class="commExplainHeader" style="background: #039855;">Assertive </div>
+                        <div class="commExplainValue"
+                            style="background: rgba(3, 152, 85, 0.12);border-bottom:2px solid white;">
+                            <ul style="margin:auto;">
+                                <li>Features an open communication link while not being overbearing.</li>
+                                <li>Can express their own needs, desires, ideas and feelings, while also considering
+                                    the
+                                    needs of others and Indicates ownership of feelings and behaviors without
+                                    blaming
+                                    the other person.</li>
+                                <li>Indicates ownership of feelings and behaviors without blaming the other person.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="aggressive" style="opacity:0.2;">
+
+                        <div class="commExplainHeader" style="background: #F79009;">Aggressive </div>
+                        <div class="commExplainValue"
+                            style="background: rgba(247, 144, 9, 0.12);border-bottom:2px solid white">
+                            <ul style="margin:auto;">
+                                <li>Speaking in a loud and demanding voice, maintaining intense eye contact and
+                                    dominating or controlling others.</li>
+                                <li>Often issue commands, ask questions rudely and fail to listen to others.</li>
+                                <li>Also be considered leaders and command respect from those around them.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="passiveAggressive" style="opacity:0.2;">
+
+                        <div class="commExplainHeader" style="background: #206DC5;">Passive-Aggressive</div>
+                        <div class="commExplainValue"
+                            style="background: rgba(32, 109, 197, 0.12);border-bottom:2px solid white">
+                            <ul style="margin:auto;">
+                                <li>Will mutter to themselves rather than confront a person or issue.</li>
+                                <li>Appear passive on the surface, but within he or she may feel powerless or stuck,
+                                    building up a resentment.</li>
+                                <li>Most likely to communicate with body language or a lack of open communication to
+                                    another person.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="passive" style="opacity:0.2;">
+                        <div class="commExplainHeader" style="background: #D92D20;">Passive</div>
+                        <div class="commExplainValue"
+                            style="background: rgba(217, 45, 32, 0.12);border-bottom:2px solid white">
+                            <ul style="margin:auto;">
+                                <li>Usually fail to express their feelings or needs, allowing others to express
+                                    themselves.</li>
+                                <li>Lack of eye contact, poor body posture and an inability to say ''NO''.</li>
+                                <li>Easy to get along with as they follow others and go with the flow.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">Assessment Report by Hire++. All Rights Reserved. ©Bridgentech Inc, Texas.</div>
+        </div>
+    </div>
+    <div class="col-xl-9" id="page4"
+        style="margin:auto ;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 0 10px 0 rgba(0, 0, 0, 0.2);">
+        <div class="pdfBody">
+            <div class="row questions">
+                <div class="row questionsHeader">Questions asked & Attempted</div>
+                <div class="row" id="questionsList" style="margin: auto;padding-bottom: 30px;">
+
+
+                </div>
+            </div>
+            <div class="row codingTask">
+                <div class="row codingTaskHeader">Coding Task</div>
+                <div class="row " id="codingQuestion">
+                    <div style="float:left; width: 7%;">
+                        <img src="https://interview.dev.hireplusplus.com/interview/api/v1/qandaicon.svg"
+                            style="width:60px;" />
+                    </div>
+                    <div style="float: right; width: 92%;"> Lorem ipsum dolor sit amet ut labore et dolore magna aliqua.
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi</div>
+
+                </div>
+            </div>
+            <div class="row my-3" id="codingSnapshots">
+                <div class="col-sm-8">
+                    <img src="https://interview.dev.hireplusplus.com/interview/api/v1/code.png" style="width:100%;" />
+                </div>
+                <div class="col-sm-4">
+                    <img src="https://interview.dev.hireplusplus.com/interview/api/v1/compile.png" style="width:100%;" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="graphs" style="display: none;">
+
+    <div class="row">
+        <div class="linearGauge col-sm-6" style="margin:auto">
+            <div style="margin:auto;text-align:center">
+                <div class="fa fa-angle-double-down linearGaugePointer "></div>
+            </div>
+            <div class="linearGaugeBar"></div>
+            <div class="row" style="margin:auto;text-align:center">
+                <div class="col-sm-6">Misfit</div>
+                <div class="col-sm-6">Perfectfit</div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="_3dStack">
+        <div class="stack1" style="width: 300px;height: 100px;background: lightblue;"></div>
+    </div>
+</div>
+
+
+<button class="floatingButton" style="position: fixed ;top:40px;right:30px" (click)="print()">print</button>
+<!-- <button class="floatingButton" style="position: fixed ;top:80px;right:30px" (click)="download()">download</button> -->

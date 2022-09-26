@@ -1,0 +1,1146 @@
+<div class="row"style="width:100%;display: flex;height: 100vh;">
+    <div class="page-side-bar">
+        
+    </div>
+    <div class="page-content">
+        <div class="outer-margin">
+            <div class="row title-row">
+                <div class="col-md-5 job-title">
+                    Job Title: {{interviewData ? interviewData.jdData.jdTitle : ''}}
+                </div>
+                <div class="col-md-2 timer-label">
+                    <span>01:30:00</span>
+                </div>
+                <div class="col-md-5 user-menu">
+                    <div class="row">
+                        <!-- <div class="col-md-1">
+                            
+                        </div> -->
+                        <div class="col-md-12">
+                            <div class="row user-menu-icon">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-4"></div>
+                                <div class="col-md-1">
+                                </div>
+                                <div class="col-md-1">
+                                </div>
+                                <div class="col-md-1">
+                                </div>
+                                <div class="col-md-2">
+                                </div>
+                                <div class="col-md-1">
+                                    <span class="call-action wifi-icon-fill">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-wifi" viewBox="0 0 16 16">
+                                        <path d="M15.384 6.115a.485.485 0 0 0-.047-.736A12.444 12.444 0 0 0 8 3C5.259 3 2.723 3.882.663 5.379a.485.485 0 0 0-.048.736.518.518 0 0 0 .668.05A11.448 11.448 0 0 1 8 4c2.507 0 4.827.802 6.716 2.164.205.148.49.13.668-.049z"/>
+                                        <path d="M13.229 8.271a.482.482 0 0 0-.063-.745A9.455 9.455 0 0 0 8 6c-1.905 0-3.68.56-5.166 1.526a.48.48 0 0 0-.063.745.525.525 0 0 0 .652.065A8.46 8.46 0 0 1 8 7a8.46 8.46 0 0 1 4.576 1.336c.206.132.48.108.653-.065zm-2.183 2.183c.226-.226.185-.605-.1-.75A6.473 6.473 0 0 0 8 9c-1.06 0-2.062.254-2.946.704-.285.145-.326.524-.1.75l.015.015c.16.16.407.19.611.09A5.478 5.478 0 0 1 8 10c.868 0 1.69.201 2.42.56.203.1.45.07.61-.091l.016-.015zM9.06 12.44c.196-.196.198-.52-.04-.66A1.99 1.99 0 0 0 8 11.5a1.99 1.99 0 0 0-1.02.28c-.238.14-.236.464-.04.66l.706.706a.5.5 0 0 0 .707 0l.707-.707z"/> 
+                                        </svg>
+                                    </span>
+                                </div>
+                                <div class="col-md-1">
+                                    <span class="call-action">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                        <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+                                      </svg>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row video-chat-row">
+                <div class="col-md-5">
+                    <div class="row flex-nowrap my-video-outer-div">
+                        <div class="col">
+                            <div class="candidate-video-div">
+                                <div *ngIf="hasCandidateJoined" class="video-section">
+                                    <video class="candidate-video"
+                                    [srcObject]="candidateVideo.srcObject"
+                                    (loadedmetadata)="onLoadedMetadata($event)"
+                                    [muted]="candidateVideo.muted">
+                                    </video>
+                                    <div class="video-label-section">
+                                        <div class="row">
+                                            <div class="col-md-4" style="padding-left: 5%;">
+                                                <div class="row">
+                                                    {{candidateVideo.userRole}} 
+                                                </div>
+                                                <div class="row">
+                                                    {{candidateVideo.userName}}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8" style="padding:1%;padding-right:3%;">
+                                                <div class="d-flex flex-row-reverse">
+                                                    <div class="col-5">
+                                                        <button class="btn end-interview" label="End Interview" (click)="endCall()">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
+                                                                <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+                                                            </svg>
+                                                            End Interview
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <div>
+                                                            <div style="padding-top: 8%; cursor: pointer;">
+                                                                <svg *ngIf="myAudioFlag" (click)="muteMyAudio()" xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-mic" viewBox="0 0 16 16">
+                                                                    <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5z"/>
+                                                                    <path d="M10 8a2 2 0 1 1-4 0V3a2 2 0 1 1 4 0v5zM8 0a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0V3a3 3 0 0 0-3-3z"/>
+                                                                </svg>
+                                                                <svg *ngIf="!myAudioFlag" (click)="unmuteMyAudio()" xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-mic-mute" viewBox="0 0 16 16">
+                                                                    <path d="M13 8c0 .564-.094 1.107-.266 1.613l-.814-.814A4.02 4.02 0 0 0 12 8V7a.5.5 0 0 1 1 0v1zm-5 4c.818 0 1.578-.245 2.212-.667l.718.719a4.973 4.973 0 0 1-2.43.923V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 1 0v1a4 4 0 0 0 4 4zm3-9v4.879l-1-1V3a2 2 0 0 0-3.997-.118l-.845-.845A3.001 3.001 0 0 1 11 3z"/>
+                                                                    <path d="m9.486 10.607-.748-.748A2 2 0 0 1 6 8v-.878l-1-1V8a3 3 0 0 0 4.486 2.607zm-7.84-9.253 12 12 .708-.708-12-12-.708.708z"/>
+                                                                </svg>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <div>
+                                                            <div style="padding-top: 8%; cursor: pointer;" >
+                                                                <svg *ngIf="myVideoFlag" (click)="closeMyVideo()" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-camera-video" viewBox="0 0 16 16">
+                                                                    <path fill-rule="evenodd" d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5zm11.5 5.175 3.5 1.556V4.269l-3.5 1.556v4.35zM2 4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h7.5a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H2z"/>
+                                                                </svg>
+                                                                <svg *ngIf="!myVideoFlag" (click)="openMyVideo()" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-camera-video-off" viewBox="0 0 16 16">
+                                                                    <path fill-rule="evenodd" d="M10.961 12.365a1.99 1.99 0 0 0 .522-1.103l3.11 1.382A1 1 0 0 0 16 11.731V4.269a1 1 0 0 0-1.406-.913l-3.111 1.382A2 2 0 0 0 9.5 3H4.272l.714 1H9.5a1 1 0 0 1 1 1v6a1 1 0 0 1-.144.518l.605.847zM1.428 4.18A.999.999 0 0 0 1 5v6a1 1 0 0 0 1 1h5.014l.714 1H2a2 2 0 0 1-2-2V5c0-.675.334-1.272.847-1.634l.58.814zM15 11.73l-3.5-1.555v-4.35L15 4.269v7.462zm-4.407 3.56-10-14 .814-.58 10 14-.814.58z"/>
+                                                                </svg>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div *ngIf="!hasCandidateJoined" class="video-section">
+                                    <video class="candidate-video-not-joined"></video>
+                                    <!-- <div class="video-label-section">
+                                        Yet to Join
+                                    </div> -->
+                                    <div class="video-label-section">
+                                        <div class="row">
+                                            <div class="col-md-4" style="padding-left: 5%;">
+                                                Candidate <br>
+                                                Yet to Join
+                                            </div>
+                                            <div class="col-md-8" style="padding:1%;padding-right:3%;">
+                                                <div class="d-flex flex-row-reverse">
+                                                    <div class="col-5">
+                                                        <button class="btn end-interview" label="End Interview" (click)="endCall()">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
+                                                                <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+                                                            </svg>
+                                                            End Interview
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <div>
+                                                            <div style="padding-top: 8%; cursor: pointer;">
+                                                                <svg *ngIf="myAudioFlag" (click)="muteMyAudio()" xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-mic" viewBox="0 0 16 16">
+                                                                    <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5z"/>
+                                                                    <path d="M10 8a2 2 0 1 1-4 0V3a2 2 0 1 1 4 0v5zM8 0a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0V3a3 3 0 0 0-3-3z"/>
+                                                                </svg>
+                                                                <svg *ngIf="!myAudioFlag" (click)="unmuteMyAudio()" xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-mic-mute" viewBox="0 0 16 16">
+                                                                    <path d="M13 8c0 .564-.094 1.107-.266 1.613l-.814-.814A4.02 4.02 0 0 0 12 8V7a.5.5 0 0 1 1 0v1zm-5 4c.818 0 1.578-.245 2.212-.667l.718.719a4.973 4.973 0 0 1-2.43.923V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 1 0v1a4 4 0 0 0 4 4zm3-9v4.879l-1-1V3a2 2 0 0 0-3.997-.118l-.845-.845A3.001 3.001 0 0 1 11 3z"/>
+                                                                    <path d="m9.486 10.607-.748-.748A2 2 0 0 1 6 8v-.878l-1-1V8a3 3 0 0 0 4.486 2.607zm-7.84-9.253 12 12 .708-.708-12-12-.708.708z"/>
+                                                                </svg>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <div>
+                                                            <div style="padding-top: 8%; cursor: pointer;" >
+                                                                <svg *ngIf="myVideoFlag" (click)="closeMyVideo()" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-camera-video" viewBox="0 0 16 16">
+                                                                    <path fill-rule="evenodd" d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5zm11.5 5.175 3.5 1.556V4.269l-3.5 1.556v4.35zM2 4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h7.5a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H2z"/>
+                                                                </svg>
+                                                                <svg *ngIf="!myVideoFlag" (click)="openMyVideo()" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-camera-video-off" viewBox="0 0 16 16">
+                                                                    <path fill-rule="evenodd" d="M10.961 12.365a1.99 1.99 0 0 0 .522-1.103l3.11 1.382A1 1 0 0 0 16 11.731V4.269a1 1 0 0 0-1.406-.913l-3.111 1.382A2 2 0 0 0 9.5 3H4.272l.714 1H9.5a1 1 0 0 1 1 1v6a1 1 0 0 1-.144.518l.605.847zM1.428 4.18A.999.999 0 0 0 1 5v6a1 1 0 0 0 1 1h5.014l.714 1H2a2 2 0 0 1-2-2V5c0-.675.334-1.272.847-1.634l.58.814zM15 11.73l-3.5-1.555v-4.35L15 4.269v7.462zm-4.407 3.56-10-14 .814-.58 10 14-.814.58z"/>
+                                                                </svg>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row flex-nowrap other-vide-outer-div">
+                        <div class="col-md-4">
+                            <div class="other-video-sec">
+                                <div *ngIf="hasMyVideoAdded" class="video-section">
+                                    <video class="other-video"
+                                        [srcObject]="myVideo.srcObject"
+                                        (loadedmetadata)="onLoadedMetadata($event)"
+                                        [muted]="myVideo.muted">
+                                    </video>
+                                    <div class="other-video-label-section">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="row">
+                                                    {{myVideo.userRole}} <br> {{myVideo.userName}}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+        
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div *ngIf="!hasMyVideoAdded" class="video-section">
+                                    <video class="other-video"></video>
+                                    <div class="video-label-section">
+                                        Yet to Join
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4" *ngFor="let video of otherVideos">
+                            <div class="other-video-sec">
+                                <div class="video-section">
+                                    <video class="other-video"
+                                        [srcObject]="video.srcObject"
+                                        (loadedmetadata)="onLoadedMetadata($event)"
+                                        [muted]="video.muted">
+                                    </video>
+                                    <div class="other-video-label-section">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="row">
+                                                    {{video.userRole}} <br> {{video.userName}}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+        
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="col-md-4" *ngIf="!otherVideos || otherVideos.length<3">
+                            <div class="other-video-sec">
+                                <div class="video-section">
+                                    <video class="video-not-joined"></video>
+                                    <div class="video-label-section">
+                                        Yet to Join
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4" *ngIf="!otherVideos || otherVideos.length<2">
+                            <div class="other-video-sec">
+                                <div class="video-section">
+                                    <video class="video-not-joined"></video>
+                                    <div class="video-label-section">
+                                        Yet to Join
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4" *ngIf="!otherVideos || otherVideos.length<1">
+                            <div class="other-video-sec">
+                                <div class="video-section">
+                                    <video class="video-not-joined"></video>
+                                    <div class="video-label-section">
+                                        Yet to Join
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="row tabs-row">
+                        <div class="col-sm-1 tab-title tab-title-start" [ngClass]="getEditorTabStyle(0)" (click)="selectEditorTab(0)">
+                            Chat
+                        </div>
+                        <div class="col-sm-2 tab-title" [ngClass]="getEditorTabStyle(1)" (click)="selectEditorTab(1)">
+                            Code Editor
+                        </div>
+                        <div class="col-sm-2 tab-title" [ngClass]="getEditorTabStyle(2)" (click)="selectEditorTab(2)">
+                            View JD
+                        </div>
+                        <div class="col-sm-2 tab-title" [ngClass]="getEditorTabStyle(3)" (click)="selectEditorTab(3)">
+                            View Resume
+                        </div>
+                        <div class="col-sm-3 tab-title tab-title-end" [ngClass]="getEditorTabStyle(4)" (click)="selectEditorTab(4)">
+                            QnA Suggestions
+                        </div>
+                    </div>
+                    <div class="row editor-content-outline">
+                        <div class="editor-content-div" *ngIf="showEditorTab(0)">
+                            <div class="chat-box">
+                                <div id="chat-box-messages" class="messages-div" >
+                                    <div *ngFor="let msg of messages" tabindex="-1" #chatMessages>
+                                        <div class="row msg-row-border" *ngIf="msg.userId!=currentUserName">
+                                            <div class="col-md-1">
+                                                <img class="msg-user-icon" [src]="msg.userImg"/>
+                                            </div>
+                                            <div class="col-md-4 msg-content-outline msg-outline-left">
+                                                <div class="msg-content content-align-left">
+                                                    {{msg.msgContent}}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-1 msg-time-outline">
+                                                <div class="msg-time content-align-left">
+                                                    {{msg.time | date: 'h:mm a'}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row msg-row-border" *ngIf="msg.userId==currentUserName">
+                                            <div class="col-md-6"></div>
+                                            <div class="col-md-1 msg-time-outline">
+                                                <div class="msg-time content-align-right">
+                                                    {{msg.time | date: 'h:mm a'}}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 msg-content-outline msg-outline-right">
+                                                <div class="msg-content content-align-right">
+                                                    {{msg.msgContent}}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <img class="msg-user-icon" [src]="msg.userImg"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="message-send-input">
+                                    <div class="row">
+                                        <div class="col-md-11">
+                                            <input class="msg-input" [(ngModel)]="messageText" type="text" placeholder="Type a Message" (keydown.enter)="submitMessage()" />
+                                        </div>
+                                        <div class="col-md-1">
+                                            <button class="msg-send-button" label="Send" (click)="submitMessage()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
+                                                <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
+                                              </svg></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="editor-content-div" [hidden]="!showEditorTab(1)">
+                            <div class="code-editor">
+                                <div class="code-content">
+                                    <div class="app-ace-editor" #editor></div>
+                                </div>
+                                <div class="code-execution">
+                                    <div class="row flex-nowrap">
+                                        <div class="col">
+                                            <div ngbDropdown>
+                                                <button type="button" class="code-run-switch" id="dropdownBasic1" ngbDropdownToggle>{{selectedCodeLang}}</button>
+                                                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                                    <button ngbDropdownItem (click)="onSelectLang('java')">Java</button>
+                                                    <button ngbDropdownItem (click)="onSelectLang('python')">Python</button>
+                                                    <button ngbDropdownItem (click)="onSelectLang('dotnet')">DotNet</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col text-end">
+                                            <div placement="top-end">
+                                                <button type="button" class="code-run-compile" (click)="compileCode()">
+                                                    <span style="vertical-align: middle;">Compile & Run</span>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                                                        <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="editor-content-div-overflow" *ngIf="showEditorTab(2)">
+                            <div class="doc-content">
+                                <ngx-extended-pdf-viewer useBrowserLocale="true" [enablePrint]="true"
+                                        [src]="jdSource" [height]="'60%'" [textLayer]="true" [showToolbar]="false">
+                                </ngx-extended-pdf-viewer>
+                            </div>
+                        </div>
+                        <div class="editor-content-div-overflow" *ngIf="showEditorTab(3)">
+                            <div>
+                                <ngx-extended-pdf-viewer useBrowserLocale="true" 
+                                        [src]="resumeSource" [height]="'60%'" [textLayer]="true" [showToolbar]="false">
+                                </ngx-extended-pdf-viewer>
+                            </div>
+                        </div>
+                        <div class="editor-content-div-overflow qna-section-outline" *ngIf="showEditorTab(4)">
+                            <div class="code-editor">
+                                <div class="d-flex flex-row qna-section-header">
+                                    <div class="p-2 qna-section-tab" (click)="selectQuestionnarieLevel('Easy')" [ngClass]="getQuestionnarieLevelStyle('Easy')">
+                                        Easy
+                                    </div>
+                                    <div class="p-2 qna-section-tab" (click)="selectQuestionnarieLevel('Medium')" [ngClass]="getQuestionnarieLevelStyle('Medium')">
+                                        Medium
+                                    </div>
+                                    <div class="p-2 qna-section-tab" (click)="selectQuestionnarieLevel('Difficult')" [ngClass]="getQuestionnarieLevelStyle('Difficult')">
+                                        Difficult
+                                    </div>
+                                </div>
+                                <div class="qna-section-content">
+                                    <ul>
+                                        <div *ngFor="let ques of jdSkillsList[selectedReviewTabIndex].suggestedQuestionList; let i=index">
+                                        <li *ngIf="ques.difficultyLevel==selectedQuestionnarieLevel">
+                                            <div class="question-outline">
+                                                <div>
+                                                    <div class="question-ques">
+                                                        {{ques.question}}
+                                                    </div>
+                                                    <div class="question-ans-outline">
+                                                        <div class="row" (click)="toggleAnswerView(selectedReviewTabIndex, i)">
+                                                            <div class="col-md-11" style="cursor: pointer;">
+                                                                <span *ngIf="!ques.showAnswer">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="green" class="bi bi-dot" viewBox="0 0 16 16">
+                                                                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                                                                  </svg>
+                                                                  Show model answer
+                                                                </span>
+                                                                <span *ngIf="ques.showAnswer">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="green" class="bi bi-dot" viewBox="0 0 16 16">
+                                                                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                                                                    </svg>
+                                                                    Hide model answer
+                                                                </span>
+                                                            </div>
+                                                            <div class="col-md-1" style="text-align: right;cursor: pointer;">
+                                                                <svg *ngIf="!ques.showAnswer" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                                                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                                                                </svg>
+                                                                <svg *ngIf="ques.showAnswer" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-up" viewBox="0 0 16 16">
+                                                                    <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>
+                                                                </svg>
+                                                            </div>
+                                                        </div>
+                                                        <div class="question-ans" *ngIf="ques.showAnswer">
+                                                            {{ques.modelAnswer}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex flex-row-reverse question-rating">
+                                                        <div class="p-1">
+                                                            <div class="question-rating-button" [ngClass]="getQuestionRatingStyle(selectedReviewTabIndex, i, 5)" (click)="setQuestionRating(selectedReviewTabIndex, i, 5)">Excellent</div>
+                                                        </div>
+                                                        <div class="p-1">
+                                                            <div class="question-rating-button" [ngClass]="getQuestionRatingStyle(selectedReviewTabIndex, i, 4)" (click)="setQuestionRating(selectedReviewTabIndex, i, 4)">Good</div>
+                                                        </div>
+                                                        <div class="p-1">
+                                                            <div class="question-rating-button" [ngClass]="getQuestionRatingStyle(selectedReviewTabIndex, i, 3)" (click)="setQuestionRating(selectedReviewTabIndex, i, 3)">Adequate</div>
+                                                        </div>
+                                                        <div class="p-1">
+                                                            <div class="question-rating-button" [ngClass]="getQuestionRatingStyle(selectedReviewTabIndex, i, 2)" (click)="setQuestionRating(selectedReviewTabIndex, i, 2)">Poor</div>
+                                                        </div>
+                                                        <div class="p-1">
+                                                            <div class="question-rating-button" [ngClass]="getQuestionRatingStyle(selectedReviewTabIndex, i, 1)" (click)="setQuestionRating(selectedReviewTabIndex, i, 1)">Terrible</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        </div>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="review-section">
+                <div class="d-flex flex-row review-section-header">
+                    <div class="p-0" style="padding: 0%" *ngFor="let skill of jdSkillsList; let i = index">
+                        <div *ngIf="i==0" class="tab-title tab-title-start" [ngClass]="getReviewTabStyle(i)" (click)="selectReviewTab(i)">
+                            {{skill.skillName}} ({{skill.skillWeightage}}%)
+                        </div>
+                        <div *ngIf="i!=0&&i!=jdSkillsList.length-1" class="tab-title" [ngClass]="getReviewTabStyle(i)" (click)="selectReviewTab(i)">
+                            {{skill.skillName}} ({{skill.skillWeightage}}%)
+                        </div>
+                        <div *ngIf="i==jdSkillsList.length-1" class="tab-title tab-title-end" [ngClass]="getReviewTabStyle(i)" (click)="selectReviewTab(i)">
+                            {{skill.skillName}} ({{skill.skillWeightage}}%)
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex flex-row review-section-content">
+                    <div class="col-md-6">
+                        <div class="slider-outline">
+                            <div class="row slider-header">
+                                <span>Knowledge</span>
+                            </div>
+                            <div class="row">
+                                <mv-slider [(value)]="jdSkillsList[selectedReviewTabIndex].skillKnowledge"
+                                [ticks]="knowTicks" [ticksLabels]="knowTickLabels" [step]="20"></mv-slider>
+                            </div>
+                        </div>
+                        <div class="slider-outline">
+                            <div class="row slider-header">
+                                <span>Experience</span>
+                            </div>
+                            <div class="row">
+                                <mv-slider [(value)]="jdSkillsList[selectedReviewTabIndex].experience"
+                                    [ticks]="expTicks" [ticksLabels]="expTickLabels" [step]="33.33"></mv-slider>
+                            </div>
+                        </div>
+                        <div class="slider-outline">
+                            <div class="row slider-header">
+                                <span>Clarity Of Thoughts</span>
+                            </div>
+                            <div class="row">
+                                <mv-slider [(value)]="jdSkillsList[selectedReviewTabIndex].skillClarity"
+                                [ticks]="clarityTicks" [ticksLabels]="clarityTickLabels" [step]="20"></mv-slider>
+                            </div>
+                        </div>
+        
+                        <!-- <div class="custom-ngx-slider">
+                            Experience
+                            <ngx-slider [(value)]="expValue" [options]="expOptions"></ngx-slider>
+                        </div>
+                        <div class="custom-ngx-slider">
+                            Clarity of Thoughts
+                            <ngx-slider [(value)]="clarityValue" [options]="clarityOptions"></ngx-slider>
+                        </div> -->
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row sub-skill-comments">
+                            <span class="sub-skill-comments-header">Panelist Comments On Sub-Skills</span>
+                            <div class="row sub-skill-comments-content">
+                                <textarea [(ngModel)]="jdSkillsList[selectedReviewTabIndex].skillRemarks" placeholder="Your comments about this subskill..."></textarea>
+                            </div>
+                        </div>
+                        <div class="row sub-skill-overall-rating"> 
+                            <div class="row overall-rating-section-outline">
+                                <div class="row overall-rating-section">
+                                    <div class="row overall-rating-section-wrapper">
+                                        <div class="col-md-6">
+                                            <span class="overall-rating-span">Overall rating</span>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="row flex-nowrap">
+                                                <div class="col-sm">
+                                                </div>
+                                                <div class="col-sm" (click)="setOverallRating(selectedReviewTabIndex, 1)" style="cursor: pointer">
+                                                    <svg *ngIf="jdSkillsList[selectedReviewTabIndex].skillRating>0" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="blue" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                    </svg>
+                                                    <svg *ngIf="jdSkillsList[selectedReviewTabIndex].skillRating==0" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="blue" class="bi bi-star" viewBox="0 0 16 16">
+                                                        <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                                    </svg>
+                                                </div>
+                                                <div class="col-sm" (click)="setOverallRating(selectedReviewTabIndex, 2)" style="cursor: pointer">
+                                                    <svg *ngIf="jdSkillsList[selectedReviewTabIndex].skillRating>1" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="blue" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                    </svg>
+                                                    <svg *ngIf="jdSkillsList[selectedReviewTabIndex].skillRating<=1" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="blue" class="bi bi-star" viewBox="0 0 16 16">
+                                                        <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                                    </svg>
+                                                </div>
+                                                <div class="col-sm" (click)="setOverallRating(selectedReviewTabIndex, 3)" style="cursor: pointer">
+                                                    <svg *ngIf="jdSkillsList[selectedReviewTabIndex].skillRating>2" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="blue" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                    </svg>
+                                                    <svg *ngIf="jdSkillsList[selectedReviewTabIndex].skillRating<=2" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="blue" class="bi bi-star" viewBox="0 0 16 16">
+                                                        <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                                    </svg>
+                                                </div>
+                                                <div class="col-sm" (click)="setOverallRating(selectedReviewTabIndex, 4)" style="cursor: pointer">
+                                                    <svg *ngIf="jdSkillsList[selectedReviewTabIndex].skillRating>3" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="blue" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                    </svg>
+                                                    <svg *ngIf="jdSkillsList[selectedReviewTabIndex].skillRating<=3" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="blue" class="bi bi-star" viewBox="0 0 16 16">
+                                                        <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                                    </svg>
+                                                </div>
+                                                <div class="col-sm" (click)="setOverallRating(selectedReviewTabIndex, 5)" style="cursor: pointer">
+                                                    <svg *ngIf="jdSkillsList[selectedReviewTabIndex].skillRating>4" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="blue" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                    </svg>
+                                                    <svg *ngIf="jdSkillsList[selectedReviewTabIndex].skillRating<=4" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="blue" class="bi bi-star" viewBox="0 0 16 16">
+                                                        <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row sub-skill-navigation">
+                                <div class="col">
+                                    <button class="btn left-button" (click)="selectReviewTab(selectedReviewTabIndex-1)">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left" viewBox="0 0 16 16">
+                                            <path d="M10 12.796V3.204L4.519 8 10 12.796zm-.659.753-5.48-4.796a1 1 0 0 1 0-1.506l5.48-4.796A1 1 0 0 1 11 3.204v9.592a1 1 0 0 1-1.659.753z"/>
+                                        </svg>
+                                        <span style="vertical-align: middle;">Previous Skill</span>
+                                    </button>
+                                </div>
+                                <div class="col text-end">
+                                    <button class="btn right-button" (click)="selectReviewTab(selectedReviewTabIndex+1)">
+                                        <span style="vertical-align: middle;">Next Skill</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                                            <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                                        </svg></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #content let-modal let-c="close">
+    <div class="modal-body">
+        <div id="candidate-analysis" class="cand-analy-modal">
+            <div class="cand-analy-outer-margin">
+                <div class="row">
+                    <div class="col-sm-1 checkers-header-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                            <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="cand-analy-header">
+                        Candidate Analysis
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="cand-analy-subheader">
+                        <!-- Your new project has been created. Invite colleagues to collaborate on this project. -->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="cand-analy-remarks-section">
+                        <div class="header">
+                            Overall Remarks & Behaviour Analysis
+                        </div>
+                        <div class="content">
+                            <textarea [(ngModel)]="overallRemarks.overallRemarks"
+                                placeholder="Your overall comments about candidate i.e., soft skills, behaviour analysis">
+                            </textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="cand-analys-preference-section">
+                        <div class="group">
+                            <div class="row section">
+                                <div class="col-md-6 label">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="5" height="5" fill="currentColor" class="bi bi-square-fill" viewBox="0 0 16 16">
+                                        <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2z"/>
+                                    </svg>
+                                    Onsite Experience
+                                </div>
+                                <div class="col-md-6 content">
+                                    <div class="form-check form-check-inline option">
+                                        <input type="radio" class="form-check-input" name="onsite-exp-options" value="true"
+                                            (change)="candidatePreferences.onSiteExperience=!candidatePreferences.onSiteExperience" [checked]="candidatePreferences.onSiteExperience"/>
+                                        <label class="form-check-label" for="onsite-exp-yes">Yes</label>
+                                    </div>
+                                    <div class="form-check form-check-inline option">
+                                        <input type="radio" class="form-check-input" name="onsite-exp-options" value="false"
+                                            (change)="candidatePreferences.onSiteExperience=!candidatePreferences.onSiteExperience" [checked]="!candidatePreferences.onSiteExperience">
+                                        <label class="form-check-label" for="onsite-exp-no">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row section">
+                                <div class="col-md-6 label">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="5" height="5" fill="currentColor" class="bi bi-square-fill" viewBox="0 0 16 16">
+                                        <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2z"/>
+                                    </svg>
+                                    Openess For Onsite Development
+                                </div>
+                                <div class="col-md-6 content">
+                                    <div class="form-check form-check-inline option">
+                                        <input type="radio" class="form-check-input" name="open-onsite-options" value="true"
+                                            (change)="candidatePreferences.openessForOnsite=!candidatePreferences.openessForOnsite" [checked]="candidatePreferences.openessForOnsite"/>
+                                        <label class="form-check-label" for="open-onsite-yes">Yes</label>
+                                    </div>
+                                    <div class="form-check form-check-inline option">
+                                        <input type="radio" class="form-check-input" name="open-onsite-options" value="false"
+                                            (change)="candidatePreferences.openessForOnsite=!candidatePreferences.openessForOnsite" [checked]="!candidatePreferences.openessForOnsite"/>
+                                        <label class="form-check-label" for="open-onsite-no">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row section">
+                                <div class="col-md-6 label">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="5" height="5" fill="currentColor" class="bi bi-square-fill" viewBox="0 0 16 16">
+                                        <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2z"/>
+                                    </svg>
+                                    Working from Office Preference
+                                </div>
+                                <div class="col-md-6 content">
+                                    <div class="form-check form-check-inline option">
+                                        <input type="radio" class="form-check-input" name="working-modal-options" value="0"
+                                            (change)="candidatePreferences.workingModel=0" [checked]="candidatePreferences.workingModel==0"/>
+                                        <label class="form-check-label" for="working-modal-hydrid">Hybrid</label>
+                                    </div>
+                                    <div class="form-check form-check-inline option">
+                                        <input type="radio" class="form-check-input" name="working-modal-options" value="1"
+                                            (change)="candidatePreferences.workingModel=1" [checked]="candidatePreferences.workingModel==1"/>
+                                        <label class="form-check-label" for="working-modal-wfh-only">WFH Only</label>
+                                    </div>
+                                    <div class="form-check form-check-inline option">
+                                        <input type="radio" class="form-check-input" name="working-modal-options" value="2"
+                                            (change)="candidatePreferences.workingModel=2" [checked]="candidatePreferences.workingModel==2"/>
+                                        <label class="form-check-label" for="working-modal-wfo-only">WFO Only</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cand-analys-soft-skill-section">
+                        <div class="header">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="5" height="5" fill="currentColor" class="bi bi-square-fill" viewBox="0 0 16 16">
+                                <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2z"/>
+                            </svg>
+                            Soft Skill Rating
+                        </div>
+                        <div class="row content">
+                            <div class="col-md-6 content-left">
+                                <div class="row">
+                                    <div class="col-md-6 label">
+                                        Communication
+                                    </div>
+                                    <div class="col-md-6 rating">
+                                        <div class="row flex-nowrap">
+                                            <div class="col star-rating" (click)="overallRemarks.communication=1" >
+                                                <svg *ngIf="overallRemarks.communication>0" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                </svg>
+                                                <svg *ngIf="overallRemarks.communication==0" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star" viewBox="0 0 16 16">
+                                                    <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                                </svg>
+                                            </div>
+                                            <div class="col star-rating" (click)="overallRemarks.communication=2" >
+                                                <svg *ngIf="overallRemarks.communication>1" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                </svg>
+                                                <svg *ngIf="overallRemarks.communication<=1" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star" viewBox="0 0 16 16">
+                                                    <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                                </svg>
+                                            </div>
+                                            <div class="col star-rating" (click)="overallRemarks.communication=3" >
+                                                <svg *ngIf="overallRemarks.communication>2" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                </svg>
+                                                <svg *ngIf="overallRemarks.communication<=2" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star" viewBox="0 0 16 16">
+                                                    <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                                </svg>
+                                            </div>
+                                            <div class="col star-rating" (click)="overallRemarks.communication=4" >
+                                                <svg *ngIf="overallRemarks.communication>3" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                </svg>
+                                                <svg *ngIf="overallRemarks.communication<=3" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star" viewBox="0 0 16 16">
+                                                    <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                                </svg>
+                                            </div>
+                                            <div class="col star-rating" (click)="overallRemarks.communication=5" >
+                                                <svg *ngIf="overallRemarks.communication>4" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                </svg>
+                                                <svg *ngIf="overallRemarks.communication<=4" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star" viewBox="0 0 16 16">
+                                                    <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 label">
+                                        Technical Skills
+                                    </div>
+                                    <div class="col-md-6 rating">
+                                        <div class="row flex-nowrap">
+                                            <div class="col star-rating" (click)="overallRemarks.technicalSkills=1" >
+                                                <svg *ngIf="overallRemarks.technicalSkills>0" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                </svg>
+                                                <svg *ngIf="overallRemarks.technicalSkills==0" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star" viewBox="0 0 16 16">
+                                                    <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                                </svg>
+                                            </div>
+                                            <div class="col star-rating" (click)="overallRemarks.technicalSkills=2" >
+                                                <svg *ngIf="overallRemarks.technicalSkills>1" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                </svg>
+                                                <svg *ngIf="overallRemarks.technicalSkills<=1" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star" viewBox="0 0 16 16">
+                                                    <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                                </svg>
+                                            </div>
+                                            <div class="col star-rating" (click)="overallRemarks.technicalSkills=3" >
+                                                <svg *ngIf="overallRemarks.technicalSkills>2" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                </svg>
+                                                <svg *ngIf="overallRemarks.technicalSkills<=2" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star" viewBox="0 0 16 16">
+                                                    <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                                </svg>
+                                            </div>
+                                            <div class="col star-rating" (click)="overallRemarks.technicalSkills=4" >
+                                                <svg *ngIf="overallRemarks.technicalSkills>3" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                </svg>
+                                                <svg *ngIf="overallRemarks.technicalSkills<=3" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star" viewBox="0 0 16 16">
+                                                    <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                                </svg>
+                                            </div>
+                                            <div class="col star-rating" (click)="overallRemarks.technicalSkills=5" >
+                                                <svg *ngIf="overallRemarks.technicalSkills>4" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                </svg>
+                                                <svg *ngIf="overallRemarks.technicalSkills<=4" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star" viewBox="0 0 16 16">
+                                                    <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 label">
+                                        Attitude
+                                    </div>
+                                    <div class="col-md-6 rating">
+                                        <div class="row flex-nowrap">
+                                            <div class="col star-rating" (click)="overallRemarks.attitude=1" >
+                                                <svg *ngIf="overallRemarks.attitude>0" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                </svg>
+                                                <svg *ngIf="overallRemarks.attitude==0" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star" viewBox="0 0 16 16">
+                                                    <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                                </svg>
+                                            </div>
+                                            <div class="col star-rating" (click)="overallRemarks.attitude=2" >
+                                                <svg *ngIf="overallRemarks.attitude>1" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                </svg>
+                                                <svg *ngIf="overallRemarks.attitude<=1" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star" viewBox="0 0 16 16">
+                                                    <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                                </svg>
+                                            </div>
+                                            <div class="col star-rating" (click)="overallRemarks.attitude=3" >
+                                                <svg *ngIf="overallRemarks.attitude>2" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                </svg>
+                                                <svg *ngIf="overallRemarks.attitude<=2" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star" viewBox="0 0 16 16">
+                                                    <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                                </svg>
+                                            </div>
+                                            <div class="col star-rating" (click)="overallRemarks.attitude=4" >
+                                                <svg *ngIf="overallRemarks.attitude>3" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                </svg>
+                                                <svg *ngIf="overallRemarks.attitude<=3" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star" viewBox="0 0 16 16">
+                                                    <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                                </svg>
+                                            </div>
+                                            <div class="col star-rating" (click)="overallRemarks.attitude=5" >
+                                                <svg *ngIf="overallRemarks.attitude>4" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                </svg>
+                                                <svg *ngIf="overallRemarks.attitude<=4" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star" viewBox="0 0 16 16">
+                                                    <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 label">
+                                        Soft Skills
+                                    </div>
+                                    <div class="col-md-6 rating">
+                                        <div class="row flex-nowrap">
+                                            <div class="col star-rating" (click)="overallRemarks.softSkills=1" >
+                                                <svg *ngIf="overallRemarks.softSkills>0" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                </svg>
+                                                <svg *ngIf="overallRemarks.softSkills==0" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star" viewBox="0 0 16 16">
+                                                    <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                                </svg>
+                                            </div>
+                                            <div class="col star-rating" (click)="overallRemarks.softSkills=2" >
+                                                <svg *ngIf="overallRemarks.softSkills>1" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                </svg>
+                                                <svg *ngIf="overallRemarks.softSkills<=1" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star" viewBox="0 0 16 16">
+                                                    <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                                </svg>
+                                            </div>
+                                            <div class="col star-rating" (click)="overallRemarks.softSkills=3" >
+                                                <svg *ngIf="overallRemarks.softSkills>2" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                </svg>
+                                                <svg *ngIf="overallRemarks.softSkills<=2" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star" viewBox="0 0 16 16">
+                                                    <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                                </svg>
+                                            </div>
+                                            <div class="col star-rating" (click)="overallRemarks.softSkills=4" >
+                                                <svg *ngIf="overallRemarks.softSkills>3" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                </svg>
+                                                <svg *ngIf="overallRemarks.softSkills<=3" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star" viewBox="0 0 16 16">
+                                                    <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                                </svg>
+                                            </div>
+                                            <div class="col star-rating" (click)="overallRemarks.softSkills=5" >
+                                                <svg *ngIf="overallRemarks.softSkills>4" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                </svg>
+                                                <svg *ngIf="overallRemarks.softSkills<=4" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star" viewBox="0 0 16 16">
+                                                    <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 label">
+                                        Enthusiasm
+                                    </div>
+                                    <div class="col-md-6 rating">
+                                        <div class="row flex-nowrap">
+                                            <div class="col star-rating" (click)="overallRemarks.enthusiasm=1" >
+                                                <svg *ngIf="overallRemarks.enthusiasm>0" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                </svg>
+                                                <svg *ngIf="overallRemarks.enthusiasm==0" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star" viewBox="0 0 16 16">
+                                                    <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                                </svg>
+                                            </div>
+                                            <div class="col star-rating" (click)="overallRemarks.enthusiasm=2" >
+                                                <svg *ngIf="overallRemarks.enthusiasm>1" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                </svg>
+                                                <svg *ngIf="overallRemarks.enthusiasm<=1" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star" viewBox="0 0 16 16">
+                                                    <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                                </svg>
+                                            </div>
+                                            <div class="col star-rating" (click)="overallRemarks.enthusiasm=3" >
+                                                <svg *ngIf="overallRemarks.enthusiasm>2" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                </svg>
+                                                <svg *ngIf="overallRemarks.enthusiasm<=2" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star" viewBox="0 0 16 16">
+                                                    <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                                </svg>
+                                            </div>
+                                            <div class="col star-rating" (click)="overallRemarks.enthusiasm=4" >
+                                                <svg *ngIf="overallRemarks.enthusiasm>3" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                </svg>
+                                                <svg *ngIf="overallRemarks.enthusiasm<=3" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star" viewBox="0 0 16 16">
+                                                    <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                                </svg>
+                                            </div>
+                                            <div class="col star-rating" (click)="overallRemarks.enthusiasm=5" >
+                                                <svg *ngIf="overallRemarks.enthusiasm>4" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                </svg>
+                                                <svg *ngIf="overallRemarks.enthusiasm<=4" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star" viewBox="0 0 16 16">
+                                                    <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 content-right">
+                                <div class="row" *ngFor="let softSkill of softSkillsList; let i=index">
+                                    <div class="col-md-6 label">
+                                        {{softSkill.skillName}}
+                                    </div>
+                                    <div class="col-md-6 rating">
+                                        <div class="row flex-nowrap">
+                                            <div class="col star-rating" (click)="setSoftSkillRating(i, 1)" >
+                                                <svg *ngIf="softSkill.skillRating>0" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                </svg>
+                                                <svg *ngIf="softSkill.skillRating==0" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star" viewBox="0 0 16 16">
+                                                    <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                                </svg>
+                                            </div>
+                                            <div class="col star-rating" (click)="setSoftSkillRating(i, 2)" >
+                                                <svg *ngIf="softSkill.skillRating>1" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                </svg>
+                                                <svg *ngIf="softSkill.skillRating<=1" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star" viewBox="0 0 16 16">
+                                                    <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                                </svg>
+                                            </div>
+                                            <div class="col star-rating" (click)="setSoftSkillRating(i, 3)" >
+                                                <svg *ngIf="softSkill.skillRating>2" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                </svg>
+                                                <svg *ngIf="softSkill.skillRating<=2" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star" viewBox="0 0 16 16">
+                                                    <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                                </svg>
+                                            </div>
+                                            <div class="col star-rating" (click)="setSoftSkillRating(i, 4)" >
+                                                <svg *ngIf="softSkill.skillRating>3" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                </svg>
+                                                <svg *ngIf="softSkill.skillRating<=3" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star" viewBox="0 0 16 16">
+                                                    <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                                </svg>
+                                            </div>
+                                            <div class="col star-rating" (click)="setSoftSkillRating(i, 5)" >
+                                                <svg *ngIf="softSkill.skillRating>4" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                </svg>
+                                                <svg *ngIf="softSkill.skillRating<=4" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" class="bi bi-star" viewBox="0 0 16 16">
+                                                    <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="cand-analys-personality-section">
+                        <div class="header">
+                            Personality
+                        </div>
+                        <div ngbDropdown class="options">
+                            <button type="button" class="dropdown-button select" id="dropdownBasic2" ngbDropdownToggle>{{skillAssesment.communicationCategory && skillAssesment.communicationCategory!=='' ? skillAssesment.communicationCategory : 'Select'}}</button>
+                            <div class="select-item" ngbDropdownMenu aria-labelledby="dropdownBasic2">
+                                <button ngbDropdownItem (click)="onSelectPersonality('assertive')">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="green" class="bi bi-dot" viewBox="0 0 16 16">
+                                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                                      </svg>
+                                    Assertive
+                                </button>
+                                <button ngbDropdownItem (click)="onSelectPersonality('aggressive')">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="yellow" class="bi bi-dot" viewBox="0 0 16 16">
+                                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                                      </svg>
+                                    Aggressive
+                                </button>
+                                <button ngbDropdownItem (click)="onSelectPersonality('passiveAggressive')">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="blue" class="bi bi-dot" viewBox="0 0 16 16">
+                                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                                      </svg>
+                                    Passive-Aggressive
+                                </button>
+                                <button ngbDropdownItem (click)="onSelectPersonality('passive')">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="orange" class="bi bi-dot" viewBox="0 0 16 16">
+                                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                                      </svg>
+                                    Passive
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row candidate-experience-section">
+                    <div class="col-md-6">
+                        <div class="domain-exp">
+                            <div class="header">
+                                Domain Experience
+                            </div>
+                            <div class="content">
+                                <div class="row tag-input">
+                                    <input [(ngModel)]="domainInputKey" type="text" placeholder="Type here" (keydown.enter)="submitDomainKey()" />
+                                </div>
+                                <div class="row separator"><hr></div>
+                                <div class="row">
+                                    <div class="d-flex flex-row">
+                                        <div class="p-1 item" *ngFor="let domain of candidateExperience.domainExperience; let i=index">
+                                            <span>
+                                                {{domain}}
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16" (click)="removeDomain(i)" style="cursor: pointer;">
+                                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="past-employers">
+                            <div class="header">
+                                Past Employers
+                            </div>
+                            <div class="content">
+                                <div class="d-flex flex-row">
+                                    <div class="p2 form-check item">
+                                        <label class="form-check-label" for="flexCheckChecked1">
+                                            Large Firms
+                                        </label>
+                                        <input class="form-check-input" type="checkbox" id="flexCheckChecked1" [checked]="candidateExperience.pastEmployers.largeFirms" 
+                                            (change)="candidateExperience.pastEmployers.largeFirms=!candidateExperience.pastEmployers.largeFirms"/>
+                                    </div>
+                                    <div class="p2 form-check item">
+                                        <label class="form-check-label" for="flexCheckChecked2">
+                                            Startups
+                                          </label>
+                                        <input class="form-check-input" type="checkbox" id="flexCheckChecked2" [checked]="candidateExperience.pastEmployers.startUps"
+                                            (change)="candidateExperience.pastEmployers.startUps=!candidateExperience.pastEmployers.startUps"/>
+                                    </div>
+                                    <div class="p2 form-check item">
+                                        <label class="form-check-label" for="flexCheckChecked3">
+                                            SME
+                                          </label>
+                                        <input class="form-check-input" type="checkbox" id="flexCheckChecked3" [checked]="candidateExperience.pastEmployers.sme"
+                                            (change)="candidateExperience.pastEmployers.sme=!candidateExperience.pastEmployers.sme"/>
+                                    </div>
+                                    <div class="p2 form-check item">
+                                        <label class="form-check-label" for="flexCheckChecked4">
+                                            MNC
+                                          </label>
+                                        <input class="form-check-input" type="checkbox" id="flexCheckChecked4" [checked]="candidateExperience.pastEmployers.mnc"
+                                            (change)="candidateExperience.pastEmployers.mnc=!candidateExperience.pastEmployers.mnc"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="total-exp">
+                            <div class="header">
+                                Total Experience
+                            </div>
+                            <div class="content">
+                                <div class="d-flex flex-row">
+                                    <div class="p-2 value exp-value-item">
+                                        <input [(ngModel)]="candidateExperience.totalExperience" type="text" placeholder="Enter a value" />
+                                    </div>
+                                    <div class="p-2 exp-value-unit">
+                                        Years
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="total-exp">
+                            <div class="header">
+                                Relevant Experience
+                            </div>
+                            <div class="content">
+                                <div class="d-flex flex-row">
+                                    <div class="p-2 value exp-value-item">
+                                        <input [(ngModel)]="candidateExperience.relevantExperience" type="text" placeholder="Enter a value" />
+                                    </div>
+                                    <div class="p-2 exp-value-unit">
+                                        Years
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row cand-analys-action">
+                    <div class="col left">
+                        <button class="btn btn-secondary" fill="currentColor" (click)="c('CANCEL')">CANCEL</button>
+                    </div>
+                    <div class="col right">
+                        <button class="btn btn-primary" fill="primaryColor" (click)="c('SUBMIT')">SUBMIT</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

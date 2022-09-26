@@ -1,0 +1,14 @@
+{
+    "/interview/api/v1":{
+        "target": "https://interview.dev.hireplusplus.com",
+        "secure": false,
+        "changeOrigin": true,
+        "logLevel": "debug"
+    },
+    "/aimatcher/api/v1":{
+        "target": "https://interview.dev.hireplusplus.com",
+        "secure": false,
+        "changeOrigin": true,
+        "logLevel": "debug"
+    }
+}

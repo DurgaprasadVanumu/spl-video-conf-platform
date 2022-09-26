@@ -60,9 +60,9 @@ export class SocketioService {
     }
   }
 
-  joinRoom = (roomId, userId) => {
+  joinRoom = (roomId, userData) => {
     if(this.socket){
-      this.socket.emit('join-room', roomId, userId)
+      this.socket.emit('join-room', roomId, userData)
     }
   }
 
@@ -72,10 +72,5 @@ export class SocketioService {
       console.log('Receiving user-connected event from userId: ', userConnectionDetails)
       return cb(null, userConnectionDetails)
     })
-  }
-
-  compileCode(body: CompileCode){
-    let url = "http://20.232.38.111:8082/api/v1/java/compile"
-    return this.httpClient.post(url, body);
   }
 }

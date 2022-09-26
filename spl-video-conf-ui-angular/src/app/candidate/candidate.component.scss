@@ -32,15 +32,19 @@ video{
 .candidate-video{
     width: 100%;
     display: block;
-    max-height: 17rem;
+    height: 50vh;
 }
 
 .candidate-video-not-joined{
-    height: 17rem;
+    height: 50vh;
+}
+
+.panelist-video{
+    height: 35vh;
 }
 
 .video-not-joined{
-    height: 8.4rem;
+    height: 35rem;
 }
 
 .title-row{
@@ -70,7 +74,14 @@ video{
 }
 
 .editor-content-outline{
-    height: 87%;
+    // height: 87%;
+}
+
+.editor-section-header{
+    background: #185294;
+    color: white;
+    border-radius: 10px 10px 0px 0px;
+    width: 100%;
 }
 
 .review-tabs{
@@ -78,11 +89,11 @@ video{
 }
 
 .tab-title-start{
-    border-radius: 8px 0px 0px 8px;
+    border-radius: 8px 0px 0px 0px;
 }
 
 .tab-title-end{
-    border-radius: 0px 8px 8px 0px;
+    border-radius: 0px 8px 0px 0px;
 }
 
 .tab-title-select{
@@ -166,14 +177,28 @@ video{
     vertical-align: middle;
 }
 
-.editor-content-div{
-    width: 98%;
+.chat-content-div{
+    // width: 98%;
     // display: flex;
     flex-direction: column;
     align-items: flex-start;
     // padding: 20px 3px 20px 20px;
     gap: 12px;
-    background: #F2F4F7;
+    // background: #F2F4F7;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    padding: 0%;
+}
+
+.editor-content-div{
+    // width: 98%;
+    // display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    // padding: 20px 3px 20px 20px;
+    gap: 12px;
+    // background: #F2F4F7;
     flex: none;
     order: 1;
     flex-grow: 0;
@@ -204,8 +229,8 @@ video{
 
 .my-video-outer-div{
     padding-bottom: 2%;
-    padding-left: 1%;
-    padding-right: 4%;
+    padding-left: 0%;
+    padding-right: 3%;
 }
 
 .video-label-section{
@@ -268,8 +293,8 @@ video{
 
 .other-vide-outer-div{
     padding-bottom: 1%;
-    padding-left: 1%;
-    padding-right: 1%;
+    // padding-left: 1%;
+    // padding-right: 1%;
     overflow-x: auto;
 }
 
@@ -323,7 +348,7 @@ video {
 }
 
 .code-editor{
-    height: 100%;
+    // height: 100%;
 }
 
 ul li::marker {
@@ -439,31 +464,43 @@ ul li::marker {
     color: #FFFFFF;
 }
 
-
 .chat-box{
     position: relative;
-    height: 100%;
+    height: 85vh;
     background: #F2F4F7;
+    // width: 98%;
 }
 
-.msg-row-border{
-    padding: 1%;
+.chat-box-outline{
+    // padding-left: 3%;
+    // padding-right: 1%;
 }
 
 .messages-div{
     top: 1%;
     width: 100%;
     // min-height: 320px;
-    max-height: 320px;
+    max-height: 80vh;
     overflow: scroll;
     overflow-wrap: anywhere;
     padding-bottom: 2%;
     padding-top: 2%;
 }
 
+.chat-section-header{
+    background: #185294;
+    color: white;
+    border-radius: 10px 10px 0px 0px;
+    width: 98%;
+}
+
+.msg-row-border{
+    padding: 1%;
+}
+
 .code-content{
     width: 100%;
-    height: 88%;
+    height: 78vh;
 }
 
 .code-execution{
@@ -720,12 +757,6 @@ ul li::marker {
     padding: 1%;
     border-radius: 8px;
 }
-
-// .overall-rating-section span{
-//     font-weight: 600;
-//     font-size: 15px;
-//     color: #101828;
-// }
 
 .sub-skill-navigation{
     padding: 0%;

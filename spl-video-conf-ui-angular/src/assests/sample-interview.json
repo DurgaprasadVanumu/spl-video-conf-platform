@@ -1,0 +1,276 @@
+{
+  "data": {
+    "jdData": {
+      "jdIdentifier": "JD_IN1659614674",
+      "jdTitle": "Java Full Stack Developer",
+      "skillList": [
+        {
+          "skillName": "Java",
+          "skillWeightage": 25,
+          "suggestedQuestionList": [
+            {
+              "question": "What is meant by Method Overriding?",
+              "modelAnswer": "Method overriding happens if the sub-class method satisfies the below conditions with the Super-class method:\nMethod name should be the same\nThe argument should be the same\nReturn type should also be the same\nThe key benefit of overriding is that the Sub-class can provide some specific information about that sub-class type than the super-class.",
+              "difficultyLevel": "Medium"
+            },
+            {
+              "question": "what is an instance of Keyword?",
+              "modelAnswer": "The instanceof keyword checks whether an object is an instance of a specific class or an interface. The instanceof keyword compares the instance with type. The return value is either true or false",
+              "difficultyLevel": "Medium"
+            },
+            {
+              "question": "What is the life-cycle of a servlet?",
+              "modelAnswer": "Servlet is loaded\nservlet is instantiated\nservlet is initialized\nservice the request\nservlet is destroyed",
+              "difficultyLevel": "Medium"
+            },
+            {
+              "question": "What is JDBC Driver?",
+              "modelAnswer": "JDBC Driver is a software component that enables Java application to interact with the database. There are 4 types of JDBC drivers:\nJDBC-ODBC bridge driver: The JDBC-ODBC bridge driver uses the ODBC driver to connect to the database. The JDBC-ODBC bridge driver converts JDBC method calls into the ODBC function calls. This is now discouraged because of the thin driver. It is easy to use and can be easily connected to any database.\nNative-API driver (partially java driver): The Native API driver uses the client-side libraries of the database. The driver converts JDBC method calls into native calls of the database API. It is not written entirely in Java. Its performance is better than JDBC-ODBC bridge driver. However, the native driver must be installed on each client machine.\nNetwork Protocol driver (fully java driver): The Network Protocol driver uses middleware (application server) that converts JDBC calls directly or indirectly into the vendor-specific database protocol. It is entirely written in Java. There is no requirement of the client-side library because of the application server that can perform many tasks like auditing, load balancing, logging, etc.\nThin driver (fully java driver): The thin driver converts JDBC calls directly into the vendor-specific database protocol. That is why it is known as the thin driver. It is entirely written in Java language. Its performance is better than all other drivers however these drivers depend upon the database.",
+              "difficultyLevel": "Medium"
+            },
+            {
+              "question": "What's the difference between \"resetting\" and \"normalizing\" CSS?",
+              "modelAnswer": "Resetting                                                    \tNormalizing\nRemoves all the built-in browser styling.   \tNormalizing makes elements render consistently across browsers.\nProvides bug fixes\t                                        Includes bug fixes",
+              "difficultyLevel": "Medium"
+            },
+            {
+              "question": "What is the difference between hide comment and output comment?",
+              "modelAnswer": "The JSP comment is called hide comment whereas HTML comment is called output comment. If a user views the source of the page, the JSP comment will not be shown whereas HTML comment will be displayed.",
+              "difficultyLevel": "Medium"
+            },
+            {
+              "question": "What is the purpose of a Volatile Variable?",
+              "modelAnswer": "Volatile variable values are always read from the main memory and not from thread’s cache memory. This is used mainly during synchronization. It is applicable only for variables.",
+              "difficultyLevel": "Medium"
+            },
+            {
+              "question": "What is the JDBC Rowset?",
+              "modelAnswer": "DBC Rowset is the wrapper of ResultSet. It holds tabular data like ResultSet, but it is easy and flexible to use. The implementation classes of RowSet interface are as follows:\nJdbcRowSet\nCachedRowSet\nWebRowSet\nJoinRowSet\nFilteredRowSet",
+              "difficultyLevel": "Medium"
+            },
+            {
+              "question": "What do you mean by Constructor?",
+              "modelAnswer": "Constructor can be explained in detail with enlisted points:\nWhen a new object is created in a program a constructor gets invoked corresponding to the class.\nThe constructor is a method which has the same name as the class name.\nIf a user doesn’t create a constructor implicitly a default constructor will be created.\nThe constructor can be overloaded.\nIf the user created a constructor with a parameter then he should create another constructor explicitly without a parameter.",
+              "difficultyLevel": "Medium"
+            },
+            {
+              "question": "Difference between forward() method and sendRedirect() method ?",
+              "modelAnswer": "forward() method\t\nforward() sends the same request to another resource.\t\nforward() method works at server side.\t\nforward() method works within the server only.\nsendRedirect() method\nsendRedirect() method sends new request always because it uses the URL bar of the browser.\nsendRedirect() method works at client side.\nsendRedirect() method works within and outside the server.",
+              "difficultyLevel": "Medium"
+            }
+          ]
+        },
+        {
+          "skillName": "MongoDB",
+          "skillWeightage": 25,
+          "suggestedQuestionList": [
+            {
+              "question": "Explain Storage Encryption?",
+              "modelAnswer": "Storage encryption encodes all the MongoDB data over the storage or over the operating systems for assuring that only authenticated processes will access the safeguarded data.\n\n",
+              "difficultyLevel": "Medium"
+            },
+            {
+              "question": "What is a Document in MongoDB?",
+              "modelAnswer": "A Document in MongoDB is an ordered set of keys with associated values. It is represented by a map, hash, or dictionary. In JavaScript, documents are represented as objects:\n{\"greeting\" : \"Hello world!\"}\n\nComplex documents will contain multiple key/value pairs:\n{\"greeting\" : \"Hello world!\", \"views\" : 3}",
+              "difficultyLevel": "Medium"
+            },
+            {
+              "question": "How do we perform sorting and Explain Project in MongoDB",
+              "modelAnswer": "For finding any data in MongoDB, we use the find() method. The discovery () method returns the collection’s documents over which we invoked this method. We can use the “Where” clause in the MongoDB query in order to restrict the output by using MongoDB projection. Anytime we execute the find() method, MongoDB returns all the documents associated with a particular collection. \n\ndb.<collection_name>.find({ }, {<key_Name>:<Flag to display>})",
+              "difficultyLevel": "Medium"
+            },
+            {
+              "question": "What is a Collection in MongoDB?",
+              "modelAnswer": "A collection in MongoDB is a group of documents. If a document is the MongoDB analog of a row in a relational database, then a collection can be thought of as the analog to a table.\nDocuments within a single collection can have any number of different “shapes.”, i.e. collections have dynamic schemas. \nFor example, both of the following documents could be stored in a single collection:",
+              "difficultyLevel": "Medium"
+            },
+            {
+              "question": "What are the data types in MongoDB?",
+              "modelAnswer": "MongoDB supports a wide range of data types as values in documents. Documents in MongoDB are similar to objects in JavaScript. Along with JSON’s essential key/value–pair nature, MongoDB adds support for a number of additional data types. The common data types in MongoDB are:\n\nNull\n{\"x\" : null}\nBoolean\n{\"x\" : true}\nNumber\n{\"x\" : 4}\nString\n{\"x\" : \"foobar\"}\nDate\n{\"x\" : new Date()}\nRegular expression\n{\"x\" : /foobar/i}\nArray\n{\"x\" : [\"a\", \"b\", \"c\"]}\nEmbedded document\n{\"x\" : {\"foo\" : \"bar\"}}\nObject ID\n{\"x\" : ObjectId()}\nBinary Data\nBinary data is a string of arbitrary bytes.\nCode\n{\"x\" : function() { /* ... */ }}",
+              "difficultyLevel": "Medium"
+            },
+            {
+              "question": " How to add data in MongoDB?",
+              "modelAnswer": "The basic method for adding data to MongoDB is “inserts”. To insert a single document, use the collection’s insertOne method:\n\n> db.books.insertOne({\"title\" : \"Start With Why\"})\nFor inserting multiple documents into a collection, we use insertMany. This method enables passing an array of documents to the database",
+              "difficultyLevel": "Medium"
+            },
+            {
+              "question": "What is MongoDB ?",
+              "modelAnswer": "MongoDB is an open-source NoSQL database written in C++ language. It uses JSON-like documents with optional schemas.\nIt provides easy scalability and is a cross-platform, document-oriented database.\nMongoDB works on the concept of Collection and Document.\nIt combines the ability to scale out with features such as secondary indexes, range queries, sorting, aggregations, and geospatial indexes.\nMongoDB is developed by MongoDB Inc. and licensed under the Server Side Public License (SSPL).",
+              "difficultyLevel": "Medium"
+            },
+            {
+              "question": "What is the purpose of the DB command?",
+              "modelAnswer": "We use the “DB” command to get the name of the presently selected database.",
+              "difficultyLevel": "Medium"
+            },
+            {
+              "question": " How does Scale-Out occur in MongoDB?\n",
+              "modelAnswer": "The document-oriented data model of MongoDB makes it easier to split data across multiple servers. Balancing and loading data across a cluster is done by MongoDB. It then redistributes documents automatically.\n\nThe mongos acts as a query router, providing an interface between client applications and the sharded cluster.\n\nConfig servers store metadata and configuration settings for the cluster. MongoDB uses the config servers to manage distributed locks. Each sharded cluster must have its own config servers. \n\n",
+              "difficultyLevel": "Medium"
+            },
+            {
+              "question": "Does MongoDB support ACID Transaction? Define ACID Transaction?",
+              "modelAnswer": "Yes, MongoDB supports ACID Transaction. ACID refers to Atomicity, Consistency, Isolation, and Durability. Transaction manager assures that we handle these attributes. ",
+              "difficultyLevel": "Medium"
+            }
+          ]
+        },
+        {
+          "skillName": "Angular",
+          "skillWeightage": 25,
+          "suggestedQuestionList": [
+            {
+              "question": "Name the three Module Arrays",
+              "modelAnswer": "In this Angular 2 interview question, try explaining the module array, and not just naming them. Modules break your applications into logical boundaries. They are, in alphabetical order:\n\nBootstrap array - Tells Angular which components to load so the functionality can be accessed\nExport array - Sends out components, directives, and pipes to be used in other modules.\nImport array - Brings in functionality from other Angular modules",
+              "difficultyLevel": "Medium"
+            },
+            {
+              "question": "What are types of directives?",
+              "modelAnswer": "Component directives\nThese form the main class in directives. Instead of @Directive decorator we use @Component decorator to declare these directives. These directives have a view, a stylesheet and a selector property.\n\nStructural directives\nThese directives are generally used to manipulate DOM elements.\nEvery structural directive has a ‘ * ’ sign before them.\nWe can apply these directives to any DOM element.\nAttribute Directives\n\nThese directives are used to change the look and behaviour of a DOM element. Let’s understand attribute directives by creating one:\n",
+              "difficultyLevel": "Medium"
+            },
+            {
+              "question": "what is the use of The ng_content directive in angular2",
+              "modelAnswer": "The ng_content tag is used as a placeholder to display dynamic content. This placeholder tag is replaced with the original content as the template is parsed. The ng-content creates components that can be configured depending on the needs of the user.",
+              "difficultyLevel": "Medium"
+            },
+            {
+              "question": "how do you define transition between two states in angular",
+              "modelAnswer": "Transitions between two states take place so that we can build simple animations between two states driven by a model attribute. Transition basically means navigating from the current state to a new state. In angular, the transition is an animation-specific function which is used in angular’s animation DSL language. Transition declares the sequence of animation steps that will be executed when the entered value is satisfied. A function is provided an argument for a transition and it will be executed each time a state change occurs. In this, if the function is true, then the animation will run else it won’t get executed.\n\nThese animation transitions are placed within the animation triggers. The transition depends upon what the animation was in the previous state and what it will become in the next state. In other words, if a transition is defined that matches the old/current state criteria then the associated animation will be triggered.\n\nSyntax:\n\nfunction transition (stateChangeExpr: string,steps: AnimationMetadata | \n\t AnimationMetadata []):AnimationTransitionMetadata;",
+              "difficultyLevel": "Medium"
+            },
+            {
+              "question": "what do you mean by structural directive in Angular 2",
+              "modelAnswer": "Structural directives are used to manipulate DOM in angular. Structural directives are responsible for HTML layout. By adding, removing, or manipulating LMNs in angular, they shape or reshape the structure of DOM. This structural directive is applied to a host element with the help of other directives. The directives then do whatever it is supposed to do with that host element and its descendants. Structural directives can be easily recognized. It can also delay the instantiation of a component or an element. It can also be used for cosmetic effect or manually handling the timing of the loading of components. Structural directives are bound to a template. The two most common structural directives are “ngIf” and “ngFor”. The process occurring in a structural directive is dynamic.",
+              "difficultyLevel": "Medium"
+            },
+            {
+              "question": "When to use Ngoninit and constructer in Angular2?",
+              "modelAnswer": "Constructors are used for initializing class members and also for dependency injection. Ngonlnit is used for the initialization work. Both of these methods are called when the component is created. It is really important that we should know, when to and how to use them. These are used for providing the best structure for your component’s code. A constructor method is a pre-defined method in the constructor class which is only called when the class is instantiated. It is also used for properly initializing the fields. The constructor in Angular 2 is used to create a new instance of the class. Ngonlnit is the class we import when we implement the constructor in order to use it in a class. The method used in this case is ngOnlnit(). This method helps in initializing the directive or the component after the data-bound properties are displayed and the directive or components input is set.",
+              "difficultyLevel": "Medium"
+            },
+            {
+              "question": "What is bootstrapping?",
+              "modelAnswer": "Angular bootstrapping, in simple words, allows professionals to initialize or start the Angular application. Angular supports both manual and automatic bootstrapping. Let’s briefly understand the two.\n\nManual bootstrapping: It gives more control to professionals with regards to how and when they need to initialize the Angular app. It is extremely useful in places where professionals wish to perform other tasks and operations before the Angular compiles the page.\nAutomatic bootstrapping: Automatic bootstrapping can be used to add the ng-app directive to the application’s root, often on the tag if professionals need Angular to automatically bootstrap the application. Angular loads the associated module once it finds the ng-app directive and, further, compiles the DOM.",
+              "difficultyLevel": "Medium"
+            },
+            {
+              "question": "What are Impure Pipes?",
+              "modelAnswer": "For every change detection cycle in Angular, an impure pipe is called regardless of the change in the input fields. Multiple pipe instances are created for these pipes. Inputs passed to these pipes can be mutable. \n\nBy default, all pipes are pure. However, you can specify impure pipes using the pure property, as shown below.\n\n@Pipe({\n\n  name: 'demopipe',\n\n  pure : true/false \n\n})\n\nexport class DemopipePipe implements PipeTransform {",
+              "difficultyLevel": "Medium"
+            },
+            {
+              "question": "What is HttpClient, and what are its benefits?",
+              "modelAnswer": "HttpClient is an Angular module used for communicating with a backend service via the HTTP protocol. Usually, in frontend applications, for sending requests, we use the fetch API. However, the fetch API uses promises. Promises are useful, but they do not offer the rich functionalities that observables offer. This is why we use HttpClient in Angular as it returns the data as an observable, which we can subscribe to, unsubscribe to, and perform several operations on using operators. Observables can be converted to promises, and an observable can be created from a promise as well.",
+              "difficultyLevel": "Medium"
+            },
+            {
+              "question": "Every tool has its downside, what are Angular 2’s disadvantages?",
+              "modelAnswer": "The drawbacks of Angular 2 are:\n\nConfusing: Since there are numerous ways of doing a task, it can be difficult, especially for newcomers, to choose the right way to perform a task.\nSteep Learning Curve: On a related note, if you don’t know TypeScript, you better learn it, since it’s been introduced into Angular 2. Basic functions are easy, but when you move into advanced concepts, the curve gets steep.\nIt’s A Whole Different Animal: If you like and are used to Angular, you’re in for a shock, as Angular 2 represents a total redesign.\nSlow User Interface: If you’re dealing with more than 2000 watchers, get ready for some major lag.\nInconsistent Documentation: Due to a fragmented community, there’s a lack of clear, well-written, consistent documentation.",
+              "difficultyLevel": "Medium"
+            }
+          ]
+        },
+        {
+          "skillName": " Spring boot",
+          "skillWeightage": 25,
+          "suggestedQuestionList": [
+            {
+              "question": "How to enable HTTP/2 support in Spring Boot?",
+              "modelAnswer": "You can enable the HTTP/2 support in Spring Boot by: server.http2.enabled=true",
+              "difficultyLevel": "Medium"
+            },
+            {
+              "question": "Where is the database connection information specified and how does it automatically connect to H2?",
+              "modelAnswer": "Well, the answer to this question is very simple. It is because of the Spring Boot auto-configuration that, configures the dependencies of the application. So, the database connection information, and automatically connecting the database to H2 is done by the auto-configuration property.",
+              "difficultyLevel": "Medium"
+            },
+            {
+              "question": "What is dependency Injection?",
+              "modelAnswer": "The process of injecting dependent bean objects into target bean objects is called dependency injection.\n\nSetter Injection: The IOC container will inject the dependent bean object into the target bean object by calling the setter method.\nConstructor Injection: The IOC container will inject the dependent bean object into the target bean object by calling the target bean constructor.\nField Injection: The IOC container will inject the dependent bean object into the target bean object by Reflection API",
+              "difficultyLevel": "Medium"
+            },
+            {
+              "question": "Explain how to create a Spring Boot application using Maven.",
+              "modelAnswer": "Well, there are various approaches to create a Spring Boot application using maven, but if I have to name a few, then following are the ways to create a Spring Boot project/ application using maven:\n\nSpring Boot CLI\nSpring Starter Project Wizard\nSpring Initializr\nSpring Maven Project",
+              "difficultyLevel": "Medium"
+            },
+            {
+              "question": "Mention the differences between JPA and Hibernate.",
+              "modelAnswer": "JPA        \nJPA is a Data Access Abstraction used to reduce the amount of boilerplate code        \nHibernate\nHibernate is an implementation of Java Persistence API and offers benefits of loose coupling",
+              "difficultyLevel": "Medium"
+            },
+            {
+              "question": " Spring vs Spring Boot",
+              "modelAnswer": "Spring        \nA web application framework based on Java        \nProvides tools and libraries to create customized web applications        \nSpring is more complex than Spring Boot        \nTakes an unopinionated view        \nSpring Boot\nA module of Spring\nUsed to create a Spring application project which can just run/ execute\nSpring Boot is less complex than the Spring framework\nTakes an opinionated view of a platform",
+              "difficultyLevel": "Medium"
+            },
+            {
+              "question": "What are the steps to add a custom JS code with Spring Boot?",
+              "modelAnswer": "The steps to add a custom JS code with Spring Boot are as follows:\nNow, create a folder and name it static under the resources folder\nIn this folder, you can put the static content in that folder",
+              "difficultyLevel": "Medium"
+            },
+            {
+              "question": "Can we disable the default web server in the Spring boot application?",
+              "modelAnswer": "Yes, we can use application.properties to configure the web application type i.e spring.main.web-application-type=none.",
+              "difficultyLevel": "Medium"
+            },
+            {
+              "question": "Can we change the port of the embedded Tomcat server in Spring boot?",
+              "modelAnswer": "Yes, we can change the port of the embedded tomcat server by using the application properties file. In this file, you have to add a property of “server.port” and assign it to any port you wish to. For example, if you want to assign it to 8081, then you have to mention server.port=8081. Once you mention the port number, the application properties file will be automatically loaded by Spring Boot and the required configurations will be applied on to the application.",
+              "difficultyLevel": "Medium"
+            },
+            {
+              "question": "Can we override or replace the Embedded tomcat server in Spring Boot?",
+              "modelAnswer": "es, we can replace the Embedded Tomcat server with any server by using the Starter dependency in the pom.xml file. Like you can use spring-boot-starter-jetty as a dependency for using a jetty server in your project.",
+              "difficultyLevel": "Medium"
+            }
+          ]
+        }
+      ]
+    },
+    "interviewInfo": {
+      "timeZone": "UTC/GMT",
+      "interviewDate": "2022-08-20",
+      "interviewStartTime": "17:00:00",
+      "interviewEndTime": "18:00:00"
+    },
+    "userInfoList": [
+      {
+        "userIdentifier": "panelist1",
+        "email": "akhil.s@bridgentech.com",
+        "mobile": "1234",
+        "userRole": "PANELIST",
+        "firstName": "Panelist",
+        "lastName": "1",
+        "base64Image": null,
+        "experience": 0.0
+      },
+      {
+        "userIdentifier": "candidate1",
+        "email": "akhil.s@bridgentech.com",
+        "mobile": "1234",
+        "userRole": "CANDIDATE",
+        "firstName": "Sravan AKhil",
+        "lastName": "M",
+        "base64Image": null,
+        "experience": 0.0
+      },
+      {
+        "userIdentifier": "recruiter1",
+        "email": "akhil.s@bridgentech.com",
+        "mobile": "1234",
+        "userRole": "RECRUITER",
+        "firstName": "Recruiter",
+        "lastName": "1",
+        "base64Image": null,
+        "experience": 0.0
+      }
+    ]
+  },
+  "resultStatusInfo": {
+    "resultCode": "Success",
+    "message": "Data retrieval successful"
+  }
+}

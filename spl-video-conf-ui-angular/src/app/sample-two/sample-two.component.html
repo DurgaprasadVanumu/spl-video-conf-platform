@@ -1,391 +1,571 @@
-<div class="outer-margin">
-    <div class="row title-row">
-        <div class="col-md-6 job-title">
-            Job Role: Associate Developer
-        </div>
-        <div class="col-md-6 user-menu">
-            <div class="row">
-                <div class="col-md-7">
-                    
-                </div>
-                <div class="col-md-5">
-                    <div class="row user-menu-icon">
-                        <!-- <div class="col-sm"></div>
-                        <div class="col-sm">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
-                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
-                              </svg>
-                        </div>
-                        <div class="col-sm">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
-                                <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
-                              </svg>
-                        </div>
-                        <div class="col-sm" style="text-align: right;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                              </svg>
-                        </div>
-                        <div class="col-sm">
-                            <div>
-                                <strong>Pradeeptha</strong>
-                            </div>
-                            <div>
-                                <small>Panelist</small>
-                            </div>
-                        </div>
-                        <div class="col-sm">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-square" viewBox="0 0 16 16">
-                                <path d="M3.626 6.832A.5.5 0 0 1 4 6h8a.5.5 0 0 1 .374.832l-4 4.5a.5.5 0 0 1-.748 0l-4-4.5z"/>
-                                <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 0a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2z"/>
-                              </svg>
-                        </div> -->
-                    </div>
-                </div>
-            </div>
-        </div>
+<div class="row"style="width:100%;display: flex;height: 100vh;">
+    <div class="page-side-bar">
+        
     </div>
-    <div class="row video-chat-row">
-        <div class="col-md-5">
-            <div class="row flex-nowrap my-video-outer-div">
-                <div class="col">
-                    <div class="my-video-div">
-                        <div *ngIf="videos&&videos.length>=1" class="video-section">
-                            <video class="candidate-video"
-                            [srcObject]="videos[0].srcObject"
-                            (loadedmetadata)="onLoadedMetadata($event)"
-                            [muted]="videos[0].muted">
-                            </video>
-                            <div class="video-label-section">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        Candidate {{currentUserName}}
-                                    </div>
-                                    <div class="col-md-6">
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="video-label-header">
-                                <div class="row">
-                                    <div class="col-md-6 video-label-timer">
-                                        <span>01:30:00</span>
-                                    </div>
-                                    <div class="col-md-6 video-label-network">
-                                        <span class="network-icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-wifi" viewBox="0 0 16 16">
-                                            <path d="M15.384 6.115a.485.485 0 0 0-.047-.736A12.444 12.444 0 0 0 8 3C5.259 3 2.723 3.882.663 5.379a.485.485 0 0 0-.048.736.518.518 0 0 0 .668.05A11.448 11.448 0 0 1 8 4c2.507 0 4.827.802 6.716 2.164.205.148.49.13.668-.049z"/>
-                                            <path d="M13.229 8.271a.482.482 0 0 0-.063-.745A9.455 9.455 0 0 0 8 6c-1.905 0-3.68.56-5.166 1.526a.48.48 0 0 0-.063.745.525.525 0 0 0 .652.065A8.46 8.46 0 0 1 8 7a8.46 8.46 0 0 1 4.576 1.336c.206.132.48.108.653-.065zm-2.183 2.183c.226-.226.185-.605-.1-.75A6.473 6.473 0 0 0 8 9c-1.06 0-2.062.254-2.946.704-.285.145-.326.524-.1.75l.015.015c.16.16.407.19.611.09A5.478 5.478 0 0 1 8 10c.868 0 1.69.201 2.42.56.203.1.45.07.61-.091l.016-.015zM9.06 12.44c.196-.196.198-.52-.04-.66A1.99 1.99 0 0 0 8 11.5a1.99 1.99 0 0 0-1.02.28c-.238.14-.236.464-.04.66l.706.706a.5.5 0 0 0 .707 0l.707-.707z"/> 
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div *ngIf="!videos || videos.length<1">
-                            <video class="video-not-joined"></video>
-                            <div class="video-label-section">
-                                Yet to Join
-                            </div>
-                        </div>
-                    </div>
+    <div class="page-content">
+        <div class="outer-margin">
+            <div class="row title-row">
+                <div class="col-md-5 job-title">
+                    Job Title: {{interviewData ? interviewData.jdData.jdTitle : ''}}
                 </div>
-            </div>
-            <div class="row flex-nowrap other-vide-outer-div">
-                <div class="col-md-4" *ngFor="let video of otherVideos">
-                    <div class="other-video-sec">
-                        <div class="video-section">
-                            <video
-                                [srcObject]="video.srcObject"
-                                (loadedmetadata)="onLoadedMetadata($event)"
-                                [muted]="video.muted">
-                            </video>
-                            <div class="other-video-label-section">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="row">
-                                            Panelist {{video.userName}}
-                                        </div>
-                                    </div>
-                                    <div class="col-md-8">
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-md-2 timer-label">
+                    <span>01:30:00</span>
                 </div>
-                <div class="col-md-4" *ngIf="!otherVideos || otherVideos.length<3">
-                    <div class="other-video-sec">
-                        <div class="video-section">
-                            <video class="video-not-joined"></video>
-                            <div class="video-label-section">
-                                Yet to Join
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4" *ngIf="!otherVideos || otherVideos.length<2">
-                    <div class="other-video-sec">
-                        <div class="video-section">
-                            <video class="video-not-joined"></video>
-                            <div class="video-label-section">
-                                Yet to Join
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4" *ngIf="!otherVideos || otherVideos.length<1">
-                    <div class="other-video-sec">
-                        <div class="video-section">
-                            <video class="video-not-joined"></video>
-                            <div class="video-label-section">
-                                Yet to Join
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-7">
-            <div class="row tabs-row">
-                <div class="col-sm-1 tab-title tab-title-start" [ngClass]="getEditorTabStyle(0)" (click)="selectEditorTab(0)">
-                    Chat
-                </div>
-                <div class="col-sm-2 tab-title" [ngClass]="getEditorTabStyle(1)" (click)="selectEditorTab(1)">
-                    Code Editor
-                </div>
-                <div class="col-sm-2 tab-title" [ngClass]="getEditorTabStyle(2)" (click)="selectEditorTab(2)">
-                    View JD
-                </div>
-                <div class="col-sm-2 tab-title" [ngClass]="getEditorTabStyle(3)" (click)="selectEditorTab(3)">
-                    View Resume
-                </div>
-                <div class="col-sm-2 tab-title tab-title-end" [ngClass]="getEditorTabStyle(4)" (click)="selectEditorTab(4)">
-                    QnA Suggestions
-                </div>
-            </div>
-            <div class="row editor-content-outline">
-                <div class="editor-content-div" *ngIf="showEditorTab(0)">
-                    <div class="chat-box">
-                        <div id="chat-box-messages" class="messages-div">
-                            <div *ngFor="let msg of messages">
-                                <div class="row msg-row-border" *ngIf="msg.userId!=currentUserName">
-                                    <div class="col-md-1">
-                                        <img class="msg-user-icon" [src]="msg.userImg"/>
-                                    </div>
-                                    <div class="col-md-4 msg-content-outline msg-outline-left">
-                                        <div class="msg-content content-align-left">
-                                            {{msg.msgContent}}
-                                        </div>
-                                    </div>
-                                    <div class="col-md-1 msg-time-outline">
-                                        <div class="msg-time content-align-left">
-                                            {{msg.time | date: 'h:mm a'}}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row msg-row-border" *ngIf="msg.userId==currentUserName">
-                                    <div class="col-md-6"></div>
-                                    <div class="col-md-1 msg-time-outline">
-                                        <div class="msg-time content-align-right">
-                                            {{msg.time | date: 'h:mm a'}}
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 msg-content-outline msg-outline-right">
-                                        <div class="msg-content content-align-right">
-                                            {{msg.msgContent}}
-                                        </div>
-                                    </div>
-                                    <div class="col-md-1">
-                                        <img class="msg-user-icon" [src]="msg.userImg"/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="message-send-input">
-                            <div class="row">
-                                <div class="col-md-11">
-                                    <input class="msg-input" [(ngModel)]="messageText" type="text" placeholder="Type a Message" (keydown.enter)="submitMessage()" />
+                <div class="col-md-5 user-menu">
+                    <div class="row">
+                        <!-- <div class="col-md-1">
+                            
+                        </div> -->
+                        <div class="col-md-12">
+                            <div class="row user-menu-icon">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-4"></div>
+                                <div class="col-md-1">
+                                    <!-- <span class="call-action video-icon-fill">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-camera-video" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5zm11.5 5.175 3.5 1.556V4.269l-3.5 1.556v4.35zM2 4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h7.5a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H2z"/>
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-camera-video-off" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M10.961 12.365a1.99 1.99 0 0 0 .522-1.103l3.11 1.382A1 1 0 0 0 16 11.731V4.269a1 1 0 0 0-1.406-.913l-3.111 1.382A2 2 0 0 0 9.5 3H4.272l.714 1H9.5a1 1 0 0 1 1 1v6a1 1 0 0 1-.144.518l.605.847zM1.428 4.18A.999.999 0 0 0 1 5v6a1 1 0 0 0 1 1h5.014l.714 1H2a2 2 0 0 1-2-2V5c0-.675.334-1.272.847-1.634l.58.814zM15 11.73l-3.5-1.555v-4.35L15 4.269v7.462zm-4.407 3.56-10-14 .814-.58 10 14-.814.58z"/>
+                                        </svg>
+                                    </span> -->
                                 </div>
                                 <div class="col-md-1">
-                                    <button class="msg-send-button" label="Send" (click)="submitMessage()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
-                                        <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
-                                      </svg></button>
+                                    <!-- <span class="call-action mic-icon-fill">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-mic" viewBox="0 0 16 16">
+                                            <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5z"/>
+                                            <path d="M10 8a2 2 0 1 1-4 0V3a2 2 0 1 1 4 0v5zM8 0a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0V3a3 3 0 0 0-3-3z"/>
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-mic-mute" viewBox="0 0 16 16">
+                                            <path d="M13 8c0 .564-.094 1.107-.266 1.613l-.814-.814A4.02 4.02 0 0 0 12 8V7a.5.5 0 0 1 1 0v1zm-5 4c.818 0 1.578-.245 2.212-.667l.718.719a4.973 4.973 0 0 1-2.43.923V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 1 0v1a4 4 0 0 0 4 4zm3-9v4.879l-1-1V3a2 2 0 0 0-3.997-.118l-.845-.845A3.001 3.001 0 0 1 11 3z"/>
+                                            <path d="m9.486 10.607-.748-.748A2 2 0 0 1 6 8v-.878l-1-1V8a3 3 0 0 0 4.486 2.607zm-7.84-9.253 12 12 .708-.708-12-12-.708.708z"/>
+                                        </svg>
+                                    </span> -->
                                 </div>
+                                <div class="col-md-1">
+                                    <!-- <span class="call-action volume-icon-fill">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-volume-up" viewBox="0 0 16 16">
+                                            <path d="M11.536 14.01A8.473 8.473 0 0 0 14.026 8a8.473 8.473 0 0 0-2.49-6.01l-.708.707A7.476 7.476 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303l.708.707z"/>
+                                            <path d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.483 5.483 0 0 1 11.025 8a5.483 5.483 0 0 1-1.61 3.89l.706.706z"/>
+                                            <path d="M10.025 8a4.486 4.486 0 0 1-1.318 3.182L8 10.475A3.489 3.489 0 0 0 9.025 8c0-.966-.392-1.841-1.025-2.475l.707-.707A4.486 4.486 0 0 1 10.025 8zM7 4a.5.5 0 0 0-.812-.39L3.825 5.5H1.5A.5.5 0 0 0 1 6v4a.5.5 0 0 0 .5.5h2.325l2.363 1.89A.5.5 0 0 0 7 12V4zM4.312 6.39 6 5.04v5.92L4.312 9.61A.5.5 0 0 0 4 9.5H2v-3h2a.5.5 0 0 0 .312-.11z"/>
+                                          </svg>
+                                    </span> -->
+                                </div>
+                                <div class="col-md-2">
+                                    <!-- <mv-slider [(value)]="systemVolume" [min]="0" [max]="100"></mv-slider> -->
+                                </div>
+                                <div class="col-md-1">
+                                    <span class="call-action wifi-icon-fill">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-wifi" viewBox="0 0 16 16">
+                                        <path d="M15.384 6.115a.485.485 0 0 0-.047-.736A12.444 12.444 0 0 0 8 3C5.259 3 2.723 3.882.663 5.379a.485.485 0 0 0-.048.736.518.518 0 0 0 .668.05A11.448 11.448 0 0 1 8 4c2.507 0 4.827.802 6.716 2.164.205.148.49.13.668-.049z"/>
+                                        <path d="M13.229 8.271a.482.482 0 0 0-.063-.745A9.455 9.455 0 0 0 8 6c-1.905 0-3.68.56-5.166 1.526a.48.48 0 0 0-.063.745.525.525 0 0 0 .652.065A8.46 8.46 0 0 1 8 7a8.46 8.46 0 0 1 4.576 1.336c.206.132.48.108.653-.065zm-2.183 2.183c.226-.226.185-.605-.1-.75A6.473 6.473 0 0 0 8 9c-1.06 0-2.062.254-2.946.704-.285.145-.326.524-.1.75l.015.015c.16.16.407.19.611.09A5.478 5.478 0 0 1 8 10c.868 0 1.69.201 2.42.56.203.1.45.07.61-.091l.016-.015zM9.06 12.44c.196-.196.198-.52-.04-.66A1.99 1.99 0 0 0 8 11.5a1.99 1.99 0 0 0-1.02.28c-.238.14-.236.464-.04.66l.706.706a.5.5 0 0 0 .707 0l.707-.707z"/> 
+                                        </svg>
+                                    </span>
+                                </div>
+                                <div class="col-md-1">
+                                    <span class="call-action">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                        <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+                                      </svg>
+                                    </span>
+                                </div>
+                                <!-- <div class="col-sm">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
+                                        <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
+                                      </svg>
+                                </div> -->
+                                <!-- <div class="col-sm" style="text-align: right;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                                      </svg>
+                                </div> -->
+                                
+                                <!-- <div class="col-md-4">
+                                    <div>
+                                        <button class="btn end-interview" label="End Interview" (click)="endCall()">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
+                                                <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+                                              </svg>
+                                            End Interview
+                                        </button>
+                                    </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="editor-content-div" [hidden]="!showEditorTab(1)">
-                    <div class="code-editor">
-                        <div class="code-content">
-                            <div class="app-ace-editor" #editor></div>
+            </div>
+            <div class="row video-chat-row">
+                <div class="col-md-5">
+                    <div class="row flex-nowrap my-video-outer-div">
+                        <div class="col">
+                            <div class="my-video-div">
+                                <div *ngIf="videos&&videos.length>=1" class="video-section">
+                                    <video class="candidate-video"
+                                    [srcObject]="videos[0].srcObject"
+                                    (loadedmetadata)="onLoadedMetadata($event)"
+                                    [muted]="videos[0].muted">
+                                    </video>
+                                    <div class="video-label-section">
+                                        <div class="row">
+                                            <div class="col-md-4" style="padding-left: 5%;">
+                                                <div class="row">
+                                                    Candidate 
+                                                </div>
+                                                <div class="row">
+                                                    {{currentUserName}}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8" style="padding:1%;padding-right:3%;">
+                                                <div class="d-flex flex-row-reverse">
+                                                    <div class="col-5">
+                                                        <button class="btn end-interview" label="End Interview" (click)="endCall()">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
+                                                                <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+                                                            </svg>
+                                                            End Interview
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <div>
+                                                            <div style="padding-top: 8%; cursor: pointer;">
+                                                                <svg *ngIf="myVideo" xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-mic" viewBox="0 0 16 16">
+                                                                    <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5z"/>
+                                                                    <path d="M10 8a2 2 0 1 1-4 0V3a2 2 0 1 1 4 0v5zM8 0a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0V3a3 3 0 0 0-3-3z"/>
+                                                                </svg>
+                                                                <svg *ngIf="!myVideo" xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-mic-mute" viewBox="0 0 16 16">
+                                                                    <path d="M13 8c0 .564-.094 1.107-.266 1.613l-.814-.814A4.02 4.02 0 0 0 12 8V7a.5.5 0 0 1 1 0v1zm-5 4c.818 0 1.578-.245 2.212-.667l.718.719a4.973 4.973 0 0 1-2.43.923V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 1 0v1a4 4 0 0 0 4 4zm3-9v4.879l-1-1V3a2 2 0 0 0-3.997-.118l-.845-.845A3.001 3.001 0 0 1 11 3z"/>
+                                                                    <path d="m9.486 10.607-.748-.748A2 2 0 0 1 6 8v-.878l-1-1V8a3 3 0 0 0 4.486 2.607zm-7.84-9.253 12 12 .708-.708-12-12-.708.708z"/>
+                                                                </svg>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <div>
+                                                            <div style="padding-top: 8%; cursor: pointer;" >
+                                                                <svg *ngIf="myVideo" (click)="closeMyVideo()" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-camera-video" viewBox="0 0 16 16">
+                                                                    <path fill-rule="evenodd" d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5zm11.5 5.175 3.5 1.556V4.269l-3.5 1.556v4.35zM2 4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h7.5a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H2z"/>
+                                                                </svg>
+                                                                <svg *ngIf="!myVideo" (click)="openMyVideo()" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-camera-video-off" viewBox="0 0 16 16">
+                                                                    <path fill-rule="evenodd" d="M10.961 12.365a1.99 1.99 0 0 0 .522-1.103l3.11 1.382A1 1 0 0 0 16 11.731V4.269a1 1 0 0 0-1.406-.913l-3.111 1.382A2 2 0 0 0 9.5 3H4.272l.714 1H9.5a1 1 0 0 1 1 1v6a1 1 0 0 1-.144.518l.605.847zM1.428 4.18A.999.999 0 0 0 1 5v6a1 1 0 0 0 1 1h5.014l.714 1H2a2 2 0 0 1-2-2V5c0-.675.334-1.272.847-1.634l.58.814zM15 11.73l-3.5-1.555v-4.35L15 4.269v7.462zm-4.407 3.56-10-14 .814-.58 10 14-.814.58z"/>
+                                                                </svg>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="video-label-header">
+                                        <div class="row">
+                                            <div class="col-md-6 video-label-timer">
+                                                <span>01:30:00</span>
+                                            </div>
+                                            <div class="col-md-6 video-label-network">
+                                                <span class="network-icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-wifi" viewBox="0 0 16 16">
+                                                    <path d="M15.384 6.115a.485.485 0 0 0-.047-.736A12.444 12.444 0 0 0 8 3C5.259 3 2.723 3.882.663 5.379a.485.485 0 0 0-.048.736.518.518 0 0 0 .668.05A11.448 11.448 0 0 1 8 4c2.507 0 4.827.802 6.716 2.164.205.148.49.13.668-.049z"/>
+                                                    <path d="M13.229 8.271a.482.482 0 0 0-.063-.745A9.455 9.455 0 0 0 8 6c-1.905 0-3.68.56-5.166 1.526a.48.48 0 0 0-.063.745.525.525 0 0 0 .652.065A8.46 8.46 0 0 1 8 7a8.46 8.46 0 0 1 4.576 1.336c.206.132.48.108.653-.065zm-2.183 2.183c.226-.226.185-.605-.1-.75A6.473 6.473 0 0 0 8 9c-1.06 0-2.062.254-2.946.704-.285.145-.326.524-.1.75l.015.015c.16.16.407.19.611.09A5.478 5.478 0 0 1 8 10c.868 0 1.69.201 2.42.56.203.1.45.07.61-.091l.016-.015zM9.06 12.44c.196-.196.198-.52-.04-.66A1.99 1.99 0 0 0 8 11.5a1.99 1.99 0 0 0-1.02.28c-.238.14-.236.464-.04.66l.706.706a.5.5 0 0 0 .707 0l.707-.707z"/> 
+                                                    </svg>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                </div>
+                                <div *ngIf="!videos || videos.length<1" class="video-section">
+                                    <video class="candidate-video-not-joined"></video>
+                                    <div class="video-label-section">
+                                        Yet to Join
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="code-execution">
-                            <div class="row flex-nowrap">
-                                <div class="col">
-                                    <div ngbDropdown>
-                                        <button type="button" class="code-run-switch" id="dropdownBasic1" ngbDropdownToggle>{{selectedCodeLang}}</button>
-                                        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                                            <button ngbDropdownItem (click)="onSelectLang('java')">Java</button>
-                                            <button ngbDropdownItem (click)="onSelectLang('python')">Python</button>
-                                            <button ngbDropdownItem (click)="onSelectLang('dotnet')">DotNet</button>
+                    </div>
+                    <div class="row flex-nowrap other-vide-outer-div">
+                        <div class="col-md-4" *ngFor="let video of otherVideos">
+                            <div class="other-video-sec">
+                                <div class="video-section">
+                                    <video
+                                        [srcObject]="video.srcObject"
+                                        (loadedmetadata)="onLoadedMetadata($event)"
+                                        [muted]="video.muted">
+                                    </video>
+                                    <div class="other-video-label-section">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="row">
+                                                    Panelist {{video.userName}}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+        
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col text-end">
-                                    <div placement="top-end">
-                                        <button type="button" class="code-run-compile" (click)="compileCode()">
-                                            <span style="vertical-align: middle;">Compile & Run</span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
-                                                <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
-                                            </svg>
-                                        </button>
+                            </div>
+                        </div>
+                        <div class="col-md-4" *ngIf="!otherVideos || otherVideos.length<3">
+                            <div class="other-video-sec">
+                                <div class="video-section">
+                                    <video class="video-not-joined"></video>
+                                    <div class="video-label-section">
+                                        Yet to Join
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4" *ngIf="!otherVideos || otherVideos.length<2">
+                            <div class="other-video-sec">
+                                <div class="video-section">
+                                    <video class="video-not-joined"></video>
+                                    <div class="video-label-section">
+                                        Yet to Join
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4" *ngIf="!otherVideos || otherVideos.length<1">
+                            <div class="other-video-sec">
+                                <div class="video-section">
+                                    <video class="video-not-joined"></video>
+                                    <div class="video-label-section">
+                                        Yet to Join
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="editor-content-div-overflow" *ngIf="showEditorTab(2)">
-                    <div class="doc-content">
-                        <ngx-extended-pdf-viewer useBrowserLocale="true" [enablePrint]="true"
-                                [src]="jdSource" [height]="'60%'" [textLayer]="true" [showToolbar]="false">
-                        </ngx-extended-pdf-viewer>
+                <div class="col-md-7">
+                    <div class="row tabs-row">
+                        <div class="col-sm-1 tab-title tab-title-start" [ngClass]="getEditorTabStyle(0)" (click)="selectEditorTab(0)">
+                            Chat
+                        </div>
+                        <div class="col-sm-2 tab-title" [ngClass]="getEditorTabStyle(1)" (click)="selectEditorTab(1)">
+                            Code Editor
+                        </div>
+                        <div class="col-sm-2 tab-title" [ngClass]="getEditorTabStyle(2)" (click)="selectEditorTab(2)">
+                            View JD
+                        </div>
+                        <div class="col-sm-2 tab-title" [ngClass]="getEditorTabStyle(3)" (click)="selectEditorTab(3)">
+                            View Resume
+                        </div>
+                        <div class="col-sm-3 tab-title tab-title-end" [ngClass]="getEditorTabStyle(4)" (click)="selectEditorTab(4)">
+                            QnA Suggestions
+                        </div>
                     </div>
-                </div>
-                <div class="editor-content-div-overflow" *ngIf="showEditorTab(3)">
-                    <div>
-                        <ngx-extended-pdf-viewer useBrowserLocale="true" 
-                                [src]="jdSource" [height]="'60%'" [textLayer]="true" [showToolbar]="false">
-                        </ngx-extended-pdf-viewer>
-                    </div>
-                </div>
-                <div class="editor-content-div" *ngIf="showEditorTab(4)">
-                    <div class="code-editor qna-section">
-                        <ul>
-                            <li>
-                                How to create Spring Boot project?
-                            </li>
-                            <li>
-                                How to create a Custom Exception in Java?
-                            </li>
-                            <li>
-                                Explain OOPs concepts
-                            </li>
-                            <li>
-                                What is polymorphism?
-                            </li>
-                            <li>
-                                How to override a method in Java?
-                            </li>
-                            <li>
-                                How do you generate a executable JAR?
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="review-section">
-        <div class="row flex-nowrap review-section-header">
-            <div class="col tab-title tab-title-start" [ngClass]="getReviewTabStyle(0)" (click)="selectReviewTab(0)">
-                Core Java (40%)
-            </div>
-            <div class="col tab-title"  [ngClass]="getReviewTabStyle(1)" (click)="selectReviewTab(1)">
-                Spring Boot (25%)
-            </div>
-            <div class="col tab-title" [ngClass]="getReviewTabStyle(2)" (click)="selectReviewTab(2)">
-                REST APIs (15%)
-            </div>
-            <div class="col tab-title" [ngClass]="getReviewTabStyle(3)" (click)="selectReviewTab(3)">
-                Micro Services (10%)
-            </div>
-            <div class="col tab-title" [ngClass]="getReviewTabStyle(4)" (click)="selectReviewTab(4)">
-                MONGODB (5%)
-            </div>
-            <div class="col tab-title tab-title-end" [ngClass]="getReviewTabStyle(5)" (click)="selectReviewTab(5)">
-                Angular (5%)
-            </div>
-        </div>
-        <div class="row review-section-content">
-            <div class="col-md-6">
-                <div class="slider-outline">
-                    <div class="row slider-header">
-                        <span>Knowledge</span>
-                    </div>
-                    <div class="row">
-                        <mv-slider [(value)]="knowValue"
-                        [ticks]="knowTicks" [ticksLabels]="knowTickLabels" [step]="20"></mv-slider>
-                    </div>
-                </div>
-                <div class="slider-outline">
-                    <div class="row slider-header">
-                        <span>Experience</span>
-                    </div>
-                    <div class="row">
-                        <mv-slider [(value)]="expValue"
-                            [ticks]="expTicks" [ticksLabels]="expTickLabels" [step]="33.33"></mv-slider>
-                    </div>
-                </div>
-                <div class="slider-outline">
-                    <div class="row slider-header">
-                        <span>Knowledge</span>
-                    </div>
-                    <div class="row">
-                        <mv-slider [(value)]="clarityValue"
-                        [ticks]="clarityTicks" [ticksLabels]="clarityTickLabels" [step]="20"></mv-slider>
-                    </div>
-                </div>
-
-                <!-- <div class="custom-ngx-slider">
-                    Experience
-                    <ngx-slider [(value)]="expValue" [options]="expOptions"></ngx-slider>
-                </div>
-                <div class="custom-ngx-slider">
-                    Clarity of Thoughts
-                    <ngx-slider [(value)]="clarityValue" [options]="clarityOptions"></ngx-slider>
-                </div> -->
-            </div>
-            <div class="col-md-6">
-                <div class="row sub-skill-comments">
-                    <span class="sub-skill-comments-header">Panelist Comments On Sub-Skills</span>
-                    <div class="row sub-skill-comments-content">
-                        <textarea [(ngModel)]="subSkillComments" placeholder="Your comments about this subskill..."></textarea>
-                    </div>
-                </div>
-                <div class="row sub-skill-overall-rating"> 
-                    <div class="row overall-rating-section-outline">
-                        <div class="row overall-rating-section">
-                            <div class="row overall-rating-section-wrapper">
-                                <div class="col-md-6">
-                                    <span>Overall rating</span>
+                    <div class="row editor-content-outline">
+                        <div class="editor-content-div" *ngIf="showEditorTab(0)">
+                            <div class="chat-box">
+                                <div id="chat-box-messages" class="messages-div" >
+                                    <div *ngFor="let msg of messages" tabindex="-1" #chatMessages>
+                                        <div class="row msg-row-border" *ngIf="msg.userId!=currentUserName">
+                                            <div class="col-md-1">
+                                                <img class="msg-user-icon" [src]="msg.userImg"/>
+                                            </div>
+                                            <div class="col-md-4 msg-content-outline msg-outline-left">
+                                                <div class="msg-content content-align-left">
+                                                    {{msg.msgContent}}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-1 msg-time-outline">
+                                                <div class="msg-time content-align-left">
+                                                    {{msg.time | date: 'h:mm a'}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row msg-row-border" *ngIf="msg.userId==currentUserName">
+                                            <div class="col-md-6"></div>
+                                            <div class="col-md-1 msg-time-outline">
+                                                <div class="msg-time content-align-right">
+                                                    {{msg.time | date: 'h:mm a'}}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 msg-content-outline msg-outline-right">
+                                                <div class="msg-content content-align-right">
+                                                    {{msg.msgContent}}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <img class="msg-user-icon" [src]="msg.userImg"/>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <span class="fa fa-star checked"></span>
+                                <div class="message-send-input">
+                                    <div class="row">
+                                        <div class="col-md-11">
+                                            <input class="msg-input" [(ngModel)]="messageText" type="text" placeholder="Type a Message" (keydown.enter)="submitMessage()" />
+                                        </div>
+                                        <div class="col-md-1">
+                                            <button class="msg-send-button" label="Send" (click)="submitMessage()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
+                                                <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
+                                              </svg></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="editor-content-div" [hidden]="!showEditorTab(1)">
+                            <div class="code-editor">
+                                <div class="code-content">
+                                    <div class="app-ace-editor" #editor></div>
+                                </div>
+                                <div class="code-execution">
+                                    <div class="row flex-nowrap">
+                                        <div class="col">
+                                            <div ngbDropdown>
+                                                <button type="button" class="code-run-switch" id="dropdownBasic1" ngbDropdownToggle>{{selectedCodeLang}}</button>
+                                                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                                    <button ngbDropdownItem (click)="onSelectLang('java')">Java</button>
+                                                    <button ngbDropdownItem (click)="onSelectLang('python')">Python</button>
+                                                    <button ngbDropdownItem (click)="onSelectLang('dotnet')">DotNet</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col text-end">
+                                            <div placement="top-end">
+                                                <button type="button" class="code-run-compile" (click)="compileCode()">
+                                                    <span style="vertical-align: middle;">Compile & Run</span>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                                                        <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="editor-content-div-overflow" *ngIf="showEditorTab(2)">
+                            <div class="doc-content">
+                                <ngx-extended-pdf-viewer useBrowserLocale="true" [enablePrint]="true"
+                                        [src]="jdSource" [height]="'60%'" [textLayer]="true" [showToolbar]="false">
+                                </ngx-extended-pdf-viewer>
+                            </div>
+                        </div>
+                        <div class="editor-content-div-overflow" *ngIf="showEditorTab(3)">
+                            <div>
+                                <ngx-extended-pdf-viewer useBrowserLocale="true" 
+                                        [src]="jdSource" [height]="'60%'" [textLayer]="true" [showToolbar]="false">
+                                </ngx-extended-pdf-viewer>
+                            </div>
+                        </div>
+                        <div class="editor-content-div-overflow qna-section-outline" *ngIf="showEditorTab(4)">
+                            <div class="code-editor">
+                                <div class="d-flex flex-row qna-section-header">
+                                    <div class="p-2 qna-section-tab" (click)="selectQuestionnarieLevel('Easy')" [ngClass]="getQuestionnarieLevelStyle('Easy')">
+                                        Easy
+                                    </div>
+                                    <div class="p-2 qna-section-tab" (click)="selectQuestionnarieLevel('Medium')" [ngClass]="getQuestionnarieLevelStyle('Medium')">
+                                        Medium
+                                    </div>
+                                    <div class="p-2 qna-section-tab" (click)="selectQuestionnarieLevel('Difficult')" [ngClass]="getQuestionnarieLevelStyle('Difficult')">
+                                        Difficult
+                                    </div>
+                                </div>
+                                <div class="qna-section-content">
+                                    <ul>
+                                        <div *ngFor="let ques of jdSkillsList[selectedReviewTabIndex].suggestedQuestionList; let i=index">
+                                        <li *ngIf="ques.difficultyLevel==selectedQuestionnarieLevel">
+                                            <div class="question-outline">
+                                                <div>
+                                                    <div class="question-ques">
+                                                        {{ques.question}}
+                                                    </div>
+                                                    <div class="question-ans-outline">
+                                                        <div class="row" (click)="toggleAnswerView(selectedReviewTabIndex, i)">
+                                                            <div class="col-md-11" style="cursor: pointer;">
+                                                                <span *ngIf="!ques.showAnswer">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="green" class="bi bi-dot" viewBox="0 0 16 16">
+                                                                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                                                                  </svg>
+                                                                  Show model answer
+                                                                </span>
+                                                                <span *ngIf="ques.showAnswer">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="green" class="bi bi-dot" viewBox="0 0 16 16">
+                                                                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                                                                    </svg>
+                                                                    Hide model answer
+                                                                </span>
+                                                            </div>
+                                                            <div class="col-md-1" style="text-align: right;cursor: pointer;">
+                                                                <svg *ngIf="!ques.showAnswer" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                                                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                                                                </svg>
+                                                                <svg *ngIf="ques.showAnswer" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-up" viewBox="0 0 16 16">
+                                                                    <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>
+                                                                </svg>
+                                                            </div>
+                                                        </div>
+                                                        <div class="question-ans" *ngIf="ques.showAnswer">
+                                                            {{ques.modelAnswer}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex flex-row-reverse question-rating">
+                                                        <div class="p-1">
+                                                            <div class="question-rating-button" [ngClass]="getQuestionRatingStyle(selectedReviewTabIndex, i, 5)" (click)="setQuestionRating(selectedReviewTabIndex, i, 5)">Excellent</div>
+                                                        </div>
+                                                        <div class="p-1">
+                                                            <div class="question-rating-button" [ngClass]="getQuestionRatingStyle(selectedReviewTabIndex, i, 4)" (click)="setQuestionRating(selectedReviewTabIndex, i, 4)">Good</div>
+                                                        </div>
+                                                        <div class="p-1">
+                                                            <div class="question-rating-button" [ngClass]="getQuestionRatingStyle(selectedReviewTabIndex, i, 3)" (click)="setQuestionRating(selectedReviewTabIndex, i, 3)">Adequate</div>
+                                                        </div>
+                                                        <div class="p-1">
+                                                            <div class="question-rating-button" [ngClass]="getQuestionRatingStyle(selectedReviewTabIndex, i, 2)" (click)="setQuestionRating(selectedReviewTabIndex, i, 2)">Poor</div>
+                                                        </div>
+                                                        <div class="p-1">
+                                                            <div class="question-rating-button" [ngClass]="getQuestionRatingStyle(selectedReviewTabIndex, i, 1)" (click)="setQuestionRating(selectedReviewTabIndex, i, 1)">Terrible</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        </div>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row sub-skill-navigation">
-                        <div class="col">
-                            <button class="btn left-button">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left" viewBox="0 0 16 16">
-                                    <path d="M10 12.796V3.204L4.519 8 10 12.796zm-.659.753-5.48-4.796a1 1 0 0 1 0-1.506l5.48-4.796A1 1 0 0 1 11 3.204v9.592a1 1 0 0 1-1.659.753z"/>
-                                </svg>
-                                <span style="vertical-align: middle;">Previous Skill</span>
-                            </button>
+                </div>
+            </div>
+            <div class="review-section">
+                <div class="d-flex flex-row review-section-header">
+                    <div class="p-0" style="padding: 0%" *ngFor="let skill of jdSkillsList; let i = index">
+                        <div *ngIf="i==0" class="tab-title tab-title-start" [ngClass]="getReviewTabStyle(i)" (click)="selectReviewTab(i)">
+                            {{skill.skillName}} ({{skill.skillWeightage}}%)
                         </div>
-                        <div class="col text-end">
-                            <button class="btn right-button">
-                                <span style="vertical-align: middle;">Next Skill</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
-                                    <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
-                                </svg></button>
+                        <div *ngIf="i!=0&&i!=jdSkillsList.length-1" class="tab-title" [ngClass]="getReviewTabStyle(i)" (click)="selectReviewTab(i)">
+                            {{skill.skillName}} ({{skill.skillWeightage}}%)
+                        </div>
+                        <div *ngIf="i==jdSkillsList.length-1" class="tab-title tab-title-end" [ngClass]="getReviewTabStyle(i)" (click)="selectReviewTab(i)">
+                            {{skill.skillName}} ({{skill.skillWeightage}}%)
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex flex-row review-section-content">
+                    <div class="col-md-6">
+                        <div class="slider-outline">
+                            <div class="row slider-header">
+                                <span>Knowledge</span>
+                            </div>
+                            <div class="row">
+                                <mv-slider [(value)]="jdSkillsList[selectedReviewTabIndex].skillKnowledge"
+                                [ticks]="knowTicks" [ticksLabels]="knowTickLabels" [step]="20"></mv-slider>
+                            </div>
+                        </div>
+                        <div class="slider-outline">
+                            <div class="row slider-header">
+                                <span>Experience</span>
+                            </div>
+                            <div class="row">
+                                <mv-slider [(value)]="jdSkillsList[selectedReviewTabIndex].experience"
+                                    [ticks]="expTicks" [ticksLabels]="expTickLabels" [step]="33.33"></mv-slider>
+                            </div>
+                        </div>
+                        <div class="slider-outline">
+                            <div class="row slider-header">
+                                <span>Clarity Of Thoughts</span>
+                            </div>
+                            <div class="row">
+                                <mv-slider [(value)]="jdSkillsList[selectedReviewTabIndex].skillClarity"
+                                [ticks]="clarityTicks" [ticksLabels]="clarityTickLabels" [step]="20"></mv-slider>
+                            </div>
+                        </div>
+        
+                        <!-- <div class="custom-ngx-slider">
+                            Experience
+                            <ngx-slider [(value)]="expValue" [options]="expOptions"></ngx-slider>
+                        </div>
+                        <div class="custom-ngx-slider">
+                            Clarity of Thoughts
+                            <ngx-slider [(value)]="clarityValue" [options]="clarityOptions"></ngx-slider>
+                        </div> -->
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row sub-skill-comments">
+                            <span class="sub-skill-comments-header">Panelist Comments On Sub-Skills</span>
+                            <div class="row sub-skill-comments-content">
+                                <textarea [(ngModel)]="jdSkillsList[selectedReviewTabIndex].skillRemarks" placeholder="Your comments about this subskill..."></textarea>
+                            </div>
+                        </div>
+                        <div class="row sub-skill-overall-rating"> 
+                            <div class="row overall-rating-section-outline">
+                                <div class="row overall-rating-section">
+                                    <div class="row overall-rating-section-wrapper">
+                                        <div class="col-md-6">
+                                            <span class="overall-rating-span">Overall rating</span>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="row flex-nowrap">
+                                                <div class="col-sm">
+                                                </div>
+                                                <div class="col-sm" (click)="setOverallRating(selectedReviewTabIndex, 1)" style="cursor: pointer">
+                                                    <svg *ngIf="jdSkillsList[selectedReviewTabIndex].skillRating>0" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="blue" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                    </svg>
+                                                    <svg *ngIf="jdSkillsList[selectedReviewTabIndex].skillRating==0" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="blue" class="bi bi-star" viewBox="0 0 16 16">
+                                                        <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                                    </svg>
+                                                </div>
+                                                <div class="col-sm" (click)="setOverallRating(selectedReviewTabIndex, 2)" style="cursor: pointer">
+                                                    <svg *ngIf="jdSkillsList[selectedReviewTabIndex].skillRating>1" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="blue" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                    </svg>
+                                                    <svg *ngIf="jdSkillsList[selectedReviewTabIndex].skillRating<=1" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="blue" class="bi bi-star" viewBox="0 0 16 16">
+                                                        <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                                    </svg>
+                                                </div>
+                                                <div class="col-sm" (click)="setOverallRating(selectedReviewTabIndex, 3)" style="cursor: pointer">
+                                                    <svg *ngIf="jdSkillsList[selectedReviewTabIndex].skillRating>2" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="blue" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                    </svg>
+                                                    <svg *ngIf="jdSkillsList[selectedReviewTabIndex].skillRating<=2" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="blue" class="bi bi-star" viewBox="0 0 16 16">
+                                                        <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                                    </svg>
+                                                </div>
+                                                <div class="col-sm" (click)="setOverallRating(selectedReviewTabIndex, 4)" style="cursor: pointer">
+                                                    <svg *ngIf="jdSkillsList[selectedReviewTabIndex].skillRating>3" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="blue" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                    </svg>
+                                                    <svg *ngIf="jdSkillsList[selectedReviewTabIndex].skillRating<=3" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="blue" class="bi bi-star" viewBox="0 0 16 16">
+                                                        <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                                    </svg>
+                                                </div>
+                                                <div class="col-sm" (click)="setOverallRating(selectedReviewTabIndex, 5)" style="cursor: pointer">
+                                                    <svg *ngIf="jdSkillsList[selectedReviewTabIndex].skillRating>4" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="blue" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                    </svg>
+                                                    <svg *ngIf="jdSkillsList[selectedReviewTabIndex].skillRating<=4" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="blue" class="bi bi-star" viewBox="0 0 16 16">
+                                                        <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row sub-skill-navigation">
+                                <div class="col">
+                                    <button class="btn left-button" (click)="selectReviewTab(selectedReviewTabIndex-1)">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left" viewBox="0 0 16 16">
+                                            <path d="M10 12.796V3.204L4.519 8 10 12.796zm-.659.753-5.48-4.796a1 1 0 0 1 0-1.506l5.48-4.796A1 1 0 0 1 11 3.204v9.592a1 1 0 0 1-1.659.753z"/>
+                                        </svg>
+                                        <span style="vertical-align: middle;">Previous Skill</span>
+                                    </button>
+                                </div>
+                                <div class="col text-end">
+                                    <button class="btn right-button" (click)="selectReviewTab(selectedReviewTabIndex+1)">
+                                        <span style="vertical-align: middle;">Next Skill</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                                            <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                                        </svg></button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -393,3 +573,167 @@
         </div>
     </div>
 </div>
+
+<ng-template #content let-modal let-c="close">
+    <!-- <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">
+            {{modalTitle}}
+        </h4>
+    </div> -->
+    <div class="modal-body">
+        <div id="render-report" class="checkers-modal">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="d-flex flex-column-reverse">
+                        <div class="p-2 checkers-sub-header">
+                            We are checking your information
+                        </div>
+                        <div class="p-2 checkers-header">
+                            Checkers
+                        </div>
+                        <div class="p-2">
+                            <div class="d-flex flex-row">
+                                <div class="p-2 checkers-header-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-check2-circle" viewBox="0 0 16 16">
+                                        <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z"/>
+                                        <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="checkers-video-preview-outline">
+                        <video class="checkers-video-preview"
+                            [srcObject]="previewVideoStream"
+                            (loadedmetadata)="onLoadedMetadata($event)"
+                            [muted]="true"></video>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="d-flex flex-row checker-item">
+                        <div class="p-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="green" class="bi bi-wifi" viewBox="0 0 16 16">
+                                <path d="M15.384 6.115a.485.485 0 0 0-.047-.736A12.444 12.444 0 0 0 8 3C5.259 3 2.723 3.882.663 5.379a.485.485 0 0 0-.048.736.518.518 0 0 0 .668.05A11.448 11.448 0 0 1 8 4c2.507 0 4.827.802 6.716 2.164.205.148.49.13.668-.049z"/>
+                                <path d="M13.229 8.271a.482.482 0 0 0-.063-.745A9.455 9.455 0 0 0 8 6c-1.905 0-3.68.56-5.166 1.526a.48.48 0 0 0-.063.745.525.525 0 0 0 .652.065A8.46 8.46 0 0 1 8 7a8.46 8.46 0 0 1 4.576 1.336c.206.132.48.108.653-.065zm-2.183 2.183c.226-.226.185-.605-.1-.75A6.473 6.473 0 0 0 8 9c-1.06 0-2.062.254-2.946.704-.285.145-.326.524-.1.75l.015.015c.16.16.407.19.611.09A5.478 5.478 0 0 1 8 10c.868 0 1.69.201 2.42.56.203.1.45.07.61-.091l.016-.015zM9.06 12.44c.196-.196.198-.52-.04-.66A1.99 1.99 0 0 0 8 11.5a1.99 1.99 0 0 0-1.02.28c-.238.14-.236.464-.04.66l.706.706a.5.5 0 0 0 .707 0l.707-.707z"/>
+                              </svg>
+                        </div>
+                        <div class="p-1">
+                            <div *ngIf="internetConnectivity=='INPROGRESS'" class="spinner-border text-primary" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                            <svg *ngIf="internetConnectivity=='SUCCESS'" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="blue" class="bi bi-check-square" viewBox="0 0 16 16">
+                                <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                                <path d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.235.235 0 0 1 .02-.022z"/>
+                            </svg>
+                            <svg *ngIf="internetConnectivity=='FAILED'" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="brown" class="bi bi-exclamation-triangle" viewBox="0 0 16 16">
+                                <path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z"/>
+                                <path d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z"/>
+                            </svg>
+                        </div>
+                        <div class="p-1">
+                            Internet Connectivity
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex flex-row checker-item">
+                        <div class="p-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="green" class="bi bi-camera-video" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5zm11.5 5.175 3.5 1.556V4.269l-3.5 1.556v4.35zM2 4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h7.5a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H2z"/>
+                            </svg>
+                        </div>
+                        <div class="p-1">
+                            <div *ngIf="videoConnectivity=='INPROGRESS'" class="spinner-border text-primary" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                            <svg *ngIf="videoConnectivity=='SUCCESS'" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="blue" class="bi bi-check-square" viewBox="0 0 16 16">
+                                <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                                <path d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.235.235 0 0 1 .02-.022z"/>
+                            </svg>
+                            <svg *ngIf="videoConnectivity=='FAILED'" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="brown" class="bi bi-exclamation-triangle" viewBox="0 0 16 16">
+                                <path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z"/>
+                                <path d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z"/>
+                            </svg>
+                        </div>
+                        <div class="p-1">
+                            Video connectivity
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex flex-row checker-item">
+                        <div class="p-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="green" class="bi bi-info-circle" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                              </svg>
+                        </div>
+                        <div class="p-1">
+                            <div *ngIf="allApplicationsClosed=='INPROGRESS'" class="spinner-border text-primary" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                            <svg *ngIf="allApplicationsClosed=='SUCCESS'" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="blue" class="bi bi-check-square" viewBox="0 0 16 16">
+                                <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                                <path d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.235.235 0 0 1 .02-.022z"/>
+                            </svg>
+                            <svg *ngIf="allApplicationsClosed=='FAILED'" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="brown" class="bi bi-exclamation-triangle" viewBox="0 0 16 16">
+                                <path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z"/>
+                                <path d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z"/>
+                            </svg>
+                        </div>
+                        <div class="p-1">
+                            All applications closed
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex flex-row checker-item">
+                        <div class="p-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="green" class="bi bi-mic" viewBox="0 0 16 16">
+                                <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5z"/>
+                                <path d="M10 8a2 2 0 1 1-4 0V3a2 2 0 1 1 4 0v5zM8 0a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0V3a3 3 0 0 0-3-3z"/>
+                              </svg>
+                        </div>
+                        <div class="p-1">
+                            <div *ngIf="audioConnectivity=='INPROGRESS'" class="spinner-border text-primary" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                            <svg *ngIf="audioConnectivity=='SUCCESS'" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="blue" class="bi bi-check-square" viewBox="0 0 16 16">
+                                <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                                <path d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.235.235 0 0 1 .02-.022z"/>
+                            </svg>
+                            <svg *ngIf="audioConnectivity=='FAILED'" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="brown" class="bi bi-exclamation-triangle" viewBox="0 0 16 16">
+                                <path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z"/>
+                                <path d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z"/>
+                            </svg>
+                        </div>
+                        <div class="p-1">
+                            Audio connectivity
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row checker-action">
+                <button class="btn col-12 btn-primary" (click)="c('JOIN_INTERVIEW')" [disabled]="donotAllowToJoin()">
+                    Join
+                </button>
+            </div>
+            <div class="row checker-action">
+                <button class="btn col-12 btn-secondary" (click)="c('CLOSE')">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="modal-footer">
+        <button type="button" 
+            class="btn btn-outline-dark" 
+            (click)="modal.close('Save click')">
+            Submit
+        </button>
+    </div> -->
+</ng-template>

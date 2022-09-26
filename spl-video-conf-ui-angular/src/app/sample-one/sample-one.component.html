@@ -5,13 +5,16 @@
     <div class="row">
       <form [formGroup]="tokenForm" (submit)="submitToken()">
         <div class="col-md-4">
-          <input type="text" placeholder="Enter Your Name" formControlName="name" />
+          <input type="text" placeholder="Enter Interview ID" formControlName="interviewId" required/>
         </div>
         <div class="col-md-4">
-          <input type="text" placeholder="Enter IMG Base64" formControlName="token" />
-      </div>
+          <input type="text" placeholder="Enter Your Name" formControlName="name" required/>
+        </div>
         <div class="col-md-4">
-          <button type="submit">Login</button>
+          <input type="text" placeholder="Enter IMG Base64" formControlName="token" required/>
+        </div>
+        <div class="col-md-4">
+          <button type="submit">JOIN</button>
         </div>
       </form>
     </div>

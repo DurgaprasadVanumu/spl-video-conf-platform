@@ -32,7 +32,7 @@ video{
 .candidate-video{
     width: 100%;
     display: block;
-    max-height: 17rem;
+    height: 17rem;
 }
 
 .candidate-video-not-joined{
@@ -41,6 +41,10 @@ video{
 
 .video-not-joined{
     height: 8.4rem;
+}
+
+.other-video{
+    height: 17vh;
 }
 
 .title-row{
@@ -277,7 +281,7 @@ video{
     height: 1px;
 }
 
-.my-video-div{
+.candidate-video-div{
     border-radius: 2px;
     /* left: -5.64px; */
     background: #d1cccc;
@@ -787,41 +791,260 @@ ul li::marker {
 ::ng-deep .report-window-class .modal-dialog{
     position: fixed;
     z-index: 1050;
-    max-width: 40%;
-    width: 40%;
-    left: 30%;
-    top: 10%;
+    max-width: 50%;
+    width: 50%;
+    left: 25%;
+    top: 2%;
+    font-family: 'Inter';
+    font-style: normal;
+    overflow-y: initial !important
 }
 
-.checkers-modal{
-    padding-top: 5%;
-    padding-left: 5%;
-    padding-right: 5%;
-    padding-bottom: 2%;
+.modal-body{
+    height: 90vh;
+    overflow-y: auto;
+}
+
+.cand-analy-modal{
+    padding: 1%;
+}
+
+.cand-analy-outer-margin{
+    padding: 0%;
 }
 
 .checkers-header-icon{
     background: #D1FADF;
-    /* Success/50 */
-
     border: 8px solid #ECFDF3;
     border-radius: 28px;
 }
 
-.checkers-header{
-    font-size: 20px;
+.cand-analy-header{
     font-weight: bold;
+    font-size: 18px;
+    line-height: 28px;
+    color: #101828;
 }
 
-.checkers-sub-header{
-    font-size: 13px;
+.cand-analy-subheader{
+    font-weight: lighter;
+    font-size: 14px;
+    line-height: 20px;
+    color: #667085;
+    padding-bottom: 2%;
 }
 
-.checker-item{
-    padding-top: 5%;
+.cand-analy-remarks-section{
+    padding-bottom: 2%;
+}
+
+.cand-analy-remarks-section .header{
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: #344054;
+    padding-bottom: 0.5%;
+}
+
+.cand-analy-remarks-section textarea{
+    resize: none;
+    width: 100%;
+    height: 6rem;
+    background: #FFFFFF;
+    border: 1px solid #D0D5DD;
+    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+    border-radius: 8px;
+    padding: 0.5% 1% 0.5% 1%;
+}
+
+.cand-analys-preference-section{
+    padding-bottom: 1%;
+}
+
+.cand-analys-preference-section .group{
+    // padding-left: 1%;
+}
+
+.cand-analys-preference-section .label{
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    color: #344054;
+}
+
+.cand-analys-preference-section .option{
+    padding-left: 10%;
+    color: #667085;
+    font-size: 12px;
+}
+
+.cand-analys-preference-section .section{
+    padding-bottom: 1.5%;
+}
+
+.cand-analys-soft-skill-section{
+    padding-bottom: 1%;
+}
+
+.cand-analys-soft-skill-section .header{
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    color: #344054;
+}
+
+.cand-analys-soft-skill-section .content{
+    padding-left: 7%;
+    padding-right: 7%;
+    padding-top: 4%;
+    padding-bottom: 4%;
+}
+
+.cand-analys-soft-skill-section .label{
+    font-weight: 500;
+    font-size: 12px;
+    color: #475467;
+}
+
+.cand-analys-soft-skill-section .star-rating{
+    padding: 0%;
+    cursor: pointer;
+}
+
+.cand-analys-soft-skill-section .rating{
+    // padding-left: 1%;
+}
+
+.cand-analys-personality-section{
+    padding-bottom: 2%;
+}
+
+.cand-analys-personality-section .header{
+    font-size: 14px;
+    color: #344054;
+    padding-bottom: 2%;
+}
+
+.cand-analys-personality-section .options button{
+    width: 100%;
+    padding-left: 0%;
+}
+
+.cand-analys-personality-section .options .select{
+    background: #FFFFFF;
+    border: 1px solid #D0D5DD;
+    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+    border-radius: 8px;
+    text-align: left;
+    padding: 1% 2% 1% 2%;
+}
+
+.cand-analys-personality-section .options .select-item{
+    width: 100%;
+}
+
+.candidate-experience-section{
+    
+}
+
+.domain-exp{
     padding-bottom: 5%;
 }
 
-.checker-action{
-    padding: 3%;
+.domain-exp .header{
+    padding-bottom: 3%;
+    font-size: 14px;
+}
+
+.domain-exp .content{
+    background: #FFFFFF;
+    border: 1px solid #D0D5DD;
+    border-radius: 8px;
+    padding: 2% 5% 2% 5%;
+    color: #344054;
+}
+
+.domain-exp .separator{
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.candidate-experience-section .content input{
+    border-style: none;
+    color: #667085;
+}
+
+.candidate-experience-section .content input:focus{
+    outline: none;
+}
+
+.domain-exp .content .item{
+    background: #EFF8FF;
+    border-radius: 16px;
+    font-size: 10px;
+    padding: 2%;
+    font-weight: bold;
+}
+
+.past-employers{
+    padding-bottom: 5%;
+}
+
+.past-employers .header{
+    padding-bottom: 3%;
+    font-size: 14px;
+}
+
+.past-employers .content{
+    font-size: 12px;
+    color: #344054;
+}
+
+.past-employers .content .item{
+    padding-right: 3%;
+    cursor: pointer;
+}
+
+.total-exp{
+    padding-bottom: 3%;
+}
+
+.total-exp .header{
+    padding-bottom: 3%;
+    font-size: 14px;
+}
+
+.total-exp .content{
+    font-size: 12px;
+    color: #344054;
+}
+
+.exp-value-item{
+    background: #FFFFFF;
+    border: 1px solid #D0D5DD;
+    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+    border-radius: 10px 0px 0px 10px;
+}
+
+.exp-value-unit{
+    background: #FFFFFF;
+    border: 1px solid #D0D5DD;
+    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+    border-radius: 0px 10px 10px 0px;
+}
+
+.cand-analys-action{
+    padding-top: 4%;
+}
+
+.cand-analys-action .left{
+    text-align: left;
+}
+
+.cand-analys-action button{
+    width: 100%;
+}
+
+.cand-analys-action .right{
+    text-align: right;
 }

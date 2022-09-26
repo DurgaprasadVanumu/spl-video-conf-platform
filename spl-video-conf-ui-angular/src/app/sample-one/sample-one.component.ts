@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { v4 as uuidv4 }  from 'uuid';
-import Peer from 'peerjs';
 import { SocketioService } from '../socketio.service';
 import { Router } from '@angular/router';
 import { CompileCode } from '../models/compile-code';
@@ -39,7 +38,8 @@ export class SampleOneComponent implements OnInit {
 
   tokenForm = this.formBuilder.group({
     token: '',
-    name: ''
+    name: '',
+    interviewId: ''
   });
 
   messageForm = this.formBuilder.group({
@@ -69,8 +69,9 @@ export class SampleOneComponent implements OnInit {
     const token = this.tokenForm.get('token').value;
     this.currentUserName = this.tokenForm.get('name').value;
 
-    if (token&&this.currentUserName!='') {
+    if (this.tokenForm.valid) {
       localStorage.setItem("myImgBase64", token)
+      localStorage.setItem("interviewId", this.tokenForm.get('interviewId').value)
       this.router.navigate(['sample-two', this.currentUserName])
     }else{
       alert("Please provide all the required details")

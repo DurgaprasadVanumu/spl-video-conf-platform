@@ -4,14 +4,18 @@
 
 export const environment = {
   production: false,
-  SOCKET_ENDPOINT: 'https://hireplusplus-socketio-vljhcfbbca-uc.a.run.app',
-  PEERJS_HOST: 'hireplusplus-peerjs-vljhcfbbca-uc.a.run.app',
-  PEERJS_PORT: 443,
-  PEERJS_PATH: '/peerjs/myapp',
-  // SOCKET_ENDPOINT: 'http://localhost:3000',
-  // PEERJS_HOST: '/',
-  // PEERJS_PORT: 3001,
+  // SOCKET_ENDPOINT: 'https://socketio.dev.hireplusplus.com',
+  // PEERJS_HOST: 'peerjs.dev.hireplusplus.com',
+  // PEERJS_PORT: 443,
   // PEERJS_PATH: '/peerjs/myapp',
+  // INTERVIEW_UTILITY_SERVICE_API: 'https://interview.dev.hireplusplus.com/interview/api/v1',
+  // AI_SERVICE_API: 'https://interview.dev.hireplusplus.com/aimatcher/api/v1'
+  SOCKET_ENDPOINT: 'http://localhost:3000',
+  PEERJS_HOST: '/',
+  PEERJS_PORT: 3001,
+  PEERJS_PATH: '/peerjs/myapp',
+  INTERVIEW_UTILITY_SERVICE_API: '/interview/api/v1',
+  AI_SERVICE_API: '/aimatcher/api/v1'
 };
 
 /*

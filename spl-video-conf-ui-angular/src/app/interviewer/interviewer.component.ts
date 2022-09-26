@@ -17,27 +17,28 @@ import { SoftSkill } from '../models/soft-skill';
 import { SkillAssessment } from '../models/skill-assessment';
 import { QuestionAndAnswer } from '../models/question-answer';
 import { InterviewData } from '../models/interview-data';
-
-// static data only for demo purposes, in real world scenario, this would be already stored on client
-const SENDER = {
-  id: "123",
-  name: "You",
-};
+import { InterviewUser } from '../models/interview-user';
+import { InterviewInfo } from '../models/interview-info';
+import { InterviewJd } from '../models/interview-jd';
+import { CandidateExperience, PastEmployerChecks } from '../models/candidate-experience';
+import { CandidatePreferences } from '../models/candidate-preferences';
 
 interface VideoElement {
   muted: boolean;
   srcObject: MediaStream,
   userId: string;
   userName: string;
+  userRole: string;
 }
 
 @Component({
-  selector: 'app-sample-two',
-  templateUrl: './sample-two.component.html',
-  styleUrls: ['./sample-two.component.scss']
+  selector: 'app-interviewer',
+  templateUrl: './interviewer.component.html',
+  styleUrls: ['./interviewer.component.scss']
 })
-export class SampleTwoComponent implements OnInit {
-  @ViewChild('content', {static: false}) private preChecksModal;
+export class InterviewerComponent implements OnInit {
+
+  @ViewChild('content', {static: false}) private candidateAnalysisModal;
   @ViewChild("editor") private editor: ElementRef<HTMLElement>;
   @ViewChild("chatMessages") private chatMessages:QueryList<ElementRef>;
 
@@ -56,14 +57,20 @@ export class SampleTwoComponent implements OnInit {
 
   currentUserId:string = uuidv4();
   currentUserName:string = "";
+  currentUserRole:string = "";
   currentUserImgB64: string = "";
-  roomId = "Durga01"
+  roomId = ""
   interviewId = "";
   interviewData: InterviewData;
+  candidateInfo: InterviewUser;
+  panelistInfo: InterviewUser;
   CHAT_ROOM = "myRandomChatRoomId";
   messages: Message[] = [];
 
-  videos: VideoElement[] = []
+  myVideo: VideoElement
+  hasMyVideoAdded: boolean = false;
+  candidateVideo: VideoElement
+  hasCandidateJoined: boolean = false;
   otherVideos: VideoElement[] = []
   systemVolume = 0;
 
@@ -93,6 +100,7 @@ export class SampleTwoComponent implements OnInit {
 
   // jdSource: string = "https://api.dev.hireplusplus.com/aimatcher/api/v1/jd/download?jdId=JD_IN1659614674";
   jdSource: Blob = null;
+  resumeSource: Blob = null;
 
   selectedCodeLang: string = "java";
 
@@ -112,6 +120,11 @@ export class SampleTwoComponent implements OnInit {
   htmlReport: string;
 
   jdSkillsList: SubSkill[] = []
+  softSkillsList: SoftSkill[] = []
+  overallRemarks: OverallRemarks;
+  skillAssesment: SkillAssessment;
+  candidateExperience: CandidateExperience;
+  candidatePreferences: CandidatePreferences;
 
   myStream: MediaStream = null
 
@@ -121,8 +134,10 @@ export class SampleTwoComponent implements OnInit {
   audioConnectivity: string = "INPROGRESS";
   allApplicationsClosed: string = "INPROGRESS";
 
-  myAudio: boolean = true;
-  myVideo: boolean = true;
+  myAudioFlag: boolean = true;
+  myVideoFlag: boolean = true;
+
+  domainInputKey: string;
 
   modalOption: NgbModalOptions = {}
 
@@ -143,41 +158,6 @@ export class SampleTwoComponent implements OnInit {
         console.log("CODE UPDATED ACK", cb)
       })
     });
-    this.modalOption.backdrop = 'static'
-    this.modalOption.keyboard = false
-    this.modalOption.windowClass = 'report-window-class'
-    this.modalService.open(this.preChecksModal, this.modalOption).result.then(
-      (result)=>{
-        console.log("Close result", result)
-        if(result==="JOIN_INTERVIEW"){
-          window.open("", "_self", "width="+screen.availWidth+",height="+screen.availHeight);
-          this.joinInterview();
-        }else{
-          console.log("Cancelled checks...")
-        }
-      }, (reason)=>{
-        console.log("Dismissed by ", this.getDismissReason(reason))
-      }
-    )
-    navigator.mediaDevices.getUserMedia({video: true, audio: true})
-    .then((stream: MediaStream)=>{
-      this.previewVideoStream = stream;
-      this.videoConnectivity = "SUCCESS"
-      this.audioConnectivity = "SUCCESS"
-      console.log("Able to capture user media")
-    }).catch((error)=>{
-      console.error("Failed to capture user media ", error)
-      this.videoConnectivity = "FAILED"
-      this.audioConnectivity = "FAILED"
-      return null;
-    });
-    setTimeout(()=>{
-      this.internetConnectivity = "SUCCESS"
-    }, 3000)
-    setTimeout(()=>{
-      this.allApplicationsClosed = "SUCCESS"
-    }, 5000)
-    // this.scrollTopChat();
   }
 
   constructor(private formBuilder: FormBuilder, 
@@ -191,41 +171,96 @@ export class SampleTwoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    var token: string;
-    this.activatedRoute.params.subscribe(params => {
-      token = params['token'];
-      this.currentUserImgB64 = localStorage.getItem("myImgBase64");
-    })
     this.activatedRoute.queryParams.subscribe(params => {
       this.roomId = params['interviewId']
       this.interviewId = params['interviewId']
       this.currentUserName = params['userName']
+      this.currentUserRole = params['userRole']
       console.log("Inteview ID is ", this.roomId)
+      this.prepareData();
       if(this.interviewId && this.interviewId.trim()!==''){
         this.interviewUtilityApiService.getInterviewDetails(this.interviewId).subscribe(
           (result)=>{
             if(result && result.resultStatusInfo && result.resultStatusInfo.resultCode==='Success'){
               this.interviewData = result.data;
+              console.log("Interview data", this.interviewData)
               this.jdSkillsList = this.interviewData.jdData.skillList;
-              console.log("Interview data ", this.interviewData)
-              this.downloadJD()
+              this.jdSkillsList.forEach(skill=>{
+                skill.skillRating = 0;
+                skill.skillRemarks = ''
+                skill.skillExperience = ''
+                skill.experience = 0
+                skill.skillKnowledge = 0
+                skill.skillClarity = 0
+              })
+              this.interviewData.userInfoList.forEach(user => {
+                if(user.userRole==='CANDIDATE'){
+                  this.candidateInfo = user;
+                }else if(user.userRole==='PANELIST'){
+                  this.panelistInfo = user;
+                }
+              })
+              this.downloadJDAndResume();
+              this.joinInterview();
             }else{
               console.log("There seems to be some issue in pulling your interview details, please try again", result.resultStatusInfo.message)
             }
           }
         )
       }else{
-       
         console.log("Empty interviewID, couldn't join the call..")
       }
     })
-    // this.mockJDSkills()
+    // this.mockJDSkills();
+    // this.downloadJDAndResume();
+    // this.joinInterview();
   }
 
-  downloadJD(){
-    this.interviewUtilityApiService.downloadJd("JD_IN1659614674").subscribe(
+  prepareData(){
+    this.softSkillsList = []
+    this.softSkillsList.push(this.createSoftSkill('Confidence Level', 0))
+    this.softSkillsList.push(this.createSoftSkill('Relevant Experience', 0))
+    this.softSkillsList.push(this.createSoftSkill('Team Player', 0))
+    this.softSkillsList.push(this.createSoftSkill('International Experience', 0))
+    this.overallRemarks = new OverallRemarks();
+    this.overallRemarks.communication=0
+    this.overallRemarks.technicalSkills=0
+    this.overallRemarks.attitude=0
+    this.overallRemarks.softSkills=0
+    this.overallRemarks.enthusiasm=0
+    this.overallRemarks.overallRemarks=''
+    this.skillAssesment = new SkillAssessment()
+    this.candidateExperience = new CandidateExperience();
+    this.candidateExperience.domainExperience = []
+    this.candidateExperience.totalExperience = 0
+    this.candidateExperience.relevantExperience = 0
+    this.candidateExperience.pastEmployers = new PastEmployerChecks()
+    this.candidatePreferences = new CandidatePreferences();
+    this.candidatePreferences.onSiteExperience=false
+    this.candidatePreferences.openessForOnsite=false
+    this.candidatePreferences.workingModel=0
+  }
+
+  createSoftSkill(skillName: string, skillRating: number){
+    var softSkill = new SoftSkill();
+    softSkill.skillName = skillName
+    softSkill.skillRating = 0
+    return softSkill;
+  }
+
+  downloadJDAndResume(){
+    this.interviewUtilityApiService.downloadJd(this.interviewData.jdData.jdIdentifier).subscribe(
       (response)=>{
         this.jdSource = new Blob([response], { type:"application/pdf"});
+      }, (error)=>{
+        console.log("Error in downloading jd", error)
+      }
+    )
+    this.interviewUtilityApiService.downloadCandidateResume(this.interviewData.jdData.jdIdentifier, this.candidateInfo.userIdentifier).subscribe(
+      (response)=>{
+        this.resumeSource = new Blob([response], { type:"application/pdf"});
+      }, (error)=>{
+        console.log("Error in downloading resume", error)
       }
     )
   }
@@ -235,41 +270,52 @@ export class SampleTwoComponent implements OnInit {
   }
 
   endInterview(){
-    var reportBody = this.prepareMockReportData();
-    localStorage.setItem("reportBody", JSON.stringify(reportBody))
-    this.router.navigate(['/report'])
+    this.modalOption.backdrop = 'static'
+    this.modalOption.keyboard = false
+    this.modalOption.windowClass = 'report-window-class'
+    this.modalService.open(this.candidateAnalysisModal, this.modalOption).result.then(
+      (result)=>{
+        console.log("Close result", result)
+        // if(result==="JOIN_INTERVIEW"){
+        //   window.open("", "_self", "width="+screen.availWidth+",height="+screen.availHeight);
+        //   this.joinInterview();
+        // }else{
+        //   console.log("Cancelled checks...")
+        // }
+        var reportBody = this.prepareReportData();
+        this.submitReport(reportBody);
+      }, (reason)=>{
+        console.log("Dismissed by ", this.getDismissReason(reason))
+        var reportBody = this.prepareReportData();
+        this.submitReport(reportBody);
+      }
+    )
   }
 
-  prepareMockReportData(): ReportGenerator{
+  prepareReportData(): ReportGenerator{
     var reportGenerator = new ReportGenerator();
-    reportGenerator.interviewId = "128222929";
-    var overallRms = new OverallRemarks();
-    overallRms.attitude=4
-    overallRms.communication=3
-    overallRms.enthusiasm=3
-    overallRms.overallRemarks="He's good"
-    overallRms.softSkills=5
-    overallRms.technicalSkills=3
-    reportGenerator.overallRemarksInfo=overallRms
-    var softSkill1 = new SoftSkill();
-    softSkill1.skillName = "Soft skill"
-    softSkill1.skillRating = 4
-    var softSkills = []
-    softSkills.push(softSkill1)
-    var skillAssess = new SkillAssessment();
-    skillAssess.softSkillAssessmentInfoList = softSkills
-    skillAssess.questionsAndAnswersList = []
+    reportGenerator.overallRemarksInfo=this.overallRemarks
+    this.skillAssesment.softSkillAssessmentInfoList = this.softSkillsList
+    this.skillAssesment.questionsAndAnswersList = []
+    reportGenerator.candidateInfo = this.candidateInfo
+    reportGenerator.panelistInfo = this.panelistInfo
+    reportGenerator.interviewInfo = this.interviewData.interviewInfo
+    reportGenerator.jdTitle = this.interviewData.jdData.jdTitle
+    reportGenerator.interviewId = this.interviewId
+    reportGenerator.candidateExperience = this.candidateExperience
+    reportGenerator.candidatePreferences = this.candidatePreferences
+    reportGenerator.recordedVideoUrl = this.interviewData.recordedVideoUrl
     this.jdSkillsList.forEach(skill=>{
       skill.skillExperience = skill.experience==0 ? "0" : (skill.experience==33.33 ? "1-3" : (skill.experience==66.66 ? "3-5" : "5+"))
       skill.suggestedQuestionList.forEach(question=>{
         if(question.answerRating && question.answerRating!=0){
-          skillAssess.questionsAndAnswersList.push(question)
+          this.skillAssesment.questionsAndAnswersList.push(question)
         }
       })
     })
-    skillAssess.subSkillAssessmentInfoList = this.jdSkillsList
-    skillAssess.communicationCategory = "assertive"
-    reportGenerator.skillAssessmentInfo = skillAssess
+    this.skillAssesment.subSkillAssessmentInfoList = this.jdSkillsList
+    reportGenerator.skillAssessmentInfo = this.skillAssesment
+    console.log("report generator ", reportGenerator)
     return reportGenerator;
   }
 
@@ -338,6 +384,12 @@ export class SampleTwoComponent implements OnInit {
       "Easy")
     )
     this.jdSkillsList.push(this.newSkill("REST APIs", 15, 0, questions3))
+
+    this.interviewData = new InterviewData();
+    this.interviewData.interviewInfo = new InterviewInfo()
+    this.interviewData.jdData = new InterviewJd()
+    this.interviewData.userInfoList = []
+    this.interviewData.jdData.skillList = this.jdSkillsList
     // this.jdSkillsList.push(this.newSkill("MongoDB", 10, 0, questions))
   }
 
@@ -393,7 +445,12 @@ export class SampleTwoComponent implements OnInit {
   
       myPeer.on('open', (userId: any) => {
         console.log("Open myPeer, the socket connection to join the room with id ", this.roomId)
-        this.socketService.joinRoom(this.roomId, userId)
+        var userData = {
+          userId: userId,
+          userRole: this.currentUserRole,
+          userName: this.currentUserName
+        }
+        this.socketService.joinRoom(this.roomId, userData)
       });
 
       navigator.mediaDevices.getUserMedia({
@@ -413,7 +470,7 @@ export class SampleTwoComponent implements OnInit {
 
             call.on('stream', (otherUserVideoStream: MediaStream) => {
               console.log('Receiving other stream', otherUserVideoStream);
-              this.addOtherUserVideo(call.metadata.userId, call.metadata.name, otherUserVideoStream);
+              this.addOtherUserVideo(call.metadata.userId, call.metadata.userName, call.metadata.userRole, otherUserVideoStream);
             })
 
             call.on('error', (err: any) => {
@@ -423,21 +480,26 @@ export class SampleTwoComponent implements OnInit {
 
           this.socketService.userConnected((err, userConnectionDetails) => {
             console.log("New user connected, details ", userConnectionDetails)
-            const userId = userConnectionDetails.id;
-            const userName = userConnectionDetails.name;
+            const userId = userConnectionDetails.userId;
+            const userName = userConnectionDetails.userName;
+            const userRole = userConnectionDetails.userRole;
             
             // Timeout to wait for the other newly connected user to configure his media settings i.e., allowing the permissions in case of browser
             setTimeout(() => {
               const call = myPeer.call(userId, stream, {
-                metadata: { userId: this.currentUserId, name: this.currentUserName },
+                metadata: { userId: this.currentUserId, userName: this.currentUserName, userRole: this.currentUserRole },
               });
               call.on('stream', (otherUserVideoStream: MediaStream) => {
                 console.log('receiving other user stream after his connection');
-                this.addOtherUserVideo(userId, userName, otherUserVideoStream);
+                this.addOtherUserVideo(userId, userName, userRole, otherUserVideoStream);
               });
     
               call.on('close', () => {
-                this.videos = this.videos.filter((video) => video.userId !== userId);
+                this.otherVideos = this.otherVideos.filter((video) => video.userId !== userId);
+                if(this.hasCandidateJoined && this.candidateVideo && this.candidateVideo.userId===userId){
+                  this.hasCandidateJoined = false;
+                  this.candidateVideo = null
+                }
               });
             }, 2000);
           })
@@ -519,29 +581,25 @@ export class SampleTwoComponent implements OnInit {
     this.socketService.disconnect({_roomId: this.roomId});
   }
 
-  muteMyAudio(){
-    this.myStream.getAudioTracks()[0].enabled = false;
-  }
-
   closeMyVideo(){
     var myVideoTrack = this.myStream.getVideoTracks();
     if(myVideoTrack.length>0){
       this.myStream.removeTrack(myVideoTrack[0]);
-      this.updateMyVideo(null, this.myAudio);
-      this.myVideo = false;
+      this.updateMyVideo(null, this.myAudioFlag);
+      this.myVideoFlag = false;
     }
   }
 
   openMyVideo(){
     navigator.mediaDevices.getUserMedia({
       video: true,
-      audio: this.myAudio
+      audio: this.myAudioFlag
     }).then((stream: MediaStream)=>{
       this.myStream = stream;
       console.log("Able to capture user media")
       if(stream){
-        this.updateMyVideo(this.myStream, this.myAudio);
-        this.myVideo = true;
+        this.updateMyVideo(this.myStream, this.myAudioFlag);
+        this.myVideoFlag = true;
       }
     }).catch((err)=>{
       console.error("Failed to capture user media again ", err)
@@ -549,8 +607,18 @@ export class SampleTwoComponent implements OnInit {
     })
   }
 
+  muteMyAudio(){
+    this.myStream.getAudioTracks()[0].enabled = false;
+    this.myAudioFlag = false;
+  }
+
+  unmuteMyAudio(){
+    this.myStream.getAudioTracks()[0].enabled = true;
+    this.myAudioFlag = true;
+  }
+
   endCall(){
-    this.videos = [];
+    this.otherVideos = []
     this.tokenForm.reset();
     this.messages = []
     this.codeForm.reset();
@@ -558,48 +626,88 @@ export class SampleTwoComponent implements OnInit {
     this.myStream.getTracks().forEach(function(track){
       track.stop();
     })
-    var reportBody = this.prepareMockReportData();
-    localStorage.setItem("reportBody", JSON.stringify(reportBody))
-    this.router.navigate(['/report'])
+    this.modalOption.backdrop = 'static'
+    this.modalOption.keyboard = false
+    this.modalOption.windowClass = 'report-window-class'
+    this.modalService.open(this.candidateAnalysisModal, this.modalOption).result.then(
+      (result)=>{
+        console.log("Close result", result)
+        if(result==="SUBMIT"){
+          var reportBody = this.prepareReportData();
+          this.submitReport(reportBody);
+        }else{
+          console.log("Cancelled report review and submit...")
+          var reportBody = this.prepareReportData();
+          this.submitReport(reportBody);
+        }
+      }, (reason)=>{
+        console.log("Dismissed by ", this.getDismissReason(reason))
+      }
+    )
+  }
+
+  submitReport(reportData){
+    var params = {
+      interviewId: reportData.interviewId
+    }
+    this.interviewUtilityApiService.updateReportData(reportData).subscribe(
+      result => {
+        console.log("Report has been updated succesfully", result)
+        this.router.navigate(['/report'], {queryParams: params})
+      }, error =>{
+        console.log("Failed to update report ", error)
+      }
+    )
   }
 
   addMyVideo(stream: MediaStream) {
-    this.videos.push({
+    this.hasMyVideoAdded = true;
+    this.myVideo = {
       muted: true,
       srcObject: stream,
       userId: this.currentUserId,
-      userName: this.currentUserName+"(You)"
-    });
+      userName: this.currentUserName+"(You)",
+      userRole: this.currentUserRole
+    }
   }
 
   updateMyVideo(stream: MediaStream, muted: boolean) {
-    this.videos[0].muted = muted;
-    this.videos[0].srcObject = stream;
+    this.myVideo.muted = muted;
+    this.myVideo.srcObject = stream;
   }
 
-  addOtherUserVideo(userId: string, name: string, stream: MediaStream) {
-    const alreadyExisting = this.videos.some(video => video.userId === userId);
-    if (alreadyExisting) {
-      console.log(this.videos, userId);
+  addOtherUserVideo(userId: string, userName: string, userRole: string, stream: MediaStream) {
+    const alreadyExisting = this.otherVideos.some(video => video.userId === userId);
+    if (alreadyExisting || (this.candidateVideo && this.candidateVideo.userId==userId) ) {
+      console.log(this.otherVideos, userId);
       return;
     }
-    this.videos.push({
-      muted: false,
-      srcObject: stream,
-      userId: userId,
-      userName: name
-    });
-    this.otherVideos.push({
-      muted: false,
-      srcObject: stream,
-      userId: userId,
-      userName: name
-    });
+    if(userRole=="CANDIDATE"){
+      this.hasCandidateJoined = true;
+      this.candidateVideo = {
+        muted: false,
+        srcObject: stream,
+        userId: userId,
+        userName: userName,
+        userRole: userRole
+      }
+    }else{
+      this.otherVideos.push({
+        muted: false,
+        srcObject: stream,
+        userId: userId,
+        userName: userName,
+        userRole: userRole
+      });
+    }
   }
 
   removeUserVideo(userId: string){
     if(userId){
-      this.videos = this.videos.filter(video => video.userId != userId);
+      if(this.hasCandidateJoined && this.candidateVideo && this.candidateVideo.userId==userId){
+        this.candidateVideo = null
+        this.hasCandidateJoined = false;
+      }
       this.otherVideos = this.otherVideos.filter(video => video.userId != userId);
     }
   }
@@ -617,6 +725,7 @@ export class SampleTwoComponent implements OnInit {
     body.languageVersion = 0;
     body.inputArgs = null;
     body.commandLineArgs = null;
+    console.log("Compiler code body", body)
     this.interviewUtilityApiService.compileCode(body).subscribe(
       (result)=>{
         console.log("result ", result)
@@ -727,6 +836,32 @@ export class SampleTwoComponent implements OnInit {
 
   setOverallRating(index: number, rating: number){
     this.jdSkillsList[index].skillRating = rating;
+  }
+
+  setSoftSkillRating(index: number, rating: number){
+    this.softSkillsList[index].skillRating = rating;
+  }
+
+  onSelectPersonality(val: string){
+    this.skillAssesment.communicationCategory = val
+  }
+
+  submitDomainKey(){
+    if(this.domainInputKey && this.domainInputKey.trim()!==''){
+      this.candidateExperience.domainExperience.push(this.domainInputKey)
+      this.domainInputKey=''
+    }
+  }
+
+  removeDomain(i: number){
+    if(i>=0 || i<this.candidateExperience.domainExperience.length){
+      this.candidateExperience.domainExperience.splice(i, 1)
+    }
+  }
+
+  toggleLargeFirms(){
+    console.log('large firms ', this.candidateExperience.pastEmployers.largeFirms)
+    this.candidateExperience.pastEmployers.largeFirms = !this.candidateExperience.pastEmployers.largeFirms;
   }
 
 }

@@ -13,12 +13,25 @@ import { PdfViewerTestComponent } from './pdf-viewer-test/pdf-viewer-test.compon
 import { HttpClientModule } from '@angular/common/http';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { NgxBootstrapSliderModule } from 'ngx-bootstrap-slider';
+import { InterviewUtilityApiService } from './interview-utility-api.service';
+import { SafePipe } from './safe.pipe';
+import { ReportComponent } from './report/report.component';
+import { NgxPrintModule } from 'ngx-print';
+import { WindowCloseGuard } from './sample-two/window-close-guard';
+import { SystemChecksComponent } from './system-checks/system-checks.component';
+import { CandidateComponent } from './candidate/candidate.component';
+import { InterviewerComponent } from './interviewer/interviewer.component';
+import { ScreenRecordingService } from './screen-recording.service';
 
 const routes: Routes = [
-  { path: 'sample-one', component: SampleOneComponent },
-  { path: 'sample-two/:token', component: SampleTwoComponent },
+  { path: 'candidate', component: CandidateComponent},
+  { path: 'interviewer', component: InterviewerComponent},
+  { path: 'system-checks', component: SystemChecksComponent},
+  { path: 'join-interview', component: SampleOneComponent },
+  { path: 'sample-two/:token', component: SampleTwoComponent , canDeactivate: [WindowCloseGuard]},
   { path: 'pdf-viewer', component: PdfViewerTestComponent},
-  { path: '', redirectTo: '/sample-one', pathMatch: 'full'}
+  { path: '', redirectTo: '/join-interview', pathMatch: 'full'},
+  { path:'report',component:ReportComponent}
 ];
 
 @NgModule({
@@ -26,7 +39,12 @@ const routes: Routes = [
     AppComponent,
     SampleOneComponent,
     SampleTwoComponent,
-    PdfViewerTestComponent
+    PdfViewerTestComponent,
+    SafePipe,
+    ReportComponent,
+    SystemChecksComponent,
+    CandidateComponent,
+    InterviewerComponent
   ],
   imports: [
     BrowserModule,
@@ -37,9 +55,10 @@ const routes: Routes = [
     NgxExtendedPdfViewerModule,
     HttpClientModule,
     NgxSliderModule,
-    NgxBootstrapSliderModule
+    NgxBootstrapSliderModule,
+    NgxPrintModule
   ],
-  providers: [SocketioService],
+  providers: [SocketioService, InterviewUtilityApiService, WindowCloseGuard,ScreenRecordingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
