@@ -1,0 +1,208 @@
+<!Doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    </meta>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    </meta>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    </meta>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </link>
+    <title>Test</title>
+    <style type="text/css">
+        @media print { body { -webkit-print-color-adjust: exact; } }
+        </style>
+</head>
+
+<body>
+<!--<div style="text-align:center; color:blue">Welcome <b th:text="${name}"></b></div>-->
+<!-- <div style="margin:auto;width:300px">
+    <canvas id="pieChartContainer" width="200px" height="100px"></canvas>
+</div> -->
+<!-- <div style="margin:auto;width:400px">
+    <canvas id="radarChartContainer" width="200px" height="100px"></canvas>
+</div> -->
+<!-- <div class="five-star-rating">
+    <i class="fa fa-star " style="font-size:48px;color:#F79009"></i>
+    <i class="fa fa-star-half-o" style="font-size:48px;color:#F79009"></i>
+    <i class="fa fa-star-o" style="font-size:48px;color:#F79009"></i>
+
+</div> -->
+<div class="row" style="text-align:right;background: #101828;">
+    <div class="col-md-7" >
+        <canvas id="radarChartContainer"></canvas>
+    </div>
+    <div class="col-md-5" id="runstar" style="text-align:right;margin: auto;"></div>
+
+</div>
+
+<script th:inline="javascript">
+
+        const rstar = document.getElementById("runstar");
+        var radarX = /*[[${radarData.radarX}]]*/[
+            'Java',
+            'Spring Boot',
+            'Microservices',
+            'MongoDB',
+            'Angular',
+            'Alpha'
+        ];
+        var radarPoints =  /*[[${radarData.radarPoints}]]*/[1, 2, 3, 4.5, 0,4.5];
+           radarPoints=radarPoints.slice(0,radarX.length);
+        var rating = 0;
+        for (j = 0; j < radarX.length; j++) {
+            rating = radarPoints[j];
+            const rparent = document.createElement('div');
+            rparent.style.fontFamily = "Inter";
+            rparent.style.color = "#EAECF0";
+            rparent.style.font = "normal";
+            rparent.style.fontWeight = 400;
+            rparent.style.fontSize = "40px";
+            rparent.style.lineHeight = "18px";
+            rparent.style.padding = "20px";
+
+            rparent.innerText = radarX[j] + " : ";
+
+
+            for (i = 0; i < 5; i++) {
+                if (i+1 < rating) {
+                    const rstarchild1 = document.createElement('i');
+                    rstarchild1.classList.add('fa', 'fa-star');
+                    rstarchild1.style.fontSize = "48px";
+                    rstarchild1.style.color = "#F79009";
+                    rstarchild1.style.paddingRight = "8px";
+                    rparent.appendChild(rstarchild1);
+                    console.log(rating)
+                } else if ((rating % 1) == 0.5) {
+                    const rstarchild3 = document.createElement('i');
+                    rstarchild3.classList.add('fa', 'fa-star-half-o');
+                    rstarchild3.style.fontSize = "48px";
+                    rstarchild3.style.color = "#F79009";
+                    rstarchild3.style.paddingRight = "8px";
+                    rparent.appendChild(rstarchild3);
+                    rating = rating - 0.5;
+                    console.log(rating)
+
+                } else {
+                    const rstarchild3 = document.createElement('i');
+                    rstarchild3.classList.add('fa', 'fa-star-o');
+                    rstarchild3.style.fontSize = "48px";
+                    rstarchild3.style.color = "#F79009";
+                    rstarchild3.style.paddingRight = "8px";
+                    rparent.appendChild(rstarchild3);
+                }
+            }
+            rstar.appendChild(rparent);
+        }
+        // const rstarchild1=document.createElement('i');
+        // rstarchild1.classList.add('fa','fa-star');
+        // rstarchild1.style.fontSize="48px";
+        // rstarchild1.style.color="#F79009";
+        // rstar.appendChild(rstarchild1);
+        // const rstarchild2=document.createElement('i');
+        // rstarchild2.classList.add('fa','fa-star-half-o');
+        // rstarchild2.style.fontSize="48px";
+        // rstarchild2.style.color="#F79009";
+        // rstar.appendChild(rstarchild2);
+        // const rstarchild3=document.createElement('i');
+        // rstarchild3.classList.add('fa','fa-star-o');
+        // rstarchild3.style.fontSize="48px";
+        // rstarchild3.style.color="#F79009";
+        // rstar.appendChild(rstarchild3);
+
+
+
+
+        var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+        var yValues = [55, 49, 44, 24, 15];
+        var barColors = [
+            "#b91d47",
+            "#00aba9",
+            "#2b5797",
+            "#e8c3b9",
+            "#1e7145"
+        ];
+        new Chart("pieChartContainer", {
+            type: "pie",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    backgroundColor: barColors,
+                    data: yValues
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: "World Wide Wine Production 2018"
+                }
+            }
+        });
+
+
+        var options = {
+         plugins: {
+                legend: {
+                    display: false,
+                }
+            },
+            scales: {
+
+                r: {
+                    grid: {
+                        color: '#CFD8DC'
+                    },
+                    angleLines: {
+                        color: '#CFD8DC'
+                    },
+                    pointLabels: {
+                        color: '#CFD8DC',
+                        font: {
+                            size: '35px',
+                            family: 'Inter'
+                        }
+                    }
+                }
+
+            },
+            scale: {
+                suggestedMin: 0,
+                suggestedMax: 5,
+                stepSize: 1,
+            },
+            elements: {
+                line: {
+                    borderWidth: 3
+                }
+            }
+        };
+        new Chart("radarChartContainer", {
+            type: /*[[${radarData.type}]]*/ 'radar',
+            data: {
+                labels: radarX,
+                datasets: [{
+                    label: /*[[${radarData.label}]]*/ 'skill',
+                    data: radarPoints,
+                    fill: true,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    pointBackgroundColor: 'rgb(255, 99, 132)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgb(255, 99, 132)'
+                }]
+            },
+            options: options,
+        });
+
+
+    </script>
+</body>
+
+</html>
