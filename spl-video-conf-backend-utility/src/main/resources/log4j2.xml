@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration >
+    <Appenders>
+<!--        add appenders here like console, file , smtp , mongodb etc-->
+<!--        levels trace>debug>info>warn>error>fatal-->
+        <Console name="c" target="SYSTEM_OUT">
+            <PatternLayout
+                    disableAnsi = "false"
+                    pattern="%highlight{%d{yyyy-MM-dd HH:mm:ss} | %-5level |%-70c{4}|%-3L| %msg%n}{FATAL=black, ERROR=red, WARN=yellow, INFO=white, DEBUG=green, TRACE=blue}">
+            </PatternLayout>
+        </Console>
+    </Appenders>
+    <Loggers>
+<!--        root tag for spring internal log statements-->
+        <Root level="Info">
+            <AppenderRef ref = "c"></AppenderRef>
+        </Root>
+<!--        <Logger name="com.blitzigo" level="debug">-->
+<!--            <AppenderRef ref="c"></AppenderRef>-->
+<!--        </Logger>-->
+<!--        logger tag for java package specific logs-->
+<!--        <Logger name="com.blitzigo" level="info">-->
+<!--            <AppenderRef ref="c"></AppenderRef>-->
+<!--        </Logger>-->
+<!--        add package level loggers here and map it to appenders-->
+<!--        <Logger name="com.blitzigo.communication" level="error" >-->
+<!--            <AppenderRef ref="c"></AppenderRef>-->
+<!--        </Logger>-->
+    </Loggers>
+</Configuration>
