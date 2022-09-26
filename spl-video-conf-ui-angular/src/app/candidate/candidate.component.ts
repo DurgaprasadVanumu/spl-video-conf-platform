@@ -204,6 +204,7 @@ export class CandidateComponent implements OnInit {
               call.on('stream', (otherUserVideoStream: MediaStream) => {
                 console.log('receiving other user stream after his connection');
                 this.addOtherUserVideo(userId, userName, userRole, otherUserVideoStream);
+                
               });
     
               call.on('close', () => {
@@ -340,6 +341,12 @@ export class CandidateComponent implements OnInit {
   }
 
   addOtherUserVideo(userId: string, userName: string, userRole: string, stream: MediaStream) {
+    if(stream.getAudioTracks().length>0){
+      console.log('remote audio is here ')
+      this.screenRecordingService.addAudioStreamToDestinationNode(stream);
+    }
+    console.log('out of the screenrecording service')
+
     const alreadyExisting = this.otherVideos.some(video => video.userId === userId);
     if (alreadyExisting) {
       console.log(this.otherVideos, userId);

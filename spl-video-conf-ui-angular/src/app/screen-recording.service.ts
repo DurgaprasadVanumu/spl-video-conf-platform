@@ -18,8 +18,15 @@ export class ScreenRecordingService {
     recordingOptions: any;
     screenRecordStream: any;
     userStream: any;
+    dest:any;
+    finalAudioContext:any;
     async startRecording(interviewId: string) {
         console.log("Requesting to start record!!!")
+        document.documentElement.requestFullscreen()
+
+        this.finalAudioContext = new AudioContext();
+        this.dest = this.finalAudioContext.createMediaStreamDestination();
+
         this.nav = navigator;
         await this.nav.mediaDevices.getDisplayMedia({
             video: true, audio: true
@@ -61,10 +68,9 @@ export class ScreenRecordingService {
                 return;
             }
 
-            document.documentElement.requestFullscreen()
 
             this.recordingOptions = {
-                audioBitsPerSecond: 100,
+                // audioBitsPerSecond: 100,
                 videoBitsPerSecond: 100,
                 mimeType: 'video/webm;codecs="vp9,opus"'
             };
@@ -72,7 +78,7 @@ export class ScreenRecordingService {
             this.screenRecordStream = screenStream;
 
             this.userStream = await navigator.mediaDevices.getUserMedia({
-                video: false, audio: { echoCancellation: true }
+                video: false, audio: { echoCancellation: true , noiseSuppression: true}
             }).then((microphoneStream) => {
                 if (microphoneStream.getAudioTracks().length < 1) {
                     alert('microphone not shared. please share to continue')
@@ -132,30 +138,34 @@ export class ScreenRecordingService {
                 let microphoneAudioStream = new MediaStream();
                 microphoneAudioStream.addTrack(microphoneStream.getAudioTracks()[0]);
                 let combinedStream = new MediaStream();
-                const finalAudioContext = new AudioContext();
-                let a1 = finalAudioContext.createMediaStreamSource(systemAudioStream);
-                let a2 = finalAudioContext.createMediaStreamSource(microphoneAudioStream);
 
-                let dest = finalAudioContext.createMediaStreamDestination();
-                const a1Gain = finalAudioContext.createGain();
+                
+
+                let a1 = this.finalAudioContext.createMediaStreamSource(systemAudioStream);
+                let a2 = this.finalAudioContext.createMediaStreamSource(microphoneAudioStream);
+
+                const a1Gain = this.finalAudioContext.createGain();
                 a1Gain.gain.value = 1;
-                const a2Gain = finalAudioContext.createGain();
+                const a2Gain = this.finalAudioContext.createGain();
                 a2Gain.gain.value = 1;
 
                 a1.connect(a1Gain);
                 a2.connect(a2Gain);
 
-                a1Gain.connect(dest);
-                a2Gain.connect(dest);
+                a1Gain.connect(this.dest);
+                a2Gain.connect(this.dest);
 
+            
                 let combinedAudioStream = new MediaStream();
-                dest.stream.getAudioTracks().forEach(a => {
+                this.dest.stream.getAudioTracks().forEach(a => {
                     combinedAudioStream.addTrack(a);
                 })
                 console.log(combinedAudioStream.getAudioTracks())
 
                 combinedStream.addTrack(screenStream.getVideoTracks()[0]);
                 combinedStream.addTrack(combinedAudioStream.getAudioTracks()[0]);
+                this.dest.stream.addTrack(screenStream.getVideoTracks()[0]);
+
 
 
 
@@ -211,10 +221,12 @@ export class ScreenRecordingService {
                 // });
 
 
-                this.recorder = new MediaRecorder(combinedStream,this.recordingOptions);
+                this.recorder = new MediaRecorder(this.dest.stream,this.recordingOptions);
                 this.recorder.start()
                 let chunks = [];
                 this.recorder.ondataavailable = e => {
+                    console.log( 'length of system audio ',screenStream.getAudioTracks().length)
+
                     this.count = this.count + 1;
 
                     console.log("count : " + this.count)
@@ -295,6 +307,21 @@ export class ScreenRecordingService {
         this.recorder.stop();
         clearInterval(this.timer)
         clearInterval(this.snapTimer)
+    }
+
+    addAudioStreamToDestinationNode(remoteTrack:MediaStream){
+        console.log('trying to add remote stream to audiodestination node')
+        let remote  = this.finalAudioContext.createMediaStreamSource(remoteTrack);
+
+        const remoteGain = this.finalAudioContext.createGain();
+        remoteGain.gain.value = 1;
+
+        remote.connect(remoteGain);
+
+        remoteGain.connect(this.dest);
+
+
+        // this.dest.stream.addTrack(remoteTrack.getAudioTracks()[0]);
     }
 
     async takeSnapshot(interviewId: string) {

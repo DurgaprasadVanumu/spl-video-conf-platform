@@ -7,4 +7,7 @@ export class InterviewData{
     interviewInfo: InterviewInfo;
     userInfoList: InterviewUser[];
     recordedVideoUrl: string;
+    jdUrl:string;
+    resumeUrl:string;
+    standaloneInterview:boolean;
 }

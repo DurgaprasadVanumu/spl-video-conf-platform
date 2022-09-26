@@ -33,13 +33,27 @@ export class InterviewUtilityApiService {
     return this.httpClient.get<HireplusplusResponse>(url);
   }
 
-  downloadJd(jdId: string): Observable<ArrayBuffer>{
-    let url = this.AI_SERVICE_HOST+'/jd/download?jdId='+jdId;
+  downloadJd(standAloneInterview:boolean,jdId: string): Observable<ArrayBuffer>{
+    let url="";
+    if(standAloneInterview){
+      url = this.INTERVIEW_UTILITY_SERVICE_HOST+'/report/standAlone/jd?jdId='+jdId;
+
+    }else{
+      url = this.AI_SERVICE_HOST+'/jd/download?jdId='+jdId;
+
+    }
     return this.httpClient.get(url, {responseType: 'arraybuffer'});
   }
 
-  downloadCandidateResume(jdId: string, resumeId: string): Observable<ArrayBuffer>{
-    let url = this.AI_SERVICE_HOST+'/resume/download?jdId='+jdId+'&resumeId='+resumeId;
+  downloadCandidateResume(standAloneInterview:boolean, jdId: string, resumeId: string): Observable<ArrayBuffer>{
+    let url="";
+    if(standAloneInterview){
+      url = this.INTERVIEW_UTILITY_SERVICE_HOST+'/report/standAlone/resume?jdId='+jdId+'&resumeId='+resumeId;
+
+    }else{
+      url = this.AI_SERVICE_HOST+'/resume/download?jdId='+jdId+'&resumeId='+resumeId;
+
+    }
     return this.httpClient.get(url, {responseType: 'arraybuffer'});
   }
 

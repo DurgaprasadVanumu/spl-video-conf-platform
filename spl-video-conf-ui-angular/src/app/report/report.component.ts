@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { ReportGenerator } from '../models/generate-report';
 import { OverallRemarks } from '../models/overall-remarks';
 import { SkillAssessment } from '../models/skill-assessment';
@@ -33,6 +34,7 @@ export class ReportComponent implements OnInit {
 
     this.activatedRoute.queryParams.subscribe(params => {
       this.interviewId = params['interviewId']
+      this.codeStreamUrl=environment.INTERVIEW_UTILITY_SERVICE_API+"/report/streamCode?interviewId="+this.interviewId;
       this.interviewUtilityService.getReportData(this.interviewId).subscribe(res => {
         console.log(res);
 
@@ -52,11 +54,27 @@ export class ReportComponent implements OnInit {
           this.generateJdDoughnutChart();
           this.populateQuestionsAndAnswers();
           this.skillsAssessedString = this.generateSkillAssessedString(this.reportData.skillAssessmentInfo.subSkillAssessmentInfoList);
-          this.jdId = "JD_IN1659614674";
-          this.resumeId = "CV_1659614866"; 
+          this.jdId = this.reportData.jdId;
+          this.resumeId = this.reportData.candidateInfo.userIdentifier; 
+          if(this.reportData.standaloneInterview){
+            this.resumeUrl=this.reportData.resumeUrl;
+          }else{
+            this.resumeUrl="https://interview.dev.hireplusplus.com/aimatcher/api/v1/resume/download?jdId="+this.jdId+"&resumeId="+this.resumeId;
+          }
+
             
         }else{
           console.log("Report generation failed")
+          let wholePage = document.getElementById("pageAll");
+          let printButton = document.getElementById("printButton");
+          printButton.style.display="None";
+          // wholePage.style.opacity="0.5";
+          wholePage.style.color="Red";
+          wholePage.style.fontSize="30px";
+          wholePage.style.background="black"
+          wholePage.style.textAlign="center"
+          wholePage.textContent="Report Generation Failed. Please contact ADMIN with Interview ID : "+this.interviewId;
+          
         }
        
        });
@@ -66,13 +84,15 @@ export class ReportComponent implements OnInit {
   }
   jdId;
   resumeId;
-  interviewId;
+  resumeUrl;
+  interviewId="";
   candidateSnapshots: string[] = ["https://interview.dev.hireplusplus.com/interview/api/v1/snapshot.png", "https://interview.dev.hireplusplus.com/interview/api/v1/snapshot.png", "https://interview.dev.hireplusplus.com/interview/api/v1/snapshot.png"];
   candidateSnapshot0: string;
   candidateSnapshot1: string;
   candidateSnapshot2: string;
   reportData: ReportGenerator;
   skillsAssessedString: string;
+  codeStreamUrl=environment.INTERVIEW_UTILITY_SERVICE_API+"/report/streamCode?interviewId="+this.interviewId;
 
   prepareMockReportData(): ReportGenerator {
     var reportGenerator = new ReportGenerator();

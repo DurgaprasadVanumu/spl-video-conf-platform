@@ -249,14 +249,14 @@ export class InterviewerComponent implements OnInit {
   }
 
   downloadJDAndResume(){
-    this.interviewUtilityApiService.downloadJd(this.interviewData.jdData.jdIdentifier).subscribe(
+    this.interviewUtilityApiService.downloadJd(this.interviewData.standaloneInterview,this.interviewData.jdData.jdIdentifier).subscribe(
       (response)=>{
         this.jdSource = new Blob([response], { type:"application/pdf"});
       }, (error)=>{
         console.log("Error in downloading jd", error)
       }
     )
-    this.interviewUtilityApiService.downloadCandidateResume(this.interviewData.jdData.jdIdentifier, this.candidateInfo.userIdentifier).subscribe(
+    this.interviewUtilityApiService.downloadCandidateResume(this.interviewData.standaloneInterview,this.interviewData.jdData.jdIdentifier, this.candidateInfo.userIdentifier).subscribe(
       (response)=>{
         this.resumeSource = new Blob([response], { type:"application/pdf"});
       }, (error)=>{
@@ -305,6 +305,10 @@ export class InterviewerComponent implements OnInit {
     reportGenerator.candidateExperience = this.candidateExperience
     reportGenerator.candidatePreferences = this.candidatePreferences
     reportGenerator.recordedVideoUrl = this.interviewData.recordedVideoUrl
+    reportGenerator.standaloneInterview=this.interviewData.standaloneInterview
+    reportGenerator.resumeUrl=this.interviewData.resumeUrl
+    reportGenerator.jdUrl=this.interviewData.jdUrl
+    reportGenerator.jdId=this.interviewData.jdData.jdIdentifier
     this.jdSkillsList.forEach(skill=>{
       skill.skillExperience = skill.experience==0 ? "0" : (skill.experience==33.33 ? "1-3" : (skill.experience==66.66 ? "3-5" : "5+"))
       skill.suggestedQuestionList.forEach(question=>{

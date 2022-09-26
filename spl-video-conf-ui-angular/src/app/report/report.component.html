@@ -55,7 +55,7 @@
                                 <span class="material-symbols-outlined">
                                     file_download
                                 </span>
-                                <a href="https://interview.dev.hireplusplus.com/aimatcher/api/v1/resume/download?jdId={{jdId}}&resumeId={{resumeId}}" target="_blank" style="color: #FFFFFF;"><span style="text-decoration:underline;">Download CV</span></a>
+                                <a href={{resumeUrl}} target="_blank" style="color: #FFFFFF;"><span style="text-decoration:underline;">Download CV</span></a>
                             </div>
                             <div class="col-sm-4">
                                 <button class="shortlist" onclick="blast()">shortlist</button>
@@ -447,12 +447,13 @@
                 </div>
             </div>
             <div class="row my-3" id="codingSnapshots">
-                <div class="col-sm-8">
+                <a href="{{codeStreamUrl}}" target="_blank" class="watchRecording" style="text-decoration:none ;padding:5px;text-align: center;"> view code and compilation info</a>
+                <!-- <div class="col-sm-8">
                     <img src="https://interview.dev.hireplusplus.com/interview/api/v1/code.png" style="width:100%;" />
                 </div>
                 <div class="col-sm-4">
                     <img src="https://interview.dev.hireplusplus.com/interview/api/v1/compile.png" style="width:100%;" />
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -481,5 +482,5 @@
 </div>
 
 
-<button class="floatingButton" style="position: fixed ;top:40px;right:30px" (click)="print()">print</button>
+<button class="floatingButton" id="printButton" style="position: fixed ;top:40px;right:30px" (click)="print()">print</button>
 <!-- <button class="floatingButton" style="position: fixed ;top:80px;right:30px" (click)="download()">download</button> -->

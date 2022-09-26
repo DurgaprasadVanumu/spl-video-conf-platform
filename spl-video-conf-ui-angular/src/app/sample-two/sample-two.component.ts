@@ -223,7 +223,7 @@ export class SampleTwoComponent implements OnInit {
   }
 
   downloadJD(){
-    this.interviewUtilityApiService.downloadJd("JD_IN1659614674").subscribe(
+    this.interviewUtilityApiService.downloadJd(false,"JD_IN1659614674").subscribe(
       (response)=>{
         this.jdSource = new Blob([response], { type:"application/pdf"});
       }

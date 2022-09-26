@@ -16,4 +16,9 @@ export class ReportGenerator{
     candidatePreferences: CandidatePreferences;
     candidateExperience: CandidateExperience;
     recordedVideoUrl:string;
+    jdId:String;
+    standaloneInterview:boolean;
+    resumeUrl:string;
+    jdUrl:string;
+
 }
