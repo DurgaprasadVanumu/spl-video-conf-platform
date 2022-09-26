@@ -44,14 +44,16 @@ socketIo.on('connection', (socket) => {
   // find user's all channels from the database and call join event on all of them.
   console.log('A user connected....');
 
-  socket.on('join-room', (roomId, userId) => {
-    console.log("A new user "+userId+ " connected to the room " + roomId)
+  socket.on('join-room', (roomId, userData) => {
+    console.log("A new user ", userData, " has joined in room", roomId)
+    var userId = userData.userId
     socket.join(roomId);
 
-    console.log("Emitting the userconnected event for userId ", userId)
+    console.log("Emitting the userconnected event for userId ",userId, " in room ", roomId)
     const userConnectionDetails = {
-      name: socket.user.name,
-      id: userId
+      userName: userData.userName,
+      userId: userId,
+      userRole: userData.userRole
     }
     socket.to(roomId).emit('user-connected', userConnectionDetails)
 
@@ -124,5 +126,5 @@ socketIo.on('connection', (socket) => {
 });
 
 httpServer.listen(3000, () => {
-  console.log('Socket server started listening on *:8080');
+  console.log('Socket server started listening on *:3000');
 });
